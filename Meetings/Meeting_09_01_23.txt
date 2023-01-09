@@ -1,0 +1,43 @@
++ Membres : 
+	Enguerrand Marquant
+	Simon Bernard De Larjartre
+	Maxime Declemy
+	Thomas Raffray
+	Alexis Mallet
+	Tom Mullier
+	Adel Eutamene
+	Nicolas Grousseau
+
++ Chef de projet : Tom Mullier
+
++ Etapes de construction :
+	Login + BDD (Login obligatoire)
+	Interface Admin + utilisateur
+	Admin :
+		Création d'étapes (modèle en back)
+		Création de parcours
+		Création d'étape et après parcours
+		Génération QR code
+		Génération des stats sur les utilisateurs de notre programme
+	Utilisateur :
+		Choisir parcours -> Donner première étape
+		Scanner QR Code -> Fiche lieu + lieu suivant
+		Message fin
+
++ Techniques :
+	Server : Node + JS
+	Front : HTML/Boostrap/CSS/LESS/Tailwind
+	BDD : Mongo DB
+	QR Code : Lecture + génération à trouver
+
++ Communication : Discord + GitHub
+
++ Préférences : 
+	Adel : Front
+	Simon : QR Code + Both
+	Thomas :  QR Code + Front
+	Maxime : Back
+	Enguerrand : Back
+	Alexis : Both 
+	Tom : Front (Both)
+	Nicolas : Front
