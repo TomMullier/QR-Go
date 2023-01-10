@@ -1,0 +1,275 @@
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/catamaran/v17/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd1ak.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firasans/v16/va9B4kDNxMZdWfMOD5VnSKzuQQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/mulish/v12/1Ptyg83HX_SGhgqO0yLcmjzUAuWexU1WwaA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Overlock';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/overlock/v15/Z9XSDmdMWRiN1_T9Z7xizcmM.ttf) format('truetype');
+}
+body {
+  background-color: #f1f0ff;
+  color: #231F20;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+nav {
+  background-color: #f1f0ff;
+}
+nav .navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: none;
+  width: 100vw;
+  align-items: center;
+  height: 10vh;
+}
+nav .navbar .logo-main {
+  margin: 0 10px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+nav .navbar .logo-main img {
+  height: 6vh;
+  width: auto;
+}
+nav .navbar .logo-main p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #231F20;
+  margin: 0 10px;
+  padding: 0;
+}
+nav .navbar .login-container i {
+  padding: 10px 20px;
+  color: #231F20;
+  font-size: 2.5vh;
+}
+nav .navbar .login-container i:hover {
+  cursor: pointer;
+}
+.first-infos {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  align-items: center;
+  width: 100vw;
+  background-color: #f1f0ff;
+  height: calc(90vh - 50px);
+}
+.first-infos .sign-up-today {
+  text-transform: uppercase;
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #a299ff;
+}
+.first-infos .desc-big {
+  margin-top: 5px;
+  line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4vh;
+  font-weight: 700;
+  color: #231F20;
+  text-align: center;
+  letter-spacing: -1px;
+}
+.first-infos .desc-button1 {
+  margin-top: 20px;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #F5F5F5;
+  text-align: center;
+  letter-spacing: 0px;
+  background-color: #a299ff;
+  width: 80vw;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+}
+.first-infos .desc-button2 {
+  margin-top: 10px;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #a299ff;
+  text-align: center;
+  letter-spacing: 0px;
+  background-color: transparent;
+  width: 80vw;
+  padding: 10px;
+  border: #a299ff solid 2px;
+  border-radius: 30px;
+}
+.first-infos img {
+  margin-top: 20px;
+  height: 40vh;
+}
+.project {
+  width: 80vw;
+  margin: 50px auto 0 auto;
+}
+.project h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3vh;
+  font-weight: 700;
+  color: #231F20;
+  text-align: left;
+  letter-spacing: 0px;
+}
+.project p {
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #231F20;
+  text-align: left;
+  letter-spacing: 0px;
+}
+.project p i {
+  color: #a299ff;
+  margin-right: 10px;
+}
+.project desc {
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #dcdcdc;
+  text-align: left;
+  letter-spacing: 0px;
+}
+.project desc i {
+  color: #a299ff;
+  margin-right: 10px;
+}
+.features .title {
+  margin-top: 50px;
+  line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #231F20;
+  text-align: center;
+  letter-spacing: 0px;
+}
+.features .features-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  width: 100vw;
+  background-color: #F5F5F5;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.199);
+  padding-bottom: 30px;
+}
+.features .features-container .feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  padding-bottom: 10px;
+}
+.features .features-container .feature .feature-icon {
+  margin-top: 10px;
+  height: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.features .features-container .feature .feature-icon i {
+  color: #F5F5F5;
+  font-size: 5vh;
+}
+.features .features-container .feature .feature-title {
+  margin-top: 5px;
+  line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #231F20;
+  text-align: center;
+  letter-spacing: 0px;
+}
+.features .features-container .feature .feature-desc {
+  line-height: 1.2;
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 400;
+  color: #231F20;
+  text-align: center;
+  letter-spacing: 0px;
+}
+#logo_socials {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 80vw;
+  height: 5vh;
+  color: #a299ff;
+}
+.title-footer {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #a299ff;
+}
+.contact-text {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.contact-text h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #231F20;
+}
+.contact-text p {
+  font-family: 'Catamaran', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #231F20;
+}
+.blue-text {
+  color: #a299ff;
+}
