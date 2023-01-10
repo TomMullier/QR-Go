@@ -5,8 +5,8 @@ const io = require("socket.io")(http);
 const path = require("path");
 const bodyParser = require("body-parser");
 const sharedsession = require('express-socket.io-session');
-
-const {BDD} = require("./Model/bdd/bdd.js");
+const {MongoClient} = require("mongodb");
+const BDD = require("./Model/bdd/bdd.js");
 
 const session = require("express-session")({
     secret: process.env.SESSION_SECRET,
@@ -18,14 +18,18 @@ const session = require("express-session")({
     },
 });
 
+
+
 const {
     body,
     validationResult
 } = require("express-validator");
 
+const dBconnection =  new MongoClient("mongodb://0.0.0.0:27017");
+BDD.main(dBconnection);
+const database = dBconnection.db("admin");
+BDD.addUser(database);
 
-let blbl = new BDD();
-blbl.addUser();
 
 //app.use(jsonParse);
 app.use(express.static(path.join(__dirname, "/Vue/")));
