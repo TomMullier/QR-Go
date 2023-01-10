@@ -97,45 +97,31 @@ nav .navbar .login-container i:hover {
   cursor: pointer;
 }
 main .div_scaner_title {
-  margin-top: 20vw;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  height: 20vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  margin: 40px 0;
   text-align: center;
 }
 main .div_scaner_title_txt {
-  margin-top: 1vw;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  height: 10vw;
   text-align: center;
+  color: #231F20;
+  padding: 0;
+}
+main .div_scaner_title_txt {
   font-family: 'Montserrat', sans-serif;
-  font-size: 3vh;
+  font-size: 60px;
   font-weight: 700;
   color: #231F20;
   margin: 0 10px;
   padding: 0;
 }
-main #reader {
-  margin-top: 10vw;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  margin-bottom: 10vw;
-  height: 70vw;
+main #qr-display {
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
 }
-main p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2vh;
-  font-weight: 400;
-  color: #231F20;
-  margin: 0 10px;
-  padding: 0;
-}
-main .div_scaner_title_txt {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 5.5vh;
-  font-weight: 700;
-  color: #231F20;
-  margin: 0 10px;
-  padding: 0;
+main #qr-display canvas {
+  border-radius: 30px;
+  max-width: 100%;
+  max-height: 300px;
 }

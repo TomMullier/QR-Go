@@ -1,10 +1,11 @@
 import QrScanner from 'qr-scanner';
 
-new QrScanner(
+const qrScanner = new QrScanner(
     document.getElementById('qr-video'),
-    result => console.log(result.data), {
-      highlightCodeOutline: true,
-      highlightScanRegion: true,
-      returnDetailedScanResult: true
-    }
-).start();
+    result => alert(result.data), {returnDetailedScanResult: true}
+);
+
+qrScanner.start();
+
+
+document.getElementById('qr-display').appendChild(qrScanner.$canvas);
