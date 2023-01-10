@@ -8,6 +8,9 @@ const sharedsession = require('express-socket.io-session');
 const {MongoClient} = require("mongodb");
 const BDD = require("./Model/bdd/bdd.js");
 
+const hostname = "10.224.4.159";
+const port = 4200;
+
 const session = require("express-session")({
     secret: process.env.SESSION_SECRET,
     resave: true,
@@ -39,6 +42,7 @@ app.get("/", (req, res) => {
 });
 
 
-http.listen(4200, () => {
-    console.log("Serveur lancé sur le port 4200");
+http.listen(port, hostname, () => {
+    // console.log("Serveur lancé sur le port 4200");
+    console.log(`Server running at http://${hostname}:${port}`)
 });
