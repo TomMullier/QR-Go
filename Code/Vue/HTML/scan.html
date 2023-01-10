@@ -2,83 +2,53 @@
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-                integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-                crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-                crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../css/scan.css">
-        <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
-        <title>Scan</title>
-
-
-        <script src="../JS/html5-qrcode.min.js"></script>
-
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/scan.css">
+    <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
+    <title>Scan</title>
 </head>
 
 <body>
-        <nav>
-                <div class="navbar">
+<nav>
+    <div class="navbar">
                         <span class="logo-main">
                                 <img src="../img/logo_seul_invert.jpg" alt="logo">
                                 <p>QR Go</p>
                         </span>
-                        <span class="login-container">
+        <span class="login-container">
                                 <button href="login.html" class="admin-button">Back</button>
 
                         </span>
-                </div>
-        </nav>
-        <main>
-                <div class="div_scaner_title">
-                        <p>Next location<p>
-                        <div class="div_scaner_title_txt" id="div_scaner_title_txt">
-                                
-                        </div>
-                </div>
+    </div>
+</nav>
+<main>
+    <div class="div_scaner_title">
+        <p>Next location
+        <p>
+        <div class="div_scaner_title_txt" id="div_scaner_title_txt">
 
-                <div id="reader">
+        </div>
+    </div>
 
-                </div>
-        </main>
-
-
-        <!--<script type="module">
-                import QrScanner from '../JS/qr-scanner.min.js';
-                const qrScanner = new QrScanner(
-                    document.getElementById('divscaner'),
-                    result => console.log(result.data),
-                );
-                
-                qrScanner.start();
-        </script>-->
-
-        <script type="module">
-
-        const next_step = 'Kouisine'
-        document.getElementById('div_scaner_title_txt').innerHTML += next_step;
-        
+    <video id="qr-video" width="100%"></video>
+</main>
 
 
-                function onScanSuccess(decodedText, decodedResult) {
-    // Handle on success condition with the decoded text or result.
-        console.log(`Scan result: ${decodedText}`, decodedResult);
-        }
+<script>
 
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-	"reader", { fps: 10, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess);
-        </script>
+  const next_step = 'Kouisine';
+  document.getElementById('div_scaner_title_txt').innerHTML = next_step;
 
-
-
-
-
+</script>
 </body>
 
+<script src="../JS/qr-scanner-final.js"></script>
 </html>
