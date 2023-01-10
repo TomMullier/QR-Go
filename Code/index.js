@@ -28,9 +28,15 @@ const {
     validationResult
 } = require("express-validator");
 
-const dBconnection =  new MongoClient("mongodb://0.0.0.0:27017");
+/* -------------------------------------------------------------------------- */
+/*                        NE PAS EFFACER CE COMMENTAIRE                       */
+/* -------------------------------------------------------------------------- */
+// .\mongosh --host 10.224.4.159 --port 27017
+// restart mongodb serveur (services)
+const dBconnection =  new MongoClient("mongodb://10.224.4.159:27017");
 BDD.main(dBconnection);
 const database = dBconnection.db("admin");
+// console.log(database);
 BDD.addUser(database);
 
 
