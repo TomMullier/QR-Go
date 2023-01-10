@@ -52,7 +52,6 @@ nav .navbar {
   justify-content: space-between;
   width: 100vw;
   align-items: center;
-  height: 10vh;
   margin: 0vw;
   font-family: 'Montserrat', sans-serif;
   font-size: 2vh;
@@ -112,7 +111,7 @@ nav .navbar .play-container i:hover {
   margin-left: 10vw;
   align-items: baseline;
 }
-.top-title .select-route-title {
+.top-title .select-location-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 2vh;
   font-weight: 700;
@@ -236,6 +235,18 @@ nav .navbar .play-container i:hover {
   width: 80%;
   border-radius: 10px;
   margin: 10px auto;
+}
+.scroll-list .route-element .route-element-bottom {
+  margin: 0 10px;
+}
+.scroll-list .route-element .route-element-bottom h3 {
+  color: #757575;
+  font-size: 1.5vh;
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
 }
 .scroll-list .route-element .route-element-top {
   display: flex;

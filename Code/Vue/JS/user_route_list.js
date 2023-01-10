@@ -19,3 +19,15 @@ all_expand_buttons.forEach(function (element) {
         });
 })
 
+
+let button_sort=document.getElementById("sort_button")
+let sort_menu=document.getElementById("sort_menu")
+button_sort.addEventListener("click", function (e) {
+        if (sort_menu.style.display=="flex") {
+                sort_menu.style.display="none";
+                return;
+        } else {
+                sort_menu.style.display="flex";
+                document.getElementById("scroll_list").style.height="calc(84vh - 40px)";
+        }
+});

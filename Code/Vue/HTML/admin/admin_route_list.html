@@ -11,8 +11,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
                 crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../../css/admin/admin_route_list.css">
         <link rel="stylesheet" href="../../css/admin/modals.css">
+        <link rel="stylesheet" href="../../css/admin/admin_route_list.css">
         <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
         <title>Route</title>
 </head>
@@ -21,27 +21,35 @@
         <nav>
                 <div class="navbar">
                         <div class="menu">
-                            <div class="item-selected">
-                                Routes
-                            </div>
-                            <div class="item">
-                                Locations
-                            </div>
-                            <div class="item">
-                                Stats
-                            </div>
+                                <div class="item selected">
+                                        Routes
+                                </div>
+                                <div class="item middle">
+                                        <a href="admin_location_list.html" class="text-reset">
+                                                Locations
+                                        </a>
+                                </div>
+                                <div class="item">
+                                        Stats
+                                </div>
+                                <div class="play-container">
+                                        <button href="login.html" class="play-button">Scan</button>
+                                </div>
                         </div>
-                        <div class="play-container">
-                            <button href="login.html" class="play-button">Play</button>
-                        </div>
+                        <div class="separator"></div>
                 </div>
         </nav>
         <main>
-                <h2 class="select-route-title">Select your route :</h2>
+                <div class="top-title">
+                        <h2 class="select-route-title">Select your route :</h2>
+                        <div class="create-new-container">
+                                <button id="new_route_button" class="create-new">Create New</button>
+                        </div>
+                </div>
                 <div class="search">
                         <div class="top">
                                 <div class="search-bar">
-                                        <input type="text" placeholder="Search...">
+                                        <input id="searchBar" type="text" placeholder="Search...">
                                 </div>
                         </div>
                         <div id="sort_menu" class="Sort-settings">
@@ -66,17 +74,15 @@
                 <div id="scroll_list" class="scroll-list">
                         <div class="route-element">
                                 <div class="route-element-top">
-                                        <h1>Titre</h1>
+                                        <h1 class="titles">Parcours découverte</h1>
                                         <div class="top">
-                                                
                                                 <a href="">
-                                                    <b >Modify</b>
-                                                    <i class="fa-solid fa-bars text-reset"></i>
+                                                        <b>Click to Modify</b>
                                                 </a>
                                         </div>
                                 </div>
                                 <div class="route-element-desc">
-                                        <h6><i class="fa-solid fa-clock"></i>45min</h6>
+                                        <h6 class="duration"><i class="fa-solid fa-clock"></i>12:25</h6>
                                         <p class="route_element_desc_text">Lorem ipsum dolor sit, amet consectetur
                                                 adipisicing elit. Error
                                                 exercitationem, hic ipsa culpa iusto aliquid corporis earum aperiam odio
@@ -86,22 +92,21 @@
                                 </div>
                                 <div class="route-element-bottom">
                                         <h6>1234567890 étapes</h6>
-                                        <h6>Par MichelDu62</h6>
+                                        <h6 class="auteur">Par MichelDu62</h6>
 
                                 </div>
                         </div>
                         <div class="route-element">
                                 <div class="route-element-top">
-                                        <h1>Titre</h1>
+                                        <h1 class="titles">Parcours confirmé</h1>
                                         <div class="top">
-                                                <i class="fa-solid fa-circle-check"></i>
-                                                <h6>
-                                                        Finished !
-                                                </h6>
+                                                <a href="">
+                                                        <b>Click to Modify</b>
+                                                </a>
                                         </div>
                                 </div>
                                 <div class="route-element-desc">
-                                        <h6><i class="fa-solid fa-clock"></i>45min</h6>
+                                        <h6 class="duration"><i class="fa-solid fa-clock"></i>00:45</h6>
                                         <p class="route_element_desc_text">Lorem ipsum dolor sit, amet consectetur
                                                 adipisicing elit. Error
                                                 exercitationem, hic ipsa culpa iusto aliquid corporis earum aperiam odio
@@ -111,74 +116,125 @@
                                 </div>
                                 <div class="route-element-bottom">
                                         <h6>1234567890 étapes</h6>
-                                        <h6>Par MichelDu62</h6>
+                                        <h6 class="auteur">Par LeGrand JD</h6>
 
                                 </div>
                         </div>
-                        <div class="route-element">
-                                <div class="route-element-top">
-                                        <h1>Titre</h1>
-                                        <div class="top">
-                                                <i class="fa-solid fa-circle-check"></i>
-                                                <h6>
-                                                        Finished !
-                                                </h6>
-                                        </div>
-                                </div>
-                                <div class="route-element-desc">
-                                        <h6><i class="fa-solid fa-clock"></i>45min</h6>
-                                        <p class="route_element_desc_text">Lorem ipsum dolor sit, amet consectetur
-                                                adipisicing elit. Error
-                                                exercitationem, hic ipsa culpa iusto aliquid corporis earum aperiam odio
-                                                labore laboriosam consequuntur quis unde ipsum, quaerat non voluptas
-                                                veritatis officia.</p>
-                                        <a class="expand_button">Show more</a>
-                                </div>
-                                <div class="route-element-bottom">
-                                        <h6>1234567890 étapes</h6>
-                                        <h6>Par MichelDu62</h6>
-
-                                </div>
-                        </div>
-                        <div class="route-element">
-                                <div class="route-element-top">
-                                        <h1>Titre</h1>
-                                        <div class="top">
-                                                <i class="fa-solid fa-circle-check"></i>
-                                                <h6>
-                                                        Finished !
-                                                </h6>
-                                        </div>
-                                </div>
-                                <div class="route-element-desc">
-                                        <h6><i class="fa-solid fa-clock"></i>45min</h6>
-                                        <p class="route_element_desc_text">Lorem ipsum dolor sit, amet consectetur
-                                                adipisicing elit. Error
-                                                exercitationem, hic ipsa culpa iusto aliquid corporis earum aperiam odio
-                                                labore laboriosam consequuntur quis unde ipsum, quaerat non voluptas
-                                                veritatis officia.</p>
-                                        <a class="expand_button">Show more</a>
-                                </div>
-                                <div class="route-element-bottom">
-                                        <h6>1234567890 étapes</h6>
-                                        <h6>Par MichelDu62</h6>
-
-                                </div>
-                        </div>
+                        
                 </div>
         </main>
-        <div id="modals" style="display:none;">
-                <modal id="not_find">
-                        <span id="close_settings" class="close-modal close_settings">&times;</span>
-                        <h1 class="colorred">Erreur de recherche</h1><br><br><br><br>
-                        <p>L'élément n'a pas été trouvé</p>
+        <div id="modals" style="display:flex;">
+                <modal id="create_route_modal">
+                        <div class="slider"></div>
+                        <div class="top">
+                                <h1 class="title">Create Route</h1>
+                                <span id="close_settings" class="close-modal close_settings">&times;</span>
+                        </div>
+                        <div class="fields-container">
+                                <div class="left">
+                                        <input type="text" class="input_create txt" id="route_name" placeholder="Name of route">
+                                        <textarea id="route_desc" type="text" class="input_create txtarea"
+                                                placeholder="Description"></textarea>
+                                </div>
+                                <div class="right">
+                                        <p>Estimated duration :</p>
+                                        <input id="route_duration" type="time" class="input_create time">
+                                </div>
+                        </div>
+                        <h3>List of all stops created :</h3>
+                        <div class="horiz_scroll">
+                                <div class="card_scroll_hori">
+                                        <h1>Titre1</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div class="card_scroll_hori">
+                                        <h1>Titre2</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div class="card_scroll_hori">
+                                        <h1>Titre3</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div class="card_scroll_hori">
+                                        <h1>Titre4</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div class="card_scroll_hori">
+                                        <h1>Titre5</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                        </div>
+                        <h3>Your current route : (drag & drop to modify)</h3>
+                        <div id="list" class="verti_scroll">
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <h1>Titre1</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <h1>Titre2</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <h1>Titre3</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <h1>Titre4</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <h1>Titre5</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                        </p>
+                                </div>
+                        </div>
+                        <div class="buttons_container">
+                                <div class="validate">
+                                        Save Route
+                                </div>
+                                <div class="cancel">
+                                        Cancel
+                                </div>
+
+                        </div>
+
                 </modal>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="../../JS/drag-drop.js"></script>
         <script src="../../JS/modal.js"></script>
-        
-        <script src="../../JS/user_route_list.js"></script>
+
+        <script src="../../JS/admin_route_list.js"></script>
 </body>
 
 </html>

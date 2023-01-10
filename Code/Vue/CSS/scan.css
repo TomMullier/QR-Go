@@ -117,11 +117,12 @@ main .div_scaner_title_txt {
   padding: 0;
 }
 main #reader {
+  background-color: yellow;
   margin-top: 10vw;
   margin-left: 10vw;
   margin-right: 10vw;
   margin-bottom: 10vw;
-  height: 70vw;
+  height: 90vw;
 }
 main p {
   font-family: 'Montserrat', sans-serif;

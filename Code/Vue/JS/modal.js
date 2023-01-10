@@ -3,7 +3,7 @@ let callback = null
 
 function showTemplateModal(id){
     const modal = document.getElementById(id)
-    modal.style.display = null
+    modal.style.display = "flex"
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-modal', 'true')
 
