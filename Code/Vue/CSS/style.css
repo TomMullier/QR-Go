@@ -34,7 +34,7 @@
   src: url(https://fonts.gstatic.com/s/overlock/v15/Z9XSDmdMWRiN1_T9Z7xizcmM.ttf) format('truetype');
 }
 body {
-  background-color: #f0efff;
+  background-color: #f1f0ff;
   color: #231F20;
   font-family: 'Catamaran', sans-serif;
   font-size: 16px;
@@ -44,7 +44,7 @@ body {
   padding: 0;
 }
 nav {
-  background-color: #f0efff;
+  background-color: #f1f0ff;
 }
 nav .navbar {
   display: flex;
@@ -79,13 +79,16 @@ nav .navbar .login-container i {
   color: #231F20;
   font-size: 2.5vh;
 }
+nav .navbar .login-container i:hover {
+  cursor: pointer;
+}
 .first-infos {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
   align-items: center;
   width: 100vw;
-  background-color: #f0efff;
+  background-color: #f1f0ff;
   height: calc(90vh - 50px);
 }
 .first-infos .sign-up-today {
@@ -135,7 +138,7 @@ nav .navbar .login-container i {
 }
 .first-infos img {
   margin-top: 20px;
-  height: 45vh;
+  height: 40vh;
 }
 .project {
   width: 80vw;
@@ -184,6 +187,7 @@ nav .navbar .login-container i {
   letter-spacing: 0px;
 }
 .features .features-container {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -194,15 +198,17 @@ nav .navbar .login-container i {
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.199);
+  padding-bottom: 30px;
 }
 .features .features-container .feature {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80vw;
+  padding-bottom: 10px;
 }
 .features .features-container .feature .feature-icon {
-  margin-top: 20px;
+  margin-top: 10px;
   height: 30vw;
   display: flex;
   flex-direction: row;
@@ -231,6 +237,38 @@ nav .navbar .login-container i {
   color: #231F20;
   text-align: center;
   letter-spacing: 0px;
+}
+#logo_socials {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 80vw;
+  height: 5vh;
+  color: #a299ff;
+}
+.title-footer {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #a299ff;
+}
+.contact-text {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.contact-text h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #231F20;
+}
+.contact-text p {
+  font-family: 'Catamaran', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #231F20;
 }
 .blue-text {
   color: #a299ff;

@@ -1,20 +1,19 @@
+// Code
 @import url('https://fonts.googleapis.com/css2?family=Catamaran&family=Fira+Sans:wght@600&family=Montserrat:wght@700&family=Mulish:wght@600&family=Overlock:wght@700&display=swap');
 
 // Variables
 @white : #F5F5F5;
-@grey : rgb(220, 220, 220);
-@blue : rgb(162, 153, 255);
+@grey : #dcdcdc;
+@blue : #a299ff;
 @purple : #8784AE;
 @red: #E17E7C;
 @black : #231F20;
-@white_blue:rgb(240, 239, 255);
+@white_blue:rgb(241, 240, 255);
 
 @title-font: 'Montserrat', sans-serif;
 @subtitle-font: 'Mulish', sans-serif;
 @body-font: 'Catamaran', sans-serif;
 
-
-// Code
 body {
         background-color: @white_blue;
         color: @black;
@@ -61,6 +60,9 @@ nav {
                         color: @black;
                         font-size: 2.5vh;
 
+                }
+                i:hover{
+                        cursor: pointer;
                 }
             }
         }
@@ -123,7 +125,7 @@ nav {
         }
         img{
                 margin-top: 20px;
-                height: 45vh;
+                height: 40vh;
         }
 }
 .project{
@@ -178,6 +180,7 @@ nav {
         }
         
         .features-container{
+                padding-top: 20px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
@@ -188,17 +191,20 @@ nav {
                 border-top-left-radius: 30px;
                 border-top-right-radius: 30px;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.199);
+                padding-bottom: 30px;
                 .feature{
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         width: 80vw;
+                        padding-bottom: 10px;
                         // background-color: red;
                         .feature-icon{
-                                margin-top: 20px;
+                                margin-top: 10px;
                                 height: 30vw;
                                 // background-color: @blue;
                                 // border-radius: 50%;
+                
                                 display: flex;
                                 flex-direction: row;
                                 justify-content: center;
@@ -231,6 +237,43 @@ nav {
                 }
         }
 }
+
+#logo_socials{
+        // background-color: red;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width:80vw;
+        height:5vh;
+        color:@blue;
+}
+
+.title-footer{
+        font-family: @title-font;
+        font-size: 2vh;
+        font-weight: 700;
+        color: @blue;
+}
+.contact-text{
+        // background-color: red;
+        width:fit-content;
+        display:flex;
+        flex-direction: column;
+        h6{
+                font-family: @title-font;
+                font-size: 1.5vh;
+                font-weight: 700;
+                color: @black;
+        }
+        p {
+                font-family: @body-font;
+                font-size: 1.5vh;
+                font-weight: 700;
+                color: @black;
+        }
+}
+
 .blue-text{
         color: @blue;
 }
