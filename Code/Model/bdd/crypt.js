@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                              SignUp and SignIn                             */
 /* -------------------------------------------------------------------------- */
-let password = (function () {
+let crypt = (function () {
     const bcrypt = require("bcrypt");
     const saltRounds = 10; // ~10 hashes/sec
 
@@ -12,7 +12,7 @@ let password = (function () {
          * @param {string} password     password to crypt
          * @param {function} callback   callback when password crypted
          */
-        logIn(password, callback) {
+        register(password, callback) {
             bcrypt.hash(password, saltRounds, function (err, crypted) {
                 if (err) {
                     console.error(err);
@@ -39,10 +39,10 @@ let password = (function () {
          * @param {string} password     password not crypted
          * @param {function} callback
          */
-        register(password, callback) {
+        login(password, callback) {
             callback(password); // Transmission BDD
         }
     }
 })();
 
-module.exports = password;
+module.exports = crypt;
