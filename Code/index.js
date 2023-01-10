@@ -5,10 +5,10 @@ const io = require("socket.io")(http);
 const path = require("path");
 const bodyParser = require("body-parser");
 const sharedsession = require('express-socket.io-session');
-const {MongoClient} = require("mongodb");
+const { MongoClient } = require("mongodb");
 const BDD = require("./Model/bdd/bdd.js");
 
-const hostname = "10.224.4.159";
+const hostname = "10.224.1.45";
 const port = 4200;
 
 const session = require("express-session")({
@@ -20,8 +20,6 @@ const session = require("express-session")({
         secure: false,
     },
 });
-
-
 
 const {
     body,
@@ -37,7 +35,9 @@ const dBconnection =  new MongoClient("mongodb://10.224.4.159:27017");
 BDD.main(dBconnection);
 const database = dBconnection.db("admin");
 // console.log(database);
-BDD.addUser(database);
+BDD.addUser(database, "Jean", "Patrick", "jp@student.junia.com", "OMG69XDDD");
+BDD.findUserByEmail(database, "jp@student.junia.com");
+BDD.findUserByEmail(database, "test2");
 
 
 //app.use(jsonParse);
@@ -45,6 +45,14 @@ app.use(express.static(path.join(__dirname, "/Vue/")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "/Vue/index.html"));
+});
+
+io.on('connection', (socket) => {
+    console.log("User connected");
+
+    socket.on('disconnect', () => {
+        console.log("User disconnected")
+    })
 });
 
 
