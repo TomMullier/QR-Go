@@ -105,3 +105,4 @@ dist
 
 # jetbrains IDE folder
 /.idea
+package-lock.json
