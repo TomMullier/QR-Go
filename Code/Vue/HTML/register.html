@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../css/login.css">
         <script src="../JS/login.js" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
-        <title>Login</title>
+        <title>Register</title>
 </head>
 
 <body>
@@ -39,30 +39,36 @@
                 <div class="first-infos">
                         <form action="" method="POST">
                                 <div class="contain_all">
-                                        <h1>Connexion</h1>
+                                        <h1>Registration</h1>
                                         <div class="form_container">
                                                 <div class="input-contain" id="e-mail_top">
                                                         <input class="input_mail formulaire" type="text"
-                                                                placeholder=" E-mail adress" name="email" required>
+                                                                placeholder=" E-mail adress" name=" new_email" required>
                                                 </div>
                                                 <div class="input-contain">
                                                         <input class="input_password formulaire" type="password"
-                                                                placeholder=" Password" />
+                                                                placeholder=" Password" required>
                                                 </div>
+                                                <div class="input-contain">
+                                                    <input class="input_password formulaire" type="password"
+                                                            placeholder=" Confirm Password" required>
+                                            </div>
                                                 <div class="button_link_container">
+                                                    <a  href="login.html">
                                                         <input class="input login_button" id="login_button" type="submit" id='submit'
-                                                                value='LOGIN'>
-                                                        <a href="register.html" class="no_account_txt">
-                                                                <span class="input blue">No account? Register now</span>
-                                                        </a>
+                                                                value='CREATE ACCOUNT'>
+                                                    </a>
+                                                    <a href="login.html" class="no_account_txt">
+                                                        <span class="input blue">Already registered? Login</span>
+                                                    </a>
                                                 </div>
         
                                         </div>
                                 </div>
-                                <span class="title">Create & Discover <br><span class="blue-text">Amazing Routes</span>
-                                <br>With One Tool</span>
+                                <span  style="z-index: 3;" class="title">Create & Discover <br><span class="blue-text">Amazing Routes</span>
+                                <br  style="z-index: 3;">With One Tool</span>
                         </form>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                        <svg  style="z-index: 1;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                                 <path fill="rgb(162, 153, 255)" fill-opacity="1"
                                         d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
                                 </path>

@@ -37,7 +37,7 @@
         <main>
                 <div class="div_scaner_title">
                         <p>Next location<p>
-                        <div class="div_scaner_title_txt">
+                        <div class="div_scaner_title_txt" id="div_scaner_title_txt">
                                 
                         </div>
                 </div>
@@ -59,10 +59,15 @@
         </script>-->
 
         <script type="module">
+
+        const next_step = 'Kouisine'
+        document.getElementById('div_scaner_title_txt').innerHTML += next_step;
+        
+
+
                 function onScanSuccess(decodedText, decodedResult) {
     // Handle on success condition with the decoded text or result.
         console.log(`Scan result: ${decodedText}`, decodedResult);
-        document.getElementById('div_scaner_title_txt').innerHTML += 'Scan result: ${decodedText}`, decodedResult';
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(

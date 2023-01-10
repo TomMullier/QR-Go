@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran&family=Fira+Sans:wght@600&family=Montserrat:wght@700&family=Mulish:wght@600&family=Overlock:wght@700&display=swap');
+
+// Variables
+@white : #F5F5F5;
+@grey : rgb(220, 220, 220);
+@blue : rgb(162, 153, 255);
+@purple : #8784AE;
+@red: #E17E7C;
+@black : #231F20;
+@white_blue: rgb(240, 239, 255);
+
+@title-font: 'Montserrat', sans-serif;
+@subtitle-font: 'Mulish', sans-serif;
+@body-font: 'Catamaran', sans-serif;
+
+body {
+        background-color: @white_blue;
+        color: @black;
+        font-family: @body-font;
+        height: 100vh;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+}
+
+nav {
+        background-color: @white_blue;
+
+        .navbar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                background-color: none;
+                width: 100vw;
+                align-items: center;
+                height: 10vh;
+
+                .logo-main {
+                        margin: 0 10px;
+                        width: auto;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        img {
+                                height: 6vh;
+                                width: auto;
+                        }
+
+                        ;
+
+                        p {
+                                font-family: @title-font;
+                                font-size: 2.5vh;
+                                font-weight: 700;
+                                color: @black;
+                                margin: 0 10px;
+                                padding: 0;
+                        }
+                }
+
+                .login-container {
+                        i {
+                                padding: 10px 20px;
+                                color: @black;
+                                font-size: 2.5vh;
+
+                        }
+
+                        i:hover {
+                                cursor: pointer;
+                        }
+                }
+        }
+}
+
+.first-infos {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        ;
+        // justify-content: space-around;
+        align-items: center;
+        height: 80vh;
+        width: 100vw;
+        background-color: @white_blue;
+        height: calc(90vh - 50px);
+
+        // background-color: red;
+        h2 {
+                margin-top: 5px;
+                line-height: 1.2;
+                font-family: @title-font;
+                font-size: 4vh;
+                font-weight: 700;
+                color: @blue;
+                text-align: center;
+                letter-spacing: -1px;
+        }
+
+        .desc-big {
+                margin-top: 5px;
+                line-height: 1.2;
+                font-family: @title-font;
+                font-size: 4vh;
+                font-weight: 700;
+                color: @black;
+                text-align: center;
+                letter-spacing: -1px;
+
+        }
+
+        form {
+                z-index: 3;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // background-color: green;
+                height:77vh;
+
+                h1 {
+                        margin-top: 5px;
+                        line-height: 1.2;
+                        font-family: @title-font;
+                        font-size: 4vh;
+                        font-weight: 700;
+                        color: @blue;
+                        text-align: center;
+                        letter-spacing: -1px;
+                }
+
+                .form_container {
+                        margin-top: 10vh;
+                }
+
+                .input-contain {
+                        width: 80vw;
+
+                        p {
+                                font-family: @subtitle-font;
+                                font-size: 1.8vh;
+                                font-weight: 600;
+                                color: @black;
+                                text-align: center;
+                                margin: 0%;
+                                padding: 0ch;
+                                // margin-left:10px;
+                        }
+
+                        input {
+                                background-color: transparent;
+                                border: none;
+                                border-bottom: 2px solid @blue;
+                                width: 100%;
+                                height: 3vh;
+                                font-family: @subtitle-font;
+                                font-size: 1.8vh;
+                                font-weight: 600;
+                                color: @black;
+                                text-align: left;
+                                margin-bottom: 30px;
+                                outline: none;
+                        }
+                }
+                .button_link_container{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        width: 80vw;
+                        margin: 0% auto;
+                        margin-top: 5vh;
+                        margin-bottom: 5vh;
+                }
+
+                .login_button {
+                        background-color: @blue;
+                        font-weight: bold;
+                        color: @white;
+                        border: none;
+                        border-radius: 20px;
+                        width: 50vw;
+                        height: 5vh;
+                        margin: 0% auto;
+                }
+
+                .no_account_txt {
+                        margin-top: 5vh;
+                        font-family: @body-font;
+                        font-size: 1.5vh;
+                        color: @blue;
+                        text-decoration: underline @blue;
+                }
+                .no_account_txt:active {
+                                color: @blue;
+                }
+        }
+
+}
+a{
+        text-decoration: none;
+        color: @blue;
+}
+
+.blue-text {
+        color: @blue;
+}
+
+.title{
+        margin-top: 50px;
+        line-height: 1.2;
+        font-family: @title-font;
+        font-size: 3vh;
+        font-weight: 700;
+        color: @black;
+        text-align: center;
+        letter-spacing: 0px;
+        bottom: 0;
+}
+
+svg {
+        position: absolute;
+        z-index: 1;
+        width: 100vw;
+        height:auto;
+        bottom:0;
+
+}

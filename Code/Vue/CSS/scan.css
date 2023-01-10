@@ -97,7 +97,6 @@ nav .navbar .login-container i:hover {
   cursor: pointer;
 }
 main .div_scaner_title {
-  background-color: pink;
   margin-top: 20vw;
   margin-left: 10vw;
   margin-right: 10vw;
@@ -105,7 +104,6 @@ main .div_scaner_title {
   text-align: center;
 }
 main .div_scaner_title_txt {
-  background-color: red;
   margin-top: 1vw;
   margin-left: 5vw;
   margin-right: 5vw;
@@ -118,7 +116,7 @@ main .div_scaner_title_txt {
   margin: 0 10px;
   padding: 0;
 }
-main #divscaner {
+main #reader {
   margin-top: 10vw;
   margin-left: 10vw;
   margin-right: 10vw;
@@ -128,6 +126,14 @@ main #divscaner {
 main p {
   font-family: 'Montserrat', sans-serif;
   font-size: 2vh;
+  font-weight: 400;
+  color: #231F20;
+  margin: 0 10px;
+  padding: 0;
+}
+main .div_scaner_title_txt {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5.5vh;
   font-weight: 700;
   color: #231F20;
   margin: 0 10px;
