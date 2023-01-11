@@ -80,10 +80,12 @@ app.post(
         } else {
             console.log("Login user");
             CRYPT.login(password, (pass) => {
-                BDD.login(database, mail, pass, (hashMatch) => {
+                BDD.login(database, mail, pass, (hashMatch, admin) => {
                     if (hashMatch == true) {
                         req.session.mail = req.body.mail;
+                        req.session.admin = admin;
                         req.session.save();
+                        console.log("qzsdjhkb", req.session);
                         res.redirect("/user_route_list");
                     } else {
                         console.log("User already in DB");
@@ -138,9 +140,10 @@ app.post(
         } else {
             console.log("Registering user");
             CRYPT.register(password, (hash) => {
-                BDD.register(database, name, surname, mail, hash, (inserted) => {
+                BDD.register(database, name, surname, mail, hash, (inserted, admin) => {
                     if (inserted == true) {
                         req.session.mail = req.body.mail;
+                        req.session.admin = admin;
                         req.session.save();
                         res.redirect("/user_route_list");
                     } else {
@@ -152,6 +155,18 @@ app.post(
         }
     }
 );
+
+app.get("/connect_admin", (req, res) => {
+    if (!req.session.mail) {
+        res.sendFile(__dirname + "/Vue/HTML/login.html");
+    } else {
+        let admin = req.session.admin;
+        if (admin) res.redirect("/admin_route_list");
+        else {
+            res.redirect("/user_route_list");
+        }
+    }
+});
 
 app.get("/user_route_list", (req, res) => {
     if (!req.session.mail) {
@@ -173,7 +188,7 @@ app.get("/admin_location_list", (req, res) => {
     if (!req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/admin_location_list.html");
+        res.sendFile(__dirname + "/Vue/HTML/admin/admin_location_list.html");
     }
 });
 
@@ -181,7 +196,7 @@ app.get("/admin_route_list", (req, res) => {
     if (!req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/admin_route_list.html");
+        res.sendFile(__dirname + "/Vue/HTML/admin/admin_route_list.html");
     }
 });
 
