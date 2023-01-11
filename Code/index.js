@@ -19,10 +19,9 @@ const session = require("express-session")({
 
 const BDD = require("./Model/bdd/bdd.js");
 const CRYPT = require("./Model/bdd/crypt.js");
-const LogPage = require("./Vue/JS/login.js");
-console.log(LogPage);
 
-app.use(bodyParser.urlencoded({ extended: true }));
+const jsonParse = bodyParser.json();
+app.use(jsonParse);
 app.use(session);
 app.use(express.static(path.join(__dirname, "Vue")));
 
@@ -56,7 +55,7 @@ app.get("/login", (req, res) => {
     if (!req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/user_route_list.html");
+        res.redirect("/user_route_list");
     }
 });
 
@@ -78,20 +77,16 @@ app.post(
                 errors: errors.array(),
             });
         } else {
-            console.log("Login user");
+            console.log("Login user", "mail : " + mail, "password : " + password);
             CRYPT.login(password, (pass) => {
                 BDD.login(database, mail, pass, (hashMatch) => {
                     if (hashMatch == true) {
                         req.session.mail = req.body.mail;
                         req.session.save();
-                        res.redirect("/user_route_list");
-                    } else {
-                        console.log("User already in DB");
-
-                        res.sendFile(__dirname + "/Vue/HTML/login.html", "", () => {
-                            LogPage.wrongPassword();
-                        });
-                    }
+                        res.send("OK");
+                    }else{
+						res.status(400).send('password incorrect')
+					}
                 });
             });
         }
@@ -103,7 +98,7 @@ app.get("/register", (req, res) => {
     if (!req.session.mail) {
         res.sendFile(path.join(__dirname + "/Vue/HTML/register.html"));
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/user_route_list.html");
+        res.redirect("/user_route_list");
     }
 });
 
@@ -114,7 +109,6 @@ app.post(
     body("name").isLength({ min: 3 }).trim().escape(),
     body("surname").isLength({ min: 3 }).trim().escape(),
     body("password").isLength({ min: 3 }).trim(),
-    body("confirm").isLength({ min: 3 }).trim(),
     (req, res) => {
         console.log("--- REGISTER ---");
 
@@ -122,12 +116,6 @@ app.post(
         let name = req.body.name;
         let surname = req.body.surname;
         let password = req.body.password;
-        let confirm = req.body.confirm;
-
-        if (password != confirm) {
-            console.log("Password not match");
-            res.sendFile(__dirname + "/Vue/HTML/register.html");
-        }
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -136,16 +124,16 @@ app.post(
                 errors: errors.array(),
             });
         } else {
-            console.log("Registering user");
+            console.log("Registering " + name + " " + surname + " with mail " + mail);
             CRYPT.register(password, (hash) => {
                 BDD.register(database, name, surname, mail, hash, (inserted) => {
                     if (inserted == true) {
                         req.session.mail = req.body.mail;
                         req.session.save();
-                        res.redirect("/user_route_list");
+                        res.send("OK");
                     } else {
                         console.log("User already in DB");
-                        res.sendFile(__dirname + "/Vue/HTML/register.html");
+						res.status(400).send('Already in DB')
                     }
                 });
             });
@@ -154,34 +142,34 @@ app.post(
 );
 
 app.get("/user_route_list", (req, res) => {
-    if (!req.session.mail) {
+    if (req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/user_route_list.html");
+        res.redirect("/");
     }
 });
 
 app.get("/scan", (req, res) => {
-    if (!req.session.mail) {
+    if (req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/scan.html");
+        res.redirect("/");
     }
 });
 
 app.get("/admin_location_list", (req, res) => {
-    if (!req.session.mail) {
+    if (req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/admin_location_list.html");
+        res.redirect("/");
     }
 });
 
-app.get("/admin_route_list", (req, res) => {
+app.get("admin_route_list", (req, res) => {
     if (!req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/login.html");
     } else {
-        res.sendFile(__dirname + "/Vue/HTML/admin_route_list.html");
+        res.redirect("/");
     }
 });
 
