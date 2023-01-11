@@ -32,6 +32,7 @@ button_sort.addEventListener("click", function (e) {
         }
 });
 
+
 let sortTitle = []
 let listItems = document.getElementsByClassName("titles")
 listItems = Array.from(listItems);
@@ -39,20 +40,20 @@ let sortList=document.getElementsByClassName('filtre_container');
 sortList=Array.from(sortList);
 sortList.forEach(function (element) {
         element.addEventListener('click', function (e) {
-                console.log(element)
-                if(element.Id('sort-title') == true){
+                console.log(element);
+                console.log(element.children)
+                if(document.getElementById('sort-title') == element.children.id){
                         for (let i = 0; i < listItems.length; i++){
                                 sortTitle[i] =  listItems[i].innerText;
                         }       
                         sortList.sort();
                         console.log(sortList);
                 }
-                else if(element.getElementById('sort-duration') == true){
 
-                }
-                else if(element.getElementById('sort-author') == true){
-
-                }
+                // if(document.getElementById('sort-duration')){};
+                // if(document.getElementById('sort-author')){};
+                
+                
 
         });
 });
