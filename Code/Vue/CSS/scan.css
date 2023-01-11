@@ -50,10 +50,15 @@ nav .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: none;
   width: 100vw;
   align-items: center;
   height: 10vh;
+  margin: 0vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #231F20;
+  text-transform: capitalize;
 }
 nav .navbar .logo-main {
   margin: 0 10px;
@@ -74,9 +79,35 @@ nav .navbar .logo-main p {
   margin: 0 10px;
   padding: 0;
 }
-nav .navbar .admin-button {
-  margin: 15px;
-  font-family: 'Mulish', sans-serif;
+nav .navbar .separator {
+  background-color: rgba(0, 0, 0, 0.212);
+  height: 3px;
+  width: 40vw;
+  margin: 20px auto 10px auto;
+}
+nav .navbar .item a {
+  text-decoration: none;
+}
+nav .navbar .selected {
+  color: #a299ff;
+  border-bottom: 2px solid #a299ff;
+}
+nav .navbar .menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90vw;
+  justify-content: space-between;
+  margin-left: 5vw;
+}
+nav .navbar .play-container i {
+  padding: 10px 20px;
+  color: #231F20;
+  font-size: 2.5vh;
+}
+nav .navbar .play-container .play-button {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: capitalize;
   font-size: 2vh;
   font-weight: 700;
   color: #F5F5F5;
@@ -86,42 +117,69 @@ nav .navbar .admin-button {
   width: 20vw;
   padding: 10px;
   border: none;
-  border-radius: 30px;
+  border-radius: 15px;
 }
-nav .navbar .login-container i {
-  padding: 10px 20px;
-  color: #231F20;
-  font-size: 2.5vh;
-}
-nav .navbar .login-container i:hover {
+nav .navbar .play-container i:hover {
   cursor: pointer;
 }
 main .div_scaner_title {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
-  margin: 40px 0;
+  margin: calc(17vh - 120px) calc(50vw - 150px);
+  position: absolute;
   text-align: center;
+  width: 300px;
+  background-color: #F5F5F5;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  height: 300px;
+  z-index: -1;
 }
-main .div_scaner_title_txt {
-  text-align: center;
-  color: #231F20;
-  padding: 0;
+main .div_scaner_title p {
+  margin: 0;
 }
-main .div_scaner_title_txt {
+main .div_scaner_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+}
+main .div_scaner_title .div_scaner_title_txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
   font-family: 'Montserrat', sans-serif;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 700;
-  color: #231F20;
-  margin: 0 10px;
+  color: #a299ff;
+  margin: 0;
   padding: 0;
 }
 main #qr-display {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  border-collapse: collapse;
   display: flex;
   justify-content: center;
-  margin: 0 20px;
+  margin: 17vh calc(50vw - 150px);
+  position: absolute;
+  border-radius: 30px;
 }
 main #qr-display canvas {
   border-radius: 30px;
   max-width: 100%;
   max-height: 300px;
+}
+main .instructions {
+  position: absolute;
+  bottom: 0;
+  width: 80vw;
+  margin-left: 10vw;
+  height: auto;
+  margin: 5vh 10vw;
+  text-align: center;
+  color: #231F20;
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.7vh;
+  font-weight: 600;
+  font-style: italic;
 }
