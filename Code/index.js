@@ -145,7 +145,7 @@ app.post(
 
 app.get("/connect_admin", (req, res) => {
     if (!req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/login.html");
+        res.redirect("/login");
     } else {
         let admin = req.session.admin;
         if (admin) res.redirect("/admin_route_list");
@@ -179,8 +179,8 @@ app.get("/admin_location_list", (req, res) => {
     }
 });
 
-app.get("admin_route_list", (req, res) => {
-    if (!req.session.mail) {
+app.get("/admin_route_list", (req, res) => {
+    if (req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/admin/admin_route_list.html");
     } else {
         res.redirect("/");
