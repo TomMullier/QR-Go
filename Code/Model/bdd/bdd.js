@@ -26,7 +26,7 @@ function register(client, name, surname, mail, hash, callback) {
 	};
 	const query = { mail: mail };
 	const options = {
-		projection: { _id: 0, name: 1, surname: 1, email: 1, hash: 1 },
+		projection: { _id: 0, name: 1, surname: 1, email: 1, hash: 1, admin: 1},
 	};
 	let users = client.collection("users");
 
@@ -36,15 +36,15 @@ function register(client, name, surname, mail, hash, callback) {
 
 		if (userFound) {
 			console.log("User already in DB - Need to login");
-			callback(false);
+			callback(false, false);
 		} else {
 			users.insertOne(obj, (err, res) => {
 				if (err) {
 					console.log("Error inserting user in DB");
-					callback(false);
+					callback(false, admin);
 				} else {
 					console.log("User registered and inserted in DB");
-					callback(true);
+					callback(true, admin);
 				}
 			});
 		}
@@ -56,7 +56,7 @@ function login(client, mail, password, callback) {
 	else if (mail == null || password == null) return;
 
 	const query = { mail: mail };
-	const options = { projection: { _id: 0, name: 1, surname: 1, mail: 1, hash: 1 } };
+	const options = { projection: { _id: 0, name: 1, surname: 1, mail: 1, hash: 1, admin: 1 } };
 	let users = client.collection("users");
 
 	users.findOne(query, options, (err, userFound) => {
@@ -65,7 +65,7 @@ function login(client, mail, password, callback) {
 
 		if (!userFound) {
 			console.log("User not registered");
-			callback(false);
+			callback(false, false);
 		} else {
 			bcrypt.compare(password, userFound.hash, (err, match) => {
 				if (err) {
@@ -74,10 +74,10 @@ function login(client, mail, password, callback) {
 				}
 				if (match) {
 					console.log("User logged in");
-					callback(true);
+					callback(true, userFound.admin);
 				} else {
 					console.log("Wrong password");
-					callback(false);
+					callback(false, userFound.admin);
 				}
 			});
 		}
@@ -98,7 +98,7 @@ async function addStep(client, title, description, stage, qrcode) {
 	}
 }
 
-async function addRoute(client, title, description, duration, steps, stepsTab) {
+async function addRoute(client, title, description, duration, steps, stepsTab, autor) {
 	try {
 		await client.collection("routes").insertOne({
 			title: title,
@@ -106,6 +106,7 @@ async function addRoute(client, title, description, duration, steps, stepsTab) {
 			duration: duration,
 			steps: steps,
 			stepsTab: stepsTab,
+			autor: autor
 		});
 		console.log("Ajout de parcours réussi :" + title);
 	} catch (err) {
