@@ -98,7 +98,7 @@ async function addStep(client, title, description, stage, qrcode) {
 	}
 }
 
-async function addRoute(client, title, description, duration, steps, stepsTab) {
+async function addRoute(client, title, description, duration, steps, stepsTab, autor) {
 	try {
 		await client.collection("routes").insertOne({
 			title: title,
@@ -106,6 +106,7 @@ async function addRoute(client, title, description, duration, steps, stepsTab) {
 			duration: duration,
 			steps: steps,
 			stepsTab: stepsTab,
+			autor: autor
 		});
 		console.log("Ajout de parcours réussi :" + title);
 	} catch (err) {
