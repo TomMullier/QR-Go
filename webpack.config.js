@@ -3,9 +3,12 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
-  entry: './Code/Vue/JS/qr-scanner-source.js',
+  entry: {
+    'qr-scanner-final': './Code/Vue/JS/qr-scanner-source.js',
+    'qr-generator-final': './Code/Vue/JS/qr-generator-source.js',
+  },
   output: {
-    filename: 'qr-scanner-final.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'Code/Vue/JS'),
   },
   plugins: [
