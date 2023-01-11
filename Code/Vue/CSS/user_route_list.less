@@ -14,7 +14,7 @@
 @body-font: 'Catamaran', sans-serif;
 
 body {
-        background-color: @white_blue;
+        background-color: green;
         color: @black;
         font-family: @body-font;
         font-size: 16px;
@@ -22,11 +22,10 @@ body {
         line-height: 1.5;
         margin: 0;
         padding: 0;
+        height: 100%;
 }
 
 nav {
-        background-color: @white_blue;
-
         .navbar {
                 display: flex;
                 flex-direction: row;
@@ -34,7 +33,7 @@ nav {
                 background-color: none;
                 width: 100vw;
                 align-items: center;
-                height: 10vh;
+                height: 10%;
 
                 .logo-main {
                         margin: 0 10px;
@@ -98,18 +97,20 @@ nav {
         margin: 10px 0 20px 0;
         padding: 0;
         text-align: center;
-        height:2vh;
+        height:2%;
+        background-color: @white_blue;
 }
 .search {
-        background-color: transparent;
+        background-color: @white_blue;
         display: flex;
         flex-direction: column;
         width: 80vw;
         margin-left: 10vw;
         padding-top:10px;
+        height:20%;
 
         .top {
-                height: calc(5vh - 10px);
+                height: calc(5% - 10px);
                 padding-bottom: 30px;
                 display: flex;
                 flex-direction: row;
@@ -117,7 +118,7 @@ nav {
                 align-items: center;
                 .sort-button {
                         width: 10vw;
-                        padding-top: 0.7vh;
+                        padding-top: 0.7%;
                         // padding-left: 3vw;
                         color: @blue;
                         text-align: left;
@@ -142,7 +143,7 @@ nav {
 
         .Sort-settings {
                 // padding-bottom: 2vh;
-                height:calc(8vh - 10px);
+                height:calc(8% - 10px);
                 flex-direction: column;
                 margin-top:0px;
                 display:none;
@@ -193,9 +194,10 @@ nav {
 
 .scroll-list {
         background-color: @white;
-        height: calc(84vh - 40px);
+        height: calc(80% - 50px);
         width: 100vw;
         padding-top: calc(10vw - 10px);
+        bottom:0;
         position: absolute;
         //margin-top:calc(25vh - 10vw);
         border-top-left-radius: 30px;
