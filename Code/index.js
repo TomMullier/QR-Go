@@ -85,9 +85,9 @@ app.post(
                         req.session.admin = admin;
                         req.session.save();
                         res.send("OK");
-                    }else{
-						res.status(400).send('password incorrect')
-					}
+                    } else {
+                        res.status(400).send('password incorrect')
+                    }
                 });
             });
         }
@@ -135,7 +135,7 @@ app.post(
                         res.send("OK");
                     } else {
                         console.log("User already in DB");
-						res.status(400).send('Already in DB')
+                        res.status(400).send('Already in DB')
                     }
                 });
             });
@@ -192,9 +192,35 @@ io.on("connection", (socket) => {
     const userMail = socket.handshake.session.mail
     console.log(userMail + " connected");
 
+    socket.on("addLocation", (name, description, instruction) => {
+        BDD.addLocation(database, name, description, instruction, (existing, location) => {
+            if (existing) {
+                socket.emit("addLocationFailed")
+            } else {
+                io.emit("addLocationSuccess", location)
+            }
+        })
+    })
+
+    socket.on("modifyLocation", (name, description, instruction) => {
+        BDD.modifyLocation(database, name, description, instruction, () => {
+            io.emit("addLocationSuccess")
+        })
+    })
+
+    socket.on("deleteLocation", (name)=>{
+        BDD.deleteLocation(database,name,()=>{
+            io.emit("addLocationSuccess")
+        })
+    })
+
+    socket.on("getAllLocation", () => {
+        BDD.getAllLocation(database, (res) => {
+            io.emit("showAllLocation", res);
+        })
+    })
 
 
-    
 
     socket.on("disconnect", () => {
         console.log("User disconnected");

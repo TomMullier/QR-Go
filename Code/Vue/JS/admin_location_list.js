@@ -1,54 +1,83 @@
+import SocketManager from './utils/SocketManager.js';
+
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")
 all_desc = Array.from(all_desc)
 all_expand_buttons = Array.from(all_expand_buttons)
 
-all_expand_buttons.forEach(function (element) {
-        element.addEventListener("click", function (e) {
-                console.log(e.target)
-                all_desc.forEach(function (el) {
-                        el.style.overflow = "hidden"
-                        el.style.lineClamp = 3;
-                        el.style.display = "-webkit-box";
+function updateShowMoreBtn() {
+        all_expand_buttons.forEach(function (element) {
+                element.addEventListener("click", function (e) {
+                        console.log(e.target)
+                        all_desc.forEach(function (el) {
+                                el.style.overflow = "hidden"
+                                el.style.lineClamp = 3;
+                                el.style.display = "-webkit-box";
 
-                })
-                let desc = e.target.parentElement.parentElement.getElementsByClassName("route_element_desc_text")[0]
-                desc.style.overflow = "visible";
-                desc.style.lineClamp = 999999;
-                desc.style.display = "flex";
-        });
-})
+                        })
+                        let desc = e.target.parentElement.parentElement.getElementsByClassName("route_element_desc_text")[0]
+                        desc.style.overflow = "visible";
+                        desc.style.lineClamp = 999999;
+                        desc.style.display = "flex";
+                });
+        })
+}
+
+updateShowMoreBtn();
 
 //get name, desc and duraction from modal
 let route_name = document.getElementById("location_name")
 let route_desc = document.getElementById("location_desc")
 let route_duration = document.getElementById("location_instruction")
-let route_title=document.getElementById("title_txt")
+let route_title = document.getElementById("title_txt")
 
 document.getElementById("new_location_button").addEventListener("click", function (e) {
         modals.show("create_location_modal");
-        route_title.innerText="Create Location"
+        route_title.innerText = "Create Location"
         route_name.value = ""
         route_desc.value = ""
         route_duration.value = ""
+        document.getElementById("validate").setAttribute("existing", "false")
+        document.getElementById("delete").innerHTML = "";
 })
+
+document.getElementById("validate").addEventListener("click", (e) => {
+        let name = route_name.value;
+        let description = route_desc.value;
+        let instruction = route_duration.value;
+
+        if(document.getElementById("validate").getAttribute("existing") == "false"){
+                SocketManager.addLocation(name.toUpperCase(), description, instruction);
+        }else{
+                SocketManager.modifyLocation(name.toUpperCase(), description, instruction)
+        }
+})
+
 
 let allCards = document.getElementsByClassName("route-element")
 allCards = Array.from(allCards)
 console.log(allCards)
 
-allCards.forEach(function (element) {
-        element.addEventListener("click", function (e) {
-                if (!e.target.classList.contains("expand_button")) {
-                        route_title.innerText="Edit Location"
-                        route_name.value = element.getElementsByClassName("titles")[0].innerText
-                        route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
-                        route_duration.value = element.getElementsByClassName("auteur")[0].innerText
-                        modals.show("create_location_modal");
-                }
+function allEventCards() {
+        allCards.forEach(function (element) {
+                element.addEventListener("click", function (e) {
+                        if (!e.target.classList.contains("expand_button")) {
+                                route_title.innerText = "Edit Location"
+                                route_name.value = element.getElementsByClassName("titles")[0].innerText
+                                route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
+                                route_duration.value = element.getElementsByClassName("auteur")[0].innerText
+                                document.getElementById("validate").setAttribute("existing", "true");
+                                document.getElementById("delete").innerHTML = "Delete";
+                                modals.show("create_location_modal");
+                        }
 
-        });
-})
+                });
+        })
+}
+
+document.getElementById("delete").addEventListener("click", ()=>{
+        SocketManager.deleteLocation(route_name.value.toUpperCase());
+});
 
 
 document.getElementById('searchBar').addEventListener('input', filterList);
@@ -80,4 +109,77 @@ function filterList() {
                         parent2.style.display = 'none';
                 }
         };
+}
+
+// get all Location by emit
+function getAllLocation(){
+        SocketManager.getAllLocation();
+}
+
+getAllLocation();
+
+function showAllLocation(tabLocations) {
+        document.getElementById("scroll_list").innerHTML = "";
+        tabLocations.forEach(location => {
+                createLocationListElement(location.name, location.description, location.instruction);
+        })
+        allEventCards();
+}
+
+function createLocationListElement(name, description, instruction) {
+        const routeElement = document.createElement('div');
+        routeElement.classList.add('route-element');
+        allCards.push(routeElement);
+
+        const topDiv = document.createElement('div');
+        topDiv.classList.add('route-element-top');
+
+        const titles = document.createElement('h1');
+        titles.classList.add('titles');
+        titles.textContent = name;
+
+        topDiv.appendChild(titles);
+
+        const topB = document.createElement('div');
+        topB.classList.add('top');
+
+        const bold = document.createElement('b');
+        bold.textContent = "Click to Modify";
+        topB.appendChild(bold);
+
+        topDiv.appendChild(topB);
+        routeElement.appendChild(topDiv);
+
+        const descDiv = document.createElement('div');
+        descDiv.classList.add('route-element-desc');
+
+        const descP = document.createElement('p');
+        descP.classList.add('route_element_desc_text');
+        descP.textContent = description;
+        all_desc.push(descP);
+        descDiv.appendChild(descP);
+
+        const a = document.createElement('a');
+        a.classList.add('expand_button');
+        a.textContent = 'Show more';
+        all_expand_buttons.push(a);
+        descDiv.appendChild(a);
+
+        routeElement.appendChild(descDiv);
+
+        const bottomDiv = document.createElement('div');
+        bottomDiv.classList.add('route-element-bottom');
+
+        const h6 = document.createElement('h6');
+        h6.classList.add('auteur');
+        h6.textContent = instruction;
+        bottomDiv.appendChild(h6);
+        routeElement.appendChild(bottomDiv);
+
+        document.getElementById("scroll_list").appendChild(routeElement);
+        updateShowMoreBtn();
+}
+
+export default {
+        showAllLocation
 }

@@ -26,13 +26,13 @@ function register(client, name, surname, mail, hash, callback) {
 	};
 	const query = { mail: mail };
 	const options = {
-		projection: { _id: 0, name: 1, surname: 1, email: 1, hash: 1, admin: 1},
+		projection: { _id: 0, name: 1, surname: 1, email: 1, hash: 1, admin: 1 },
 	};
 	let users = client.collection("users");
 
 	// Check if user already exists, if not insert it in DB
 	users.findOne(query, options, (err, userFound) => {
-		if (err) throw err;
+		//if (err) throw err;
 
 		if (userFound) {
 			console.log("User already in DB - Need to login");
@@ -60,8 +60,8 @@ function login(client, mail, password, callback) {
 	let users = client.collection("users");
 
 	users.findOne(query, options, (err, userFound) => {
-		if (err) throw err;
-        console.log(userFound);
+		//if (err) throw err;
+		console.log(userFound);
 
 		if (!userFound) {
 			console.log("User not registered");
@@ -84,18 +84,70 @@ function login(client, mail, password, callback) {
 	});
 }
 
-async function addStep(client, title, description, stage, qrcode) {
-	try {
-		await client.collection("steps").insertOne({
-			title: title,
-			description: description,
-			stage: stage,
-			qrcode: qrcode,
-		});
-		console.log("Ajout d'étape réussi :" + title);
-	} catch (err) {
-		console.log("Erreur d'ajout étape");
+function addLocation(client, name, description, instruction, callback) {
+	const query = { name: name };
+	const options = { projection: { _id: 0, name: 1, description: 1, instruction: 1 } };
+	let locations = client.collection("locations");
+
+	locations.findOne(query, options, (err, locationFound) => {
+		//if (err) throw err;
+		if (locationFound && locationFound.name == name) {
+			return callback(true);
+		} else {
+			locations.insertOne({
+				name: name,
+				description: description,
+				instruction: instruction,
+			}, (err, res) => {
+				if (err) {
+					console.log("Ajout d'étape manqué : " + name);
+					return callback(true);
+				} else {
+					console.log("Ajout d'étape réussi : " + name);
+					return callback(false, locationFound);
+				}
+
+			});
+		}
+	})
+}
+
+function modifyLocation(client, name, description, instruction, callback) {
+	let locations = client.collection("locations");
+
+	filter = {
+		name:name
 	}
+	update = {
+		$set:{
+			description: description,
+			instruction: instruction
+		}
+	}
+
+	locations.updateOne(filter, update, (err, res) => {
+		//console.log(res);
+		if (err) throw err;
+		callback()	
+	})
+}
+
+function deleteLocation(client, name, callback) {
+	let locations = client.collection("locations");
+
+	locations.deleteOne({name:name}, (err, res) => {
+		//console.log(res);
+		if (err) throw err;
+		callback()	
+	})
+}
+
+function getAllLocation(client, callback) {
+	let locations = client.collection("locations");
+
+	locations.find({}).toArray((err, res) => {
+		callback(res);
+	})
 }
 
 async function addRoute(client, title, description, duration, steps, stepsTab, autor) {
@@ -138,7 +190,10 @@ module.exports = {
 	connexion,
 	register,
 	login,
-	addStep,
+	addLocation,
+	modifyLocation,
+	deleteLocation,
+	getAllLocation,
 	addRoute,
 	findStepById,
 };
