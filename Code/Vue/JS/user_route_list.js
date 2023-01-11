@@ -23,6 +23,38 @@ function updateShowMoreBtn(){
 
 updateShowMoreBtn();
 
+//get name, desc and duraction from modal
+let route_title = document.getElementById("title_txt")
+let route_desc = document.getElementById("route_desc")
+let route_duration = document.getElementById("route_duration")
+// let route_title=document.getElementById("title_txt")
+
+let allCards = document.getElementsByClassName("route-element")
+allCards = Array.from(allCards)
+console.log(allCards)
+
+allCards.forEach(function (element) {
+        element.addEventListener("click", function (e) {
+                if (!e.target.classList.contains("expand_button")) {
+                        route_title.innerText = element.getElementsByClassName("titles")[0].innerText
+                        route_desc.innerText = element.getElementsByClassName("route_element_desc_text")[0].innerText
+                        route_duration.value = element.getElementsByClassName("duration")[0].innerText
+                        //focus curor on nothin
+                        
+                        modals.show("display_route_modal");
+                        if (document.activeElement != document.body) document.activeElement.blur();
+                }
+
+        });
+})
+
+
+
+
+
+
+
+
 let button_sort = document.getElementById("sort_button")
 let sort_menu = document.getElementById("sort_menu")
 button_sort.addEventListener("click", function (e) {
@@ -31,7 +63,7 @@ button_sort.addEventListener("click", function (e) {
                 return;
         } else {
                 sort_menu.style.display = "flex";
-                document.getElementById("scroll_list").style.height = "calc(84vh - 40px)";
+                document.getElementById("scroll_list").style.height = "calc(68% - 40px)";
         }
 });
 

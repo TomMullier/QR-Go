@@ -32,7 +32,7 @@ io.use(
     })
 );
 
-const hostname = "10.224.4.159"; // ISEN
+const hostname = "10.224.3.148"; // ISEN
 //! const hostname = "localhost"; //! HOME
 const port = 4200;
 

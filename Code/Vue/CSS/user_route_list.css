@@ -34,7 +34,7 @@
   src: url(https://fonts.gstatic.com/s/overlock/v15/Z9XSDmdMWRiN1_T9Z7xizcmM.ttf) format('truetype');
 }
 body {
-  background-color: #f0efff;
+  background-color: green;
   color: #231F20;
   font-family: 'Catamaran', sans-serif;
   font-size: 16px;
@@ -42,9 +42,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
-}
-nav {
-  background-color: #f0efff;
+  height: 100%;
 }
 nav .navbar {
   display: flex;
@@ -53,7 +51,7 @@ nav .navbar {
   background-color: none;
   width: 100vw;
   align-items: center;
-  height: 10vh;
+  height: 10%;
 }
 nav .navbar .logo-main {
   margin: 0 10px;
@@ -104,18 +102,20 @@ nav .navbar .login-container i:hover {
   margin: 10px 0 20px 0;
   padding: 0;
   text-align: center;
-  height: 2vh;
+  height: 2%;
+  background-color: #f0efff;
 }
 .search {
-  background-color: transparent;
+  background-color: #f0efff;
   display: flex;
   flex-direction: column;
   width: 80vw;
   margin-left: 10vw;
   padding-top: 10px;
+  height: 20%;
 }
 .search .top {
-  height: calc(5vh - 10px);
+  height: calc(5% - 10px);
   padding-bottom: 30px;
   display: flex;
   flex-direction: row;
@@ -124,7 +124,7 @@ nav .navbar .login-container i:hover {
 }
 .search .top .sort-button {
   width: 10vw;
-  padding-top: 0.7vh;
+  padding-top: 0.7%;
   color: #a299ff;
   text-align: left;
 }
@@ -142,7 +142,7 @@ nav .navbar .login-container i:hover {
   font-family: 'Catamaran', sans-serif;
 }
 .search .Sort-settings {
-  height: calc(8vh - 10px);
+  height: calc(8% - 10px);
   flex-direction: column;
   margin-top: 0px;
   display: none;
@@ -187,9 +187,10 @@ nav .navbar .login-container i:hover {
 }
 .scroll-list {
   background-color: #F5F5F5;
-  height: calc(84vh - 40px);
+  height: calc(80% - 50px);
   width: 100vw;
   padding-top: calc(10vw - 10px);
+  bottom: 0;
   position: absolute;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;

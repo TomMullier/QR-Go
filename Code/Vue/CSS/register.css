@@ -37,7 +37,7 @@ body {
   background-color: #f0efff;
   color: #231F20;
   font-family: 'Catamaran', sans-serif;
-  height: 100vh;
+  height: 100%;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -88,10 +88,9 @@ nav .navbar .login-container i:hover {
   flex-direction: column;
   margin-top: 50px;
   align-items: center;
-  height: 80vh;
   width: 100vw;
   background-color: #f0efff;
-  height: calc(90vh - 50px);
+  height: calc(90% - 50px);
 }
 .first-infos h2 {
   margin-top: 5px;
@@ -119,7 +118,7 @@ nav .navbar .login-container i:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 77vh;
+  height: 77%;
 }
 .first-infos form h1 {
   margin-top: 5px;
@@ -159,6 +158,9 @@ nav .navbar .login-container i:hover {
   outline: none;
 }
 .first-infos form .name_input_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
 }
 .first-infos form .name_input_container input {
@@ -226,7 +228,7 @@ a {
 svg {
   position: absolute;
   z-index: 1;
-  width: 100vw;
+  width: 100%;
   height: auto;
   bottom: 0;
 }

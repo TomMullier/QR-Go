@@ -51,7 +51,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.305);
   animation: fadeIn 0.2s both;
   z-index: 10000;
@@ -335,6 +335,131 @@ body {
   text-align: center;
   text-decoration: underline;
 }
+#display_route_modal .modal-wrapper {
+  width: 100vw;
+  height: auto;
+  padding-bottom: 30px;
+  position: absolute;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+#display_route_modal .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+#display_route_modal .top h1,
+#display_route_modal .top span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #a299ff;
+  margin: 0 0px;
+  padding: 0;
+}
+#display_route_modal .fields-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#display_route_modal .fields-container .left {
+  width: 100%;
+}
+#display_route_modal .fields-container .left .txt {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #a299ff;
+  color: #231F20;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 600;
+  width: 100%;
+  margin-bottom: 10px;
+  outline: none;
+  padding-left: 10px;
+}
+#display_route_modal .fields-container .left .txtarea {
+  background-color: transparent;
+  border: none;
+  border: 2px solid #a299ff;
+  color: #231F20;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 600;
+  width: 100%;
+  margin-bottom: 10px;
+  outline: none;
+  resize: none;
+  height: auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+#display_route_modal .fields-container .right {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#display_route_modal .fields-container .right p {
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 600;
+  color: #231F20;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+}
+#display_route_modal .fields-container .right .time {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  border-bottom: 2px solid #a299ff;
+  color: #231F20;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 600;
+  width: auto;
+  outline: none;
+}
+#display_route_modal .buttons_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+#display_route_modal .buttons_container .validate {
+  background-color: #a299ff;
+  border: none;
+  border-radius: 10px;
+  color: #F5F5F5;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 40vw;
+  margin: 0 auto;
+  text-align: center;
+}
+#display_route_modal .buttons_container .cancel {
+  color: #a299ff;
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 40vw;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: underline;
+}
 #create_location_modal .modal-wrapper {
   width: 100vw;
   height: auto;
@@ -446,6 +571,7 @@ body {
   position: absolute;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  bottom: 0;
 }
 #display_location .top {
   display: flex;
