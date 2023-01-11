@@ -3,50 +3,55 @@ let all_expand_buttons = document.getElementsByClassName("expand_button")
 all_desc = Array.from(all_desc)
 all_expand_buttons = Array.from(all_expand_buttons)
 
-function updateShowMoreBtn(){
+function updateShowMoreBtn() {
         all_expand_buttons.forEach(function (element) {
                 element.addEventListener("click", function (e) {
                         //console.log(e.target)
-                        all_desc.forEach(function (el){
-                                el.style.overflow="hidden"
-                                el.style.lineClamp=3;
-                                el.style.display="-webkit-box";
+                        all_desc.forEach(function (el) {
+                                el.style.overflow = "hidden"
+                                el.style.lineClamp = 3;
+                                el.style.display = "-webkit-box";
 
                         })
                         let desc = e.target.parentElement.parentElement.getElementsByClassName("route_element_desc_text")[0]
-                        desc.style.overflow="visible";
-                        desc.style.lineClamp=999999;
-                        desc.style.display="flex";
+                        desc.style.overflow = "visible";
+                        desc.style.lineClamp = 999999;
+                        desc.style.display = "flex";
                 });
         })
 }
 
 updateShowMoreBtn();
 
-//get name, desc and duraction from modal
-let route_title = document.getElementById("title_txt")
-let route_desc = document.getElementById("route_desc")
-let route_duration = document.getElementById("route_duration")
-// let route_title=document.getElementById("title_txt")
+function allEventCards() {
 
-let allCards = document.getElementsByClassName("route-element")
-allCards = Array.from(allCards)
-console.log(allCards)
+        //get name, desc and duraction from modal
+        let route_title = document.getElementById("title_txt")
+        console.log(route_title)
+        let route_desc = document.getElementById("route_desc")
+        let route_duration = document.getElementById("route_duration")
+        // let route_title=document.getElementById("title_txt")
 
-allCards.forEach(function (element) {
-        element.addEventListener("click", function (e) {
-                if (!e.target.classList.contains("expand_button")) {
-                        route_title.innerText = element.getElementsByClassName("titles")[0].innerText
-                        route_desc.innerText = element.getElementsByClassName("route_element_desc_text")[0].innerText
-                        route_duration.value = element.getElementsByClassName("duration")[0].innerText
-                        //focus curor on nothin
-                        
-                        modals.show("display_route_modal");
-                        if (document.activeElement != document.body) document.activeElement.blur();
-                }
+        let allCards = document.getElementsByClassName("route-element")
+        allCards = Array.from(allCards)
+        console.log("All cards"+allCards)
 
-        });
-})
+        allCards.forEach(function (element) {
+                element.addEventListener("click", function (e) {
+                        if (!e.target.classList.contains("expand_button")) {
+                                route_title.innerText = element.getElementsByClassName("titles")[0].innerText
+                                route_desc.innerText = element.getElementsByClassName("route_element_desc_text")[0].innerText
+                                route_duration.value = element.getElementsByClassName("auteur")[0].innerText
+                                //focus curor on nothin
+
+                                modals.show("display_route_modal");
+                                if (document.activeElement != document.body) document.activeElement.blur();
+                        }
+
+                });
+        })
+}
+
 
 
 
@@ -70,22 +75,20 @@ button_sort.addEventListener("click", function (e) {
 let sortTitle = []
 let listItems = document.getElementsByClassName("titles")
 listItems = Array.from(listItems);
-let sortList=document.getElementsByClassName('filtre_container');
-sortList=Array.from(sortList);
+let sortList = document.getElementsByClassName('filtre_container');
+sortList = Array.from(sortList);
 sortList.forEach(function (element) {
         element.addEventListener('click', function (e) {
                 console.log(element)
-                if(element.Id('sort-title') == true){
-                        for (let i = 0; i < listItems.length; i++){
-                                sortTitle[i] =  listItems[i].innerText;
-                        }       
+                if (element.Id('sort-title') == true) {
+                        for (let i = 0; i < listItems.length; i++) {
+                                sortTitle[i] = listItems[i].innerText;
+                        }
                         sortList.sort();
                         console.log(sortList);
-                }
-                else if(element.getElementById('sort-duration') == true){
+                } else if (element.getElementById('sort-duration') == true) {
 
-                }
-                else if(element.getElementById('sort-author') == true){
+                } else if (element.getElementById('sort-author') == true) {
 
                 }
 
@@ -126,7 +129,8 @@ function filterList() {
                 }
         };
 }
-function createRouteListElement(){
+
+function createRouteListElement(titre) {
         const container = document.createElement("div");
         container.classList.add("route-element");
 
@@ -134,7 +138,8 @@ function createRouteListElement(){
         topContainer.classList.add("route-element-top");
 
         const h1 = document.createElement("h1");
-        h1.textContent = "TitreOMG"; // Récupérer de BDD
+        h1.classList.add("titles");
+        h1.textContent = titre; // Récupérer de BDD
 
         const top = document.createElement("div");
         top.classList.add("top");
@@ -158,7 +163,7 @@ function createRouteListElement(){
         const icon_desc = document.createElement("i");
         icon_desc.classList.add("fa-solid", "fa-clock");
         h6_desc.appendChild(icon_desc);
-        h6_desc.appendChild(document.createTextNode("45min"));
+        h6_desc.innerText="00:45"
 
         const p = document.createElement("p");
         p.classList.add("route_element_desc_text");
@@ -181,6 +186,7 @@ function createRouteListElement(){
         h6_1.textContent = "1234567890 étapes"; // Récupérer de BDD
 
         const h6_2 = document.createElement("h6");
+        h6_2.classList.add("auteur");
         h6_2.textContent = "Par MichelDu62"; // Récupérer de BDD
 
         bottomContainer.appendChild(h6_1);
@@ -192,8 +198,9 @@ function createRouteListElement(){
 
         document.getElementById("scroll_list").appendChild(container);
         updateShowMoreBtn();
+        allEventCards();
 }
 
-createRouteListElement();
-createRouteListElement();
-createRouteListElement();
+createRouteListElement("Test1");
+createRouteListElement("Test2");
+createRouteListElement("Test3");

@@ -32,7 +32,7 @@ io.use(
     })
 );
 
-const hostname = "10.224.3.148"; // ISEN
+const hostname = "10.224.4.159"; // ISEN
 //! const hostname = "localhost"; //! HOME
 const port = 4200;
 
@@ -167,7 +167,7 @@ app.get("/scan", (req, res) => {
     if (req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/scan.html");
     } else {
-        res.redirect("/");
+        res.redirect("/login");
     }
 });
 
@@ -188,7 +188,13 @@ app.get("/admin_route_list", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-    console.log("User connected");
+    console.log("--- SOCKET ---");
+    const userMail = socket.handshake.session.mail
+    console.log(userMail + " connected");
+
+
+
+    
 
     socket.on("disconnect", () => {
         console.log("User disconnected");
