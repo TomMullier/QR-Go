@@ -143,7 +143,7 @@ app.post(
 
 app.get("/user_route_list", (req, res) => {
     if (req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/login.html");
+        res.sendFile(__dirname + "/Vue/HTML/user_route_list.html");
     } else {
         res.redirect("/");
     }
@@ -151,7 +151,7 @@ app.get("/user_route_list", (req, res) => {
 
 app.get("/scan", (req, res) => {
     if (req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/login.html");
+        res.sendFile(__dirname + "/Vue/HTML/scan.html");
     } else {
         res.redirect("/");
     }
@@ -159,7 +159,7 @@ app.get("/scan", (req, res) => {
 
 app.get("/admin_location_list", (req, res) => {
     if (req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/login.html");
+        res.sendFile(__dirname + "/Vue/HTML/admin_location_list.html");
     } else {
         res.redirect("/");
     }
@@ -167,7 +167,7 @@ app.get("/admin_location_list", (req, res) => {
 
 app.get("admin_route_list", (req, res) => {
     if (!req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/login.html");
+        res.sendFile(__dirname + "/Vue/HTML/admin_route_list.html");
     } else {
         res.redirect("/");
     }
