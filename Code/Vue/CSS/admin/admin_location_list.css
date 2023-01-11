@@ -1,0 +1,366 @@
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/catamaran/v17/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd1ak.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firasans/v16/va9B4kDNxMZdWfMOD5VnSKzuQQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/mulish/v12/1Ptyg83HX_SGhgqO0yLcmjzUAuWexU1WwaA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Overlock';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/overlock/v15/Z9XSDmdMWRiN1_T9Z7xizcmM.ttf) format('truetype');
+}
+body {
+  background-color: #f0efff;
+  color: #231F20;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+nav {
+  background-color: #f0efff;
+}
+nav .navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+  align-items: center;
+  margin: 0vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #231F20;
+  text-transform: capitalize;
+}
+nav .navbar .separator {
+  background-color: rgba(0, 0, 0, 0.212);
+  height: 3px;
+  width: 40vw;
+  margin: 20px auto 10px auto;
+}
+nav .navbar .item a {
+  text-decoration: none;
+}
+nav .navbar .selected {
+  color: #a299ff;
+  border-bottom: 2px solid #a299ff;
+}
+nav .navbar .menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90vw;
+  justify-content: space-between;
+  margin-left: 5vw;
+}
+nav .navbar .play-container i {
+  padding: 10px 20px;
+  color: #231F20;
+  font-size: 2.5vh;
+}
+nav .navbar .play-container .play-button {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: capitalize;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #F5F5F5;
+  text-align: center;
+  letter-spacing: 0px;
+  background-color: #a299ff;
+  width: 20vw;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+}
+nav .navbar .play-container i:hover {
+  cursor: pointer;
+}
+.top-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 5.5vh;
+  width: 80vw;
+  margin-left: 10vw;
+  align-items: baseline;
+}
+.top-title .select-location-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #231F20;
+  margin: 2vh 0 ;
+  padding: 0;
+  text-align: center;
+  height: 2vh;
+}
+.top-title .create-new-container .create-new {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.8vh;
+  font-weight: 700;
+  color: #F5F5F5;
+  text-align: center;
+  letter-spacing: 0.2px;
+  background-color: #E17E7C;
+  width: 30vw;
+  border: none;
+  border-radius: 30px;
+  align-items: center;
+  padding: 1px;
+}
+.search {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin-left: 10vw;
+  padding-top: 10px;
+}
+.search .top {
+  height: calc(5vh - 10px);
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.search .top .sort-button {
+  width: 10vw;
+  padding-top: 0.7vh;
+  color: #a299ff;
+  text-align: left;
+}
+.search .top .search-bar {
+  width: 80vw;
+}
+.search .top .search-bar input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #a299ff;
+  color: #231F20;
+  outline: none;
+  padding: 0;
+  font-family: 'Catamaran', sans-serif;
+}
+.search .Sort-settings {
+  height: calc(8vh - 10px);
+  flex-direction: column;
+  margin-top: 0px;
+  display: none;
+}
+.search .Sort-settings h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #a299ff;
+}
+.search .Sort-settings div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.search .Sort-settings div div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+.search .Sort-settings div div p {
+  margin: 0;
+  margin-left: 5px;
+  padding: 0;
+  display: flex;
+  height: auto;
+  align-items: center;
+  line-height: 0%;
+  font-family: 'Mulish', sans-serif;
+  color: #231F20;
+  font-size: 1.4vh;
+}
+.scroll-list {
+  background-color: #F5F5F5;
+  height: calc(84vh - 40px);
+  width: 100vw;
+  padding-top: calc(10vw - 10px);
+  position: absolute;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.253);
+  overflow-y: scroll;
+}
+.scroll-list .route-element {
+  background-color: #F5F5F5;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: 80%;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+.scroll-list .route-element .route-element-bottom {
+  margin: 0 10px;
+}
+.scroll-list .route-element .route-element-bottom h3 {
+  color: #757575;
+  font-size: 1.5vh;
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
+.scroll-list .route-element .route-element-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px 0 10px;
+  align-items: center;
+}
+.scroll-list .route-element .route-element-top .top {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 10%;
+  color: #a299ff;
+  font-size: 1.5vh;
+}
+.scroll-list .route-element .route-element-top .top a {
+  text-decoration: none;
+}
+.scroll-list .route-element .route-element-top .top a b {
+  color: #a299ff;
+  margin-right: 10px;
+}
+.scroll-list .route-element .route-element-top .top a i {
+  color: #a299ff;
+}
+.scroll-list .route-element .route-element-top .top i {
+  margin-right: 5px;
+}
+.scroll-list .route-element .route-element-top .top h6 {
+  font-size: 1.5vh;
+  font-family: 'Mulish', sans-serif;
+  text-transform: uppercase;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+}
+.scroll-list .route-element .route-element-top h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #a299ff;
+  margin: 0 0px;
+  margin-left: 10px;
+  padding: 0;
+  text-transform: uppercase;
+}
+.scroll-list .route-element .route-element-desc {
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+.scroll-list .route-element .route-element-desc h6 {
+  font-size: 1.5vh;
+  font-family: 'Mulish', sans-serif;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  color: #a299ff;
+}
+.scroll-list .route-element .route-element-desc h6 i {
+  margin-right: 5px;
+}
+.scroll-list .route-element .route-element-desc p {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.6vh;
+  font-weight: 700;
+  color: #231F20;
+  margin: 0px 10px;
+  border-left: #757575 2px solid;
+  padding-left: 10px;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.scroll-list .route-element .route-element-desc a {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #a299ff;
+  margin: 0px 10px;
+  padding-left: 10px;
+  text-align: right;
+  text-decoration: underline;
+}
+.scroll-list .route-element .route-element-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+}
+.scroll-list .route-element .route-element-bottom h6 {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: #757575;
+  margin: 0px 0px;
+  padding: 0;
+  text-transform: capitalize;
+  font-style: italic;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.hide {
+  display: none;
+}

@@ -22,6 +22,7 @@ function register(client, name, surname, mail, hash, callback) {
 		surname: surname,
 		mail: mail,
 		hash: hash,
+		admin: false,
 	};
 	const query = { mail: mail };
 	const options = {

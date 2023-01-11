@@ -1,0 +1,128 @@
+// Code
+@import url('https://fonts.googleapis.com/css2?family=Catamaran&family=Fira+Sans:wght@600&family=Montserrat:wght@700&family=Mulish:wght@600&family=Overlock:wght@700&display=swap');
+
+// Variables
+@white : #F5F5F5;
+@grey : #dcdcdc;
+@blue : #a299ff;
+@purple : #8784AE;
+@red: #E17E7C;
+@black : #231F20;
+@white_blue:rgb(241, 240, 255);
+
+@title-font: 'Montserrat', sans-serif;
+@subtitle-font: 'Mulish', sans-serif;
+@body-font: 'Catamaran', sans-serif;
+
+body {
+        background-color: @white_blue;
+        color: @black;
+        font-family: @body-font;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+}
+
+
+
+nav {
+    background-color: @white_blue;
+    .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: none;
+            width:100vw;
+            align-items: center;
+            height:10vh;
+        .logo-main{
+            margin:0 10px;
+            width: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            img{
+                    height:6vh;
+                    width: auto;
+            };
+            p{
+                    font-family: @title-font;
+                    font-size: 2.5vh;
+                    font-weight: 700;
+                    color: @black;
+                    margin: 0 10px;
+                    padding: 0;
+            }
+        }
+        .admin-button{
+            margin: 15px;
+            font-family: @subtitle-font;
+            font-size: 2vh;
+            font-weight: 700;
+            color: @white;
+            text-align: center;
+            letter-spacing: 0px;
+            background-color: @blue;
+            width:20vw;
+            padding:10px;
+            border:none;
+            border-radius: 30px;
+            //display: none;
+        }
+        .login-container{
+            i{
+                    padding: 10px 20px;
+                    color: @black;
+                    font-size: 2.5vh;
+
+            }
+            i:hover{
+                    cursor: pointer;
+            }
+        }
+    }
+}
+
+
+
+
+main{
+
+        .div_scaner_title{
+                //background-color: pink;
+                font-family: @title-font;
+                font-size: 20px;
+                margin: 40px 0;
+                text-align: center;
+        }
+
+        .div_scaner_title_txt{
+                //background-color: red;
+                text-align: center;
+                color: @black;
+                padding: 0;
+        }
+
+        .div_scaner_title_txt{
+                font-family: @title-font;
+                font-size: 60px;
+                font-weight: 700;
+                color: @black;
+                margin: 0 10px;
+                padding: 0;
+        }
+
+        #qr-display{
+          display: flex;
+          justify-content: center;
+          margin: 0 20px;
+
+            canvas{
+              border-radius: 30px;
+              max-width: 100%;
+              max-height: 300px;
+            }
+        }
+}

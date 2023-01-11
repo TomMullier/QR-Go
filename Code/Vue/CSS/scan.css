@@ -1,0 +1,127 @@
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/catamaran/v17/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd1ak.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firasans/v16/va9B4kDNxMZdWfMOD5VnSKzuQQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/mulish/v12/1Ptyg83HX_SGhgqO0yLcmjzUAuWexU1WwaA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Overlock';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/overlock/v15/Z9XSDmdMWRiN1_T9Z7xizcmM.ttf) format('truetype');
+}
+body {
+  background-color: #f1f0ff;
+  color: #231F20;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+nav {
+  background-color: #f1f0ff;
+}
+nav .navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: none;
+  width: 100vw;
+  align-items: center;
+  height: 10vh;
+}
+nav .navbar .logo-main {
+  margin: 0 10px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+nav .navbar .logo-main img {
+  height: 6vh;
+  width: auto;
+}
+nav .navbar .logo-main p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #231F20;
+  margin: 0 10px;
+  padding: 0;
+}
+nav .navbar .admin-button {
+  margin: 15px;
+  font-family: 'Mulish', sans-serif;
+  font-size: 2vh;
+  font-weight: 700;
+  color: #F5F5F5;
+  text-align: center;
+  letter-spacing: 0px;
+  background-color: #a299ff;
+  width: 20vw;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+}
+nav .navbar .login-container i {
+  padding: 10px 20px;
+  color: #231F20;
+  font-size: 2.5vh;
+}
+nav .navbar .login-container i:hover {
+  cursor: pointer;
+}
+main .div_scaner_title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  margin: 40px 0;
+  text-align: center;
+}
+main .div_scaner_title_txt {
+  text-align: center;
+  color: #231F20;
+  padding: 0;
+}
+main .div_scaner_title_txt {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  color: #231F20;
+  margin: 0 10px;
+  padding: 0;
+}
+main #qr-display {
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+main #qr-display canvas {
+  border-radius: 30px;
+  max-width: 100%;
+  max-height: 300px;
+}
