@@ -29,6 +29,7 @@
     "mongoose": "^6.8.3",
     "nodemon": "^2.0.20",
     "qr-scanner": "^1.4.2",
+    "qrcode": "^1.5.1",
     "socket.io": "^4.5.4"
   },
   "devDependencies": {
