@@ -74,12 +74,9 @@
                 <div id="scroll_list" class="scroll-list">
                         <div class="route-element">
                                 <div class="route-element-top">
-                                        <h1 class="titles">FABLAB</h1>
+                                        <h1 class="titles">Piscine</h1>
                                         <div class="top">
-                                                <a href="">
-                                                        <b>Modify</b>
-                                                        <i class="fa-solid fa-bars text-reset"></i>
-                                                </a>
+                                                        <b>Click to Modify</b>
                                         </div>
                                 </div>
                                 <div class="route-element-desc">
@@ -91,17 +88,14 @@
                                         <a class="expand_button">Show more</a>
                                 </div>
                                 <div class="route-element-bottom">
-                                        <h6 class="auteur">B803 à droite</h6>
+                                        <h6 class="auteur">B303 à droite</h6>
                                 </div>
                         </div>
                         <div class="route-element">
                                 <div class="route-element-top">
                                         <h1 class="titles">FABLAB</h1>
                                         <div class="top">
-                                                <a href="">
-                                                        <b>Modify</b>
-                                                        <i class="fa-solid fa-bars text-reset"></i>
-                                                </a>
+                                                        <b>Click to Modify</b>
                                         </div>
                                 </div>
                                 <div class="route-element-desc">
@@ -122,22 +116,22 @@
                 <modal id="create_location_modal">
                         <div class="slider"></div>
                         <div class="top">
-                                <h1 class="title">Create Location</h1>
+                                <h1 id="title_txt" class="title">Create Location</h1>
                                 <span id="close_settings" class="close-modal close_settings">&times;</span>
                         </div>
                         <div class="fields-container">
                                 <div class="left">
-                                        <input type="text" class="input_create txt" placeholder="Name of Location">
-                                        <textarea type="text" class="input_create txtarea"
+                                        <input id="location_name" type="text" class="input_create txt" placeholder="Name of Location">
+                                        <textarea id="location_desc" type="text" class="input_create txtarea"
                                                 placeholder="Description"></textarea>
-                                                <textarea type="text" class="input_create txtarea"
+                                                <textarea id="location_instruction" type="text" class="input_create txtarea"
                                                 placeholder="Instruction"></textarea>
                                 </div>
                                 <div class="buttons_container">
-                                        <div class="validate">
+                                        <div class="validate close-modal">
                                                 Save Location
                                         </div>
-                                        <div class="cancel">
+                                        <div class="cancel close-modal">
                                                 Cancel
                                         </div>
         

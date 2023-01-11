@@ -52,6 +52,7 @@ nav .navbar {
   justify-content: space-between;
   width: 100vw;
   align-items: center;
+  height: 10vh;
   margin: 0vw;
   font-family: 'Montserrat', sans-serif;
   font-size: 2vh;
@@ -256,6 +257,9 @@ nav .navbar .play-container i:hover {
   padding: 10px 10px 0 10px;
   align-items: center;
 }
+.scroll-list .route-element .route-element-top .titles {
+  width: 60%;
+}
 .scroll-list .route-element .route-element-top .top {
   padding: 0;
   display: flex;
@@ -264,19 +268,12 @@ nav .navbar .play-container i:hover {
   height: 10%;
   color: #a299ff;
   font-size: 1.5vh;
-}
-.scroll-list .route-element .route-element-top .top a {
-  text-decoration: none;
-}
-.scroll-list .route-element .route-element-top .top a b {
-  color: #a299ff;
   margin-right: 10px;
 }
-.scroll-list .route-element .route-element-top .top a i {
+.scroll-list .route-element .route-element-top .top b {
   color: #a299ff;
-}
-.scroll-list .route-element .route-element-top .top i {
-  margin-right: 5px;
+  margin-right: 10px;
+  text-align: right;
 }
 .scroll-list .route-element .route-element-top .top h6 {
   font-size: 1.5vh;

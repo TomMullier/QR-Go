@@ -31,3 +31,39 @@ button_sort.addEventListener("click", function (e) {
                 document.getElementById("scroll_list").style.height="calc(84vh - 40px)";
         }
 });
+
+
+
+document.getElementById('searchBar').addEventListener('input', filterList);
+
+function filterList() {
+        const searchBar = document.getElementById('searchBar');
+        const filter = searchBar.value.toLowerCase();
+
+
+        console.log(filter);
+
+        let listItems = document.getElementsByClassName("titles")
+        let auteurs = document.getElementsByClassName('auteur');
+        console.log(listItems);
+        listItems = Array.from(listItems);
+        listNames = Array.from(auteurs);
+        for (let i = 0; i < listItems.length; i++) {
+                let text = listItems[i].innerText;
+                let text2 = listNames[i].innerText;
+                if (text.toLowerCase().includes(filter)) {
+                        console.log(listItems[i].innerHTML)
+                        const parent1 = listItems[i].parentElement;
+                        const parent2 = parent1.parentElement;
+                        parent2.style.display = '';
+                } else if (text2.toLowerCase().includes(filter)) {
+                        const parent1 = listNames[i].parentElement;
+                        const parent2 = parent1.parentElement;
+                        parent2.style.display = '';
+                } else {
+                        const parent1 = listItems[i].parentElement;
+                        const parent2 = parent1.parentElement;
+                        parent2.style.display = 'none';
+                }
+        };
+}

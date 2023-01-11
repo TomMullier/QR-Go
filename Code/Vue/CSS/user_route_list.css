@@ -215,6 +215,9 @@ nav .navbar .login-container i:hover {
   padding: 10px 10px 0 10px;
   align-items: center;
 }
+.scroll-list .route-element .route-element-top .titles {
+  width: 60%;
+}
 .scroll-list .route-element .route-element-top .top {
   padding: 0;
   display: flex;

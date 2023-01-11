@@ -133,8 +133,6 @@ nav .navbar .login-container i:hover {
 }
 .first-infos form .form_container {
   margin-top: 10vh;
-}
-.first-infos form .input-contain {
   width: 80vw;
 }
 .first-infos form .input-contain p {
@@ -159,6 +157,28 @@ nav .navbar .login-container i:hover {
   text-align: left;
   margin-bottom: 30px;
   outline: none;
+}
+.first-infos form .name_input_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.first-infos form .name_input_container input {
+  width: 95%;
+  margin-left: 0;
+}
+.first-infos form .name_input_container .input-contain_name_left {
+  display: flex;
+  justify-content: left;
+  margin: 0;
+  padding: 0;
+}
+.first-infos form .name_input_container .input-contain_name_right {
+  display: flex;
+  justify-content: right;
+  margin: 0;
+  padding: 0;
 }
 .first-infos form .button_link_container {
   display: flex;
