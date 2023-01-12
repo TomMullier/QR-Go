@@ -85,11 +85,7 @@ document.getElementById("delete").addEventListener("click", ()=>{
         SocketManager.deleteLocation(route_name.value.toUpperCase());
 });
 
-document.getElementById("getQrCode").addEventListener("click", ()=>{
-        let name = route_name.value;
 
-        // Appel fonction génération qr code/pdf
-});
 
 
 document.getElementById('searchBar').addEventListener('input', filterList);
@@ -135,6 +131,11 @@ function refreshAllLocation(tabLocations) {
         tabLocations.forEach(location => {
                 createLocationListElement(location.name, location.description, location.instruction);
         })
+        document.getElementById("getQrCode").addEventListener("click", ()=>{
+                let name = route_name.value;
+        
+                // Appel fonction génération qr code/pdf
+        });
         allEventCards();
 }
 
@@ -204,6 +205,8 @@ const a_container= document.createElement('div');
         document.getElementById("scroll_list").appendChild(routeElement);
         updateShowMoreBtn();
 }
+
+
 
 export default {
         refreshAllLocation,
