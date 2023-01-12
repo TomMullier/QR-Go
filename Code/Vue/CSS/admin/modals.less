@@ -709,6 +709,56 @@ body {
         
 }
 
+#display_camera_help{
+        .modal-wrapper {
+                width: 100vw;
+                height: auto;
+                padding-bottom:20px;
+                position: absolute;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+                bottom:0;
+        }
+
+        .top {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 10px;
+
+                h1,
+                span {
+                        font-family: @title-font;
+                        font-size: 2.5vh;
+                        font-weight: 700;
+                        color: @blue;
+                        margin: 0 0px;
+                        padding: 0;
+                        text-transform: uppercase;
+                }
+        }
+
+        .fields-container {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                width: 100%;
+                border: solid;
+                border-color: @blue;
+                border-radius: 30px;
+
+                #instructions-camera-browser {
+                        font-family: @subtitle-font;
+                        font-size: 1.7vh;
+                        font-weight: 700;
+                        padding: 0;
+                        text-align: left;
+                        color: @black;
+                        padding:20px;
+                }
+        }
+}
+
 .over {
         transform: scale(1.1, 1.1);
 }

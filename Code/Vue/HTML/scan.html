@@ -43,31 +43,23 @@
         </div>
 
         <video id="qr-video" style="display: none"></video>
-        <div id="qr-display">
+        <div id="qr-display"></div>
 
-        <div id="camera_help" class="camera_help">
-            Having trouble with the camera ? Click here for help !
-        </div>
-
-        </div>
-            <div id="instructions-camera-browser">
-                To unlock the camera :
-                <ul>
-                    <li>Open <a href="chrome://flags/#unsafely-treat-insecure-origin-as-secure" target="_blank"><code><b>
-                        chrome://flags/#unsafely-treat-insecure-origin-as-secure</code></b></a></li>
-                    <li>Copy <code id="window-location-copy"><i class="fa-regular fa-clipboard"></i> <span id="window-location"></span></code> and paste it</li>
-                    <li>Select "Enable"</li>
-                    <li>Relaunch the browser</li>
-                </ul>
-
-            </div>
+        
+        
         <div class="instructions">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
-            quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam! Corporis,
-            suscipit!
-        </div>
-    </main>
-    
+                <div id="camera_help" class="camera_help">
+                    Having trouble with the camera ? Click here for help !
+                </div>
+                <p class="instructions_text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
+                    quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam!
+                    Corporis,
+                    suscipit!
+                </p>
+            </div>
+        </main>
+
     <div id="modals" style="display:flex;">
         <modal id="display_location">
             <div class="slider"></div>
@@ -75,26 +67,37 @@
                 <h1 id="title_txt" class="title">Location Name</h1>
                 <span id="close_settings" class="close-modal close_settings">&times;</span>
             </div>
-            <div class="fields-container">                
-                    <h3>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
-                        quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam! Corporis,
-                        suscipit!
-                    </h3>
+            <div class="fields-container">
+                <h3>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil
+                    iure
+                    quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam!
+                    Corporis,
+                    suscipit!
+                </h3>
             </div>
         </modal>
         <modal id="display_camera_help">
             <div class="slider"></div>
             <div class="top">
-                <h1 id="title_txt" class="title">Location Name</h1>
+                <h1 id="title_txt" class="title">Camera Help</h1>
                 <span id="close_settings" class="close-modal close_settings">&times;</span>
             </div>
-            <div class="fields-container">                
-                    <h3>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
-                        quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam! Corporis,
-                        suscipit!
-                    </h3>
+            <div class="fields-container">
+                <div id="instructions-camera-browser">
+                    To unlock the camera :
+                    <ul>
+                        <li>Copy in a new tab : <br><code
+                                text-to-clipboard="chrome://flags/#unsafely-treat-insecure-origin-as-secure"><i
+                                    class="fa-regular fa-clipboard"></i>
+                                chrome://flags/#unsafely-treat-insecure-origin-as-secure</code></li>
+                        <li>Copy :<br><code id="window-location-copy"><i class="fa-regular fa-clipboard"></i> <span
+                                    id="window-location"></span></code> and paste it</li>
+                        <li>Select "Enable"</li>
+                        <li>Relaunch the browser</li>
+                    </ul>
+
+                </div>
             </div>
         </modal>
     </div>
@@ -104,9 +107,9 @@
         document.getElementById('div_scaner_title_txt').innerHTML = next_step;
     </script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="../JS/modal.js"></script>
-        <script type="module" src="../JS/scan.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../JS/modal.js"></script>
+    <script type="module" src="../JS/scan.js"></script>
 </body>
 
 <script src="../JS/qr-scanner-final.js"></script>
