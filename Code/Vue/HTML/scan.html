@@ -45,20 +45,20 @@
         <video id="qr-video" style="display: none"></video>
         <div id="qr-display"></div>
 
-        
-        
+
+
         <div class="instructions">
-                <div id="camera_help" class="camera_help">
-                    Having trouble with the camera ? Click here for help !
-                </div>
-                <p class="instructions_text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
-                    quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam!
-                    Corporis,
-                    suscipit!
-                </p>
+            <div id="camera_help" class="camera_help">
+                Having trouble with the camera ? Click here for help !
             </div>
-        </main>
+            <p class="instructions_text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
+                quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam!
+                Corporis,
+                suscipit!
+            </p>
+        </div>
+    </main>
 
     <div id="modals" style="display:flex;">
         <modal id="display_location">
@@ -100,6 +100,19 @@
                 </div>
             </div>
         </modal>
+        <modal id="confirm_back">
+            <div class="top">
+                <h1 id="title_txt" class="title">Are you sure you want go back to the list of routes ?</h1>
+            </div>
+            <div class="fields-container">
+                <a href="/user_route_list">
+                    <div id="button_back_confirm" class="play-button">Yes</div>
+                </a>
+                <div id="button_back_cancel" class="play-button close-modal">No</div>
+            </div>
+            <div class="slider"></div>
+        </modal>
+
     </div>
 
     <script>

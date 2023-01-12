@@ -714,6 +714,93 @@ body {
   color: #231F20;
   padding: 20px;
 }
+#confirm_back[aria-hidden="true"] .modal-wrapper {
+  animation-name: slideOutTop;
+}
+#confirm_back .modal-wrapper {
+  animation: fadeInTop 0.4s both;
+  width: 80vw;
+  height: auto;
+  padding: 10px 20px;
+  position: absolute;
+  border-radius: 20px;
+  top: 2vh;
+  bottom: auto;
+}
+#confirm_back .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+#confirm_back .top h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7vh;
+  font-weight: 700;
+  color: #a299ff;
+  margin: 0 0px;
+  padding: 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+#confirm_back .fields-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+#confirm_back .fields-container div:not(a) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F5F5F5;
+  border: 2px solid #a299ff;
+  color: #a299ff;
+}
+#confirm_back .fields-container a,
+#confirm_back .fields-container div {
+  text-decoration: none;
+  width: 40%;
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.8vh;
+  font-weight: 700;
+}
+#confirm_back .fields-container a div,
+#confirm_back .fields-container div div {
+  width: 100%;
+  padding: 5px 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #a299ff;
+}
+#confirm_back .fields-container #button_back_confirm {
+  color: #F5F5F5;
+}
+#confirm_back .slider {
+  margin-bottom: 0px;
+}
+@keyframes fadeInTop {
+  from {
+    transform: translateY(-20vh);
+  }
+  to {
+    transform: translateY(0vh);
+  }
+}
+@keyframes slideOutTop {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-30vh);
+  }
+}
 .over {
   transform: scale(1.1, 1.1);
 }
