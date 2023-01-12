@@ -1,18 +1,20 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt"); // Pour le hash du mot de passe
 
+// Connexion à la base de donnée
 async function connexion(client) {
-	console.time("Connexion à la base de données");
+	console.time("Connection to data base");
 	try {
 		await client.connect();
-		console.log("Connexion réussie à la base de données");
+		console.log("Connection success to data base");
 	} catch (err) {
 		console.log(err);
-		console.log("Erreur de connexion");
+		console.log("Connection error");
 	} finally {
-		console.timeEnd("Connexion à la base de données");
+		console.timeEnd("Connection to data base");
 	}
 }
 
+// Création d'un utilisateur après vérification de non-existance
 function register(client, name, surname, mail, hash, callback) {
 	if (name == "" || surname == "" || mail == "" || hash == "") return;
 	else if (name == null || surname == null || mail == null || hash == null) return;
@@ -29,7 +31,6 @@ function register(client, name, surname, mail, hash, callback) {
 		projection: { _id: 0, name: 1, surname: 1, email: 1, hash: 1, admin: 1 },
 	};
 	let users = client.collection("users");
-
 	// Check if user already exists, if not insert it in DB
 	users.findOne(query, options, (err, userFound) => {
 		//if (err) throw err;
@@ -51,6 +52,7 @@ function register(client, name, surname, mail, hash, callback) {
 	});
 }
 
+// Vérification si mail et mot de passe bon pour connexion
 function login(client, mail, password, callback) {
 	if (mail == "" || password == "") return;
 	else if (mail == null || password == null) return;
@@ -85,9 +87,10 @@ function login(client, mail, password, callback) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                  LOCATION                                  */
+/*                            LOCATION (ADMIN ONLY)                           */
 /* -------------------------------------------------------------------------- */
 
+// Ajoute une étape
 function addLocation(client, name, description, instruction, callback) {
 	const query = { name: name };
 	const options = { projection: { _id: 0, name: 1, description: 1, instruction: 1 } };
@@ -104,21 +107,20 @@ function addLocation(client, name, description, instruction, callback) {
 				instruction: instruction,
 			}, (err, res) => {
 				if (err) {
-					console.log("Ajout d'étape manqué : " + name);
+					console.log("Add location failed : " + name);
 					return callback(true);
 				} else {
-					console.log("Ajout d'étape réussi : " + name);
+					console.log("Add location successed : " + name);
 					return callback(false, locationFound);
 				}
-
 			});
 		}
 	})
 }
 
+// Modifie une étape existante
 function modifyLocation(client, name, description, instruction, callback) {
 	let locations = client.collection("locations");
-
 	filter = {
 		name: name
 	}
@@ -128,7 +130,6 @@ function modifyLocation(client, name, description, instruction, callback) {
 			instruction: instruction
 		}
 	}
-
 	locations.updateOne(filter, update, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
@@ -136,6 +137,7 @@ function modifyLocation(client, name, description, instruction, callback) {
 	})
 }
 
+// Supprime une étape existante
 function deleteLocation(client, name, callback) {
 	let locations = client.collection("locations");
 
@@ -146,6 +148,7 @@ function deleteLocation(client, name, callback) {
 	})
 }
 
+// Retourne toutes les étapes
 function getAllLocation(client, callback) {
 	let locations = client.collection("locations");
 
@@ -154,11 +157,13 @@ function getAllLocation(client, callback) {
 	})
 }
 
-
 /* -------------------------------------------------------------------------- */
 /*                                   ROUTES                                   */
 /* -------------------------------------------------------------------------- */
 
+/* ----------------------- ADMIN ROUTE ---------------------------*/
+
+// Ajoute un parcours
 function addRoute(client, name, description, duration, locations, author, callback) {
 	const query = { name: name };
 	const options = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1 } };
@@ -177,22 +182,20 @@ function addRoute(client, name, description, duration, locations, author, callba
 				author: author,
 			}, (err, res) => {
 				if (err) {
-					console.log("Ajout d'étape manqué : " + name);
+					console.log("Add route failed : " + name);
 					return callback(true);
 				} else {
-					console.log("Ajout d'étape réussi : " + name);
+					console.log("Add route successed : " + name);
 					return callback(false, routeFound);
 				}
-
 			});
 		}
 	})
 }
 
-
+// Modifie un parcours existant
 function modifyRoute(client, name, description, duration, locations, author, callback) {
 	let routes = client.collection("routes");
-
 	filter = {
 		name: name
 	}
@@ -212,11 +215,9 @@ function modifyRoute(client, name, description, duration, locations, author, cal
 	})
 }
 
-
-
+// Supprime un parcours existant
 function deleteRoute(client, name, callback) {
 	let routes = client.collection("routes");
-
 	routes.deleteOne({ name: name }, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
@@ -224,14 +225,15 @@ function deleteRoute(client, name, callback) {
 	})
 }
 
+// Retourne touts les parcours existants
 function getAllRoutes(client, callback) {
 	let routes = client.collection("routes");
-
 	routes.find({}).toArray((err, res) => {
 		callback(res);
 	})
 }
 
+// Retourne étape utilisé / non utilisé pour un parcours recherché par nom
 async function getRouteInfo(client, name, exist, callback) {
 	const queryR = { name: name };
 	const optionsR = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1 } };
@@ -290,6 +292,8 @@ async function getRouteInfo(client, name, exist, callback) {
 	callback(locUsed, locAvailable)
 }
 
+/* ----------------------- USER ROUTE ---------------------------*/
+// Retourne tout les parcours existant
 function getAllUsersRoutes(client, callback) {
 	let routes = client.collection("routes");
 
@@ -298,10 +302,43 @@ function getAllUsersRoutes(client, callback) {
 	})
 }
 
+/* -------------------------- SCAN ------------------------------*/
+async function getCurrentCard(client, name, step, callback){
+	const queryR = { name: name };
+	const optionsR = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1 } };
+	const optionsL = { projection: { _id: 0, name: 1, description: 1, instruction: 1 } };
+
+	let routes = client.collection("routes")
+	let locations = client.collection("locations")
+	let currentLocation;
+	try{
+		let currentRoute = await routes.findOne(queryR, optionsR)
+		// console.log("CUR ROUTE", currentRoute);
+		let currentLocationName = currentRoute.locations[step]
+
+		if(step == currentLocationName.length){
+			callback("","","",true)
+			return
+		}
+		// console.log("CUR LOC NAME", currentLocationName);
+		const queryL = {name: currentLocationName}
+		try{
+			currentLocation = await locations.findOne(queryL, optionsL)
+			// console.log("CUR LOC", currentLocation);
+		}catch (err){
+			console.log(err);
+		}
+	}catch (err){
+		console.log(err);
+	}
+	callback(currentLocation.name,currentLocation.description,currentLocation.instruction, false)
+}
+
+
 // Export functions
 module.exports = {
 	connexion,
-	//USER
+	// USER
 	register,
 	login,
 
@@ -311,7 +348,7 @@ module.exports = {
 	deleteLocation,
 	getAllLocation,
 
-	//ROUTE
+	// ROUTE
 	addRoute,
 	modifyRoute,
 	deleteRoute,
@@ -319,6 +356,8 @@ module.exports = {
 	getRouteInfo,
 
 	// USER ROUTE
-	getAllUsersRoutes
+	getAllUsersRoutes,
 
+	// SCAN
+	getCurrentCard,
 };

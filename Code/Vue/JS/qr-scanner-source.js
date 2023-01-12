@@ -1,8 +1,11 @@
 import QrScanner from 'qr-scanner';
+import Scan from './SocketManager/SocketScanner.js'
 
 const qrScanner = new QrScanner(
-    document.getElementById('qr-video'),
-    result => alert(result.data), {returnDetailedScanResult: true}
+  document.getElementById('qr-video'),
+  result => {
+    Scan.getCurrentDescription(result.data);
+  }, { returnDetailedScanResult: true }
 );
 
 qrScanner.start();

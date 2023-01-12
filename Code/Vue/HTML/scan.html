@@ -38,7 +38,6 @@
         <div class="div_scaner_title">
             <p>Next location</p>
             <div class="div_scaner_title_txt" id="div_scaner_title_txt">
-
             </div>
         </div>
 
@@ -48,10 +47,12 @@
         
         
         <div class="instructions">
+                <div id="instruction_location">
+                </div>
                 <div id="camera_help" class="camera_help">
                     Having trouble with the camera ? Click here for help !
                 </div>
-                <p class="instructions_text">
+                <p class="instructions_text" id="instructions_text">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
                     quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam!
                     Corporis,
@@ -64,10 +65,10 @@
         <modal id="display_location">
             <div class="slider"></div>
             <div class="top">
-                <h1 id="title_txt" class="title">Location Name</h1>
+                <h1 id="txt_title" class="title">Location Name</h1>
                 <span id="close_settings" class="close-modal close_settings">&times;</span>
             </div>
-            <div class="fields-container">
+            <div id="txt_descr" class="fields-container">
                 <h3>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil
                     iure
@@ -77,6 +78,9 @@
                 </h3>
             </div>
         </modal>
+
+
+
         <modal id="display_camera_help">
             <div class="slider"></div>
             <div class="top">
@@ -102,17 +106,16 @@
         </modal>
     </div>
 
-    <script>
+    <!-- <script>
         const next_step = 'Kouisine';
         document.getElementById('div_scaner_title_txt').innerHTML = next_step;
-    </script>
+    </script> -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="../JS/modal.js"></script>
     <script type="module" src="../JS/scan.js"></script>
+    <script src="../JS/qr-scanner-final.js"></script>
 </body>
 
-<script src="../JS/qr-scanner-final.js"></script>
-<script type="module" src="../JS/scan.js"></script>
 
 </html>

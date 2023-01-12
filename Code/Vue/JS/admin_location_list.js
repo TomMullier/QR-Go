@@ -9,7 +9,7 @@ all_expand_buttons = Array.from(all_expand_buttons)
 function updateShowMoreBtn() {
         all_expand_buttons.forEach(function (element) {
                 element.addEventListener("click", function (e) {
-                        console.log(e.target)
+                        //console.log(e.target)
                         all_desc.forEach(function (el) {
                                 el.style.overflow = "hidden"
                                 el.style.lineClamp = 3;
@@ -60,7 +60,7 @@ document.getElementById("validate").addEventListener("click", (e) => {
 
 let allCards = document.getElementsByClassName("route-element")
 allCards = Array.from(allCards)
-console.log(allCards)
+//console.log(allCards)
 
 function allEventCards() {
         allCards.forEach(function (element) {
