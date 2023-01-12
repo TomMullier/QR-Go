@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../css/user_route_list.css">
         <link rel="stylesheet" href="../CSS/admin/modals.css">
         <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
         <title>Parcours</title>
 </head>
 
@@ -113,10 +114,6 @@
                                                 Play Route
                                         </div>
                                 </a>
-                                <div class="cancel close-modal">
-                                        Cancel
-                                </div>
-
                         </div>
 
                 </modal>
@@ -124,7 +121,9 @@
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="../JS/modal.js"></script>
-        <script src="../JS/user_route_list.js"></script>
+
+        <script type="module" src="../JS/user_route_list.js"></script>
+
 </body>
 
 </html>

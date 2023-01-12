@@ -40,54 +40,58 @@ nav {
                 font-weight: 700;
                 color: @black;
                 text-transform: capitalize;
-                .separator{
+
+                .separator {
                         background-color: rgba(0, 0, 0, 0.212);
-                        height:3px;
-                        width:40vw;
-                        margin:20px auto 10px auto;
+                        height: 3px;
+                        width: 40vw;
+                        margin: 20px auto 10px auto;
                 }
-                .item a{
+
+                .item a {
                         text-decoration: none;
                 }
-                .selected{
-                        color:@blue;
+
+                .selected {
+                        color: @blue;
                         border-bottom: 2px solid @blue;
                 }
 
                 .menu {
-                    display:flex;
+                        display: flex;
                         flex-direction: row;
                         align-items: center;
-                        width:90vw;
+                        width: 90vw;
                         justify-content: space-between;
                         margin-left: 5vw;
 
                 }
 
                 .play-container {
-                        
+
                         i {
                                 padding: 10px 20px;
                                 color: @black;
                                 font-size: 2.5vh;
-                                
+
 
                         }
+
                         .play-button {
-                            font-family: @subtitle-font;
-                            text-transform: capitalize;
-                            font-size: 2vh;
-                            font-weight: 700;
-                            color: @white;
-                            text-align: center;
-                            letter-spacing: 0px;
-                            background-color: @blue;
-                            width: 20vw;
-                            padding: 10px;
-                            border: none;
-                            border-radius: 15px;
-                            //display: none;
-                    }
+                                font-family: @subtitle-font;
+                                text-transform: capitalize;
+                                font-size: 2vh;
+                                font-weight: 700;
+                                color: @white;
+                                text-align: center;
+                                letter-spacing: 0px;
+                                background-color: @blue;
+                                width: 20vw;
+                                padding: 10px;
+                                border: none;
+                                border-radius: 15px;
+                                //display: none;
+                        }
 
                         i:hover {
                                 cursor: pointer;
@@ -96,49 +100,52 @@ nav {
         }
 }
 
-.top-title{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height:5.5vh;
-    width:80vw;
-    margin-left:10vw;
-    align-items: baseline;
-    .select-location-title{
-        font-family: @title-font;
-        font-size: 2vh;
-        font-weight: 700;
-        color: @black;
-        margin: 2vh 0 ;
-        padding: 0;
-        text-align: center;
-        height:2vh;
-    }
-    .create-new-container { 
-        .create-new {
-            font-family: @subtitle-font;
-            font-size: 1.8vh;
-            font-weight: 700;
-            color: @white;
-            text-align: center;
-            letter-spacing: 0.2px;
-            background-color: @red;
-            width: 30vw;
-            border: none;
-            border-radius: 30px;
-            align-items: center;
-            padding:1px;
-            
+.top-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5.5vh;
+        width: 80vw;
+        margin-left: 10vw;
+        align-items: baseline;
+
+        .select-location-title {
+                font-family: @title-font;
+                font-size: 2vh;
+                font-weight: 700;
+                color: @black;
+                margin: 2vh 0;
+                padding: 0;
+                text-align: center;
+                height: 2vh;
         }
-    }
+
+        .create-new-container {
+                .create-new {
+                        font-family: @subtitle-font;
+                        font-size: 1.8vh;
+                        font-weight: 700;
+                        color: @white;
+                        text-align: center;
+                        letter-spacing: 0.2px;
+                        background-color: @red;
+                        width: 30vw;
+                        border: none;
+                        border-radius: 30px;
+                        align-items: center;
+                        padding: 1px;
+
+                }
+        }
 }
+
 .search {
         background-color: transparent;
         display: flex;
         flex-direction: column;
         width: 80vw;
         margin-left: 10vw;
-        padding-top:10px;
+        padding-top: 10px;
 
         .top {
                 height: calc(5% - 10px);
@@ -147,6 +154,7 @@ nav {
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
+
                 .sort-button {
                         width: 10vw;
                         padding-top: 0.7vh;
@@ -157,6 +165,7 @@ nav {
 
                 .search-bar {
                         width: 80vw;
+
                         input {
                                 width: 100%;
                                 background-color: transparent;
@@ -164,7 +173,7 @@ nav {
                                 border-bottom: 2px solid @blue;
                                 color: @black;
                                 outline: none;
-                                padding:0;
+                                padding: 0;
                                 font-family: @body-font;
 
                         }
@@ -174,11 +183,12 @@ nav {
 
         .Sort-settings {
                 // padding-bottom: 2vh;
-                height:calc(8% - 10px);
+                height: calc(8% - 10px);
                 flex-direction: column;
-                margin-top:0px;
-                display:none;
-                h4{
+                margin-top: 0px;
+                display: none;
+
+                h4 {
                         font-family: @title-font;
                         font-size: 1.5vh;
                         font-weight: 700;
@@ -194,26 +204,28 @@ nav {
                         font-family: @body-font;
                         font-size: 1.5vh;
                         font-weight: 400;
-                        margin:0;
-                        padding:0;
+                        margin: 0;
+                        padding: 0;
                         align-items: center;
+
                         div {
-                                display:flex;
+                                display: flex;
                                 flex-direction: row;
                                 align-items: center;
                                 justify-content: flex-start;
-                                margin:0;
-                                padding:0;
-                                p{
-                                        margin:0;
-                                        margin-left:5px;
-                                        padding:0;
-                                        display:flex;
-                                        height:auto;
+                                margin: 0;
+                                padding: 0;
+
+                                p {
+                                        margin: 0;
+                                        margin-left: 5px;
+                                        padding: 0;
+                                        display: flex;
+                                        height: auto;
                                         align-items: center;
                                         line-height: 0%;
                                         font-family: @subtitle-font;
-                                        color:@black;
+                                        color: @black;
                                         font-size: 1.4vh;
                                 }
                         }
@@ -247,19 +259,23 @@ nav {
                 width: 80%;
                 border-radius: 10px;
                 margin: 10px auto;
-                .route-element-bottom{
-                        margin : 0 10px;
-                        h3{
-                                color:@grey;
+                cursor: pointer;
+
+                .route-element-bottom {
+                        margin: 0 10px;
+
+                        h3 {
+                                color: @grey;
                                 font-size: 1.5vh;
                                 font-family: @body-font;
                                 font-weight: 400;
                                 font-style: italic;
-                                margin:0;
-                                padding:0;
+                                margin: 0;
+                                padding: 0;
 
                         }
                 }
+
                 .route-element-top {
                         display: flex;
                         flex-direction: row;
@@ -268,8 +284,8 @@ nav {
                         padding: 10px 10px 0 10px;
                         align-items: center;
 
-                        .titles{
-                                width:60%;
+                        .titles {
+                                width: 60%;
                         }
 
                         .top {
@@ -279,14 +295,14 @@ nav {
                                 flex-direction: row;
                                 height: 10%;
                                 color: @blue;
-                                font-size: 1.5vh;       
+                                font-size: 1.5vh;
                                 margin-right: 10px;
 
-                                b{
-                                        color: @blue; 
+                                b {
+                                        color: @blue;
                                         margin-right: 10px;
                                         text-align: right;
-                                    }
+                                }
 
                                 h6 {
                                         font-size: 1.5vh;
@@ -348,16 +364,36 @@ nav {
                                 -webkit-box-orient: vertical;
                                 overflow: hidden;
                         }
-                        .show_more_container{
-                                width:auto;
+
+                        .show_more_container {
+                                width: auto;
                                 text-align: right;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding: 0 10px;
+                                margin: 5px 0 0 0;
+
+                                .qr_container {
+                                        // border: solid;
+                                        // border-width: 0px;
+                                        // border-radius: 10px;
+                                        // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.24);
+                                        // padding:2px;
+                                        // margin-left:12px; 
+                                        img {
+                                                width: 5.5vw;
+                                        }
+
+                                }
+
                                 a {
                                         font-family: @subtitle-font;
                                         font-size: 1.5vh;
                                         font-weight: 700;
                                         color: @blue;
-                                        margin: 0px 10px;
-                                        padding-left: 10px;
+                                        // margin: 0px 10px;
                                         text-align: right;
                                         text-decoration: underline;
                                 }
@@ -390,6 +426,6 @@ nav {
         }
 }
 
-.hide{
-    display: none;
+.hide {
+        display: none;
 }

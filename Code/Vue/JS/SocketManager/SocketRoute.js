@@ -22,6 +22,10 @@ function getAllRoutes() {
         socket.emit("getAllRoutes");
 }
 
+function getRouteInfo(route_name) {
+        socket.emit("getRouteInfo", route_name);
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  Socket.ON                                 */
@@ -41,6 +45,10 @@ socket.on("refreshAllRoutes", (routes) => {
         Route.refreshAllRoutes(routes)
 })
 
+socket.on("showLocModal", (tabLocUsed, tabLocAvail) => {
+        Route.setLocModal(tabLocUsed, tabLocAvail);
+})
+
 /* -------------------------------------------------------------------------- */
 /*                                   EXPORT                                   */
 /* -------------------------------------------------------------------------- */
@@ -48,5 +56,6 @@ export default {
         addRoute,
         modifyRoute,
         deleteRoute,
-        getAllRoutes
+        getAllRoutes,
+        getRouteInfo
 }

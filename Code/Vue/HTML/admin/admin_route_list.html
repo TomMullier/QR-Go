@@ -139,8 +139,8 @@
                                 </div>
                         </div>
                         <h3>List of all stops created :</h3>
-                        <div class="horiz_scroll">
-                                <div class="card_scroll_hori">
+                        <div id="list_horiz" class="horiz_scroll">
+                                <div class="card_scroll_verti">
                                         <div class="left">
                                                 <h1>Titre1</h1>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
@@ -148,47 +148,40 @@
                                                         cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
                                                 </p>
                                         </div>
+                                        <div class="right handle">
+                                                <i class="fa-solid fa-up-down "></i>
+                                        </div>
+                                        
+                                </div>
+                                <div class="card_scroll_verti">
+                                        <div class="left">
+                                                <h1>Titre2</h1>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                        Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                        cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                                </p>
+                                        </div>
+                                        <div class="right handle">
+                                                <i class="fa-solid fa-up-down "></i>
+                                        </div>
+                                        
+                                </div>
+                                <div class="card_scroll_verti">
+                                        <div class="left">
+                                                <h1>Titre3</h1>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                        Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                        cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                                </p>
+                                        </div>
+                                        <div class="right handle">
+                                                <i class="fa-solid fa-up-down "></i>
+                                        </div>
                                         
                                 </div>
                         </div>
                         <h3>Current route : (drag & drop to modify)</h3>
-                        <div id="list" class="verti_scroll">
-                                <div draggable="true" class="draggable card_scroll_verti">
-                                        <div class="left">
-                                                <h1>Titre1</h1>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
-                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
-                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
-                                                </p>
-                                                </div>
-                                        <div class="right handle">
-                                                <i class="fa-solid fa-up-down "></i>
-                                        </div>
-                                </div>
-                                <div draggable="true" class="draggable card_scroll_verti">
-                                        <div class="left">
-                                                <h1>Titre2</h1>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
-                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
-                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
-                                                </p>
-                                                </div>
-                                        <div class="right handle">
-                                                <i class="fa-solid fa-up-down "></i>
-                                        </div>
-                                </div>
-                                <div draggable="true" class="draggable card_scroll_verti">
-                                        <div class="left">
-                                                <h1>Titre3</h1>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
-                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
-                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
-                                                </p>
-                                                </div>
-                                        <div class="right handle">
-                                                <i class="fa-solid fa-up-down"></i>
-                                        </div>
-                                </div>
+                        <div id="list_verti" class="verti_scroll">
                                 <div draggable="true" class="draggable card_scroll_verti">
                                         <div class="left">
                                                 <h1>Titre4</h1>
@@ -198,12 +191,48 @@
                                                 </p>
                                                 </div>
                                         <div class="right handle">
-                                                <i class="fa-solid fa-up-down"></i>
+                                                <i class="fa-solid fa-up-down "></i>
                                         </div>
                                 </div>
                                 <div draggable="true" class="draggable card_scroll_verti">
                                         <div class="left">
                                                 <h1>Titre5</h1>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                                </p>
+                                                </div>
+                                        <div class="right handle">
+                                                <i class="fa-solid fa-up-down "></i>
+                                        </div>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <div class="left">
+                                                <h1>Titre6</h1>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                                </p>
+                                                </div>
+                                        <div class="right handle">
+                                                <i class="fa-solid fa-up-down"></i>
+                                        </div>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <div class="left">
+                                                <h1>Titre7</h1>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
+                                                Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
+                                                cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
+                                                </p>
+                                                </div>
+                                        <div class="right handle">
+                                                <i class="fa-solid fa-up-down"></i>
+                                        </div>
+                                </div>
+                                <div draggable="true" class="draggable card_scroll_verti">
+                                        <div class="left">
+                                                <h1>Titre8</h1>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ratione.
                                                 Neque fugit debitis, impedit enim nobis molestiae nisi suscipit minima
                                                 cumque quibusdam atque eaque ducimus, ullam magni, placeat quia quod.
@@ -217,9 +246,6 @@
                         <div class="buttons_container">
                                 <div class="validate close-modal" id="validate">
                                         Save Route
-                                </div>
-                                <div class="cancel close-modal">
-                                        Cancel
                                 </div>
                                 <div class="cancel" id="delete">
                                 </div>

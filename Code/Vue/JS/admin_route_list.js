@@ -47,9 +47,10 @@ document.getElementById("new_route_button").addEventListener("click", function (
 
         document.getElementById("validate").setAttribute("existing", "false")
         document.getElementById("delete").innerHTML = "";
+        SocketManager.getRouteInfo(route_name.value);
 })
 
-document.getElementById("delete").addEventListener("click", ()=>{
+document.getElementById("delete").addEventListener("click", () => {
         SocketManager.deleteRoute(route_name.value.toUpperCase());
 });
 
@@ -69,7 +70,7 @@ function allEventCards() {
                                 document.getElementById("delete").innerHTML = "Delete";
                                 modals.show("create_route_modal");
                                 if (document.activeElement != document.body) document.activeElement.blur();
-
+                                SocketManager.getRouteInfo(route_name.value)
                         }
 
                 });
@@ -77,8 +78,21 @@ function allEventCards() {
 }
 
 
-const dragArea = document.querySelector("#list");
-new Sortable(dragArea, {
+const dragAreaVerti = document.querySelector("#list_verti");
+new Sortable(dragAreaVerti, {
+        group:{
+                name: 'shared',
+        },
+        handle: '.handle',
+        animation: 350
+});
+
+const dragAreaHori = document.querySelector("#list_horiz");
+new Sortable(dragAreaHori, {
+        group:{
+                name: 'shared',
+        },
+        sort:false,
         handle: '.handle',
         animation: 350
 });
@@ -203,6 +217,11 @@ function createRouteListElement(name, description, duration, locations, author) 
         updateShowMoreBtn()
 }
 
+function setLocModal(tabLocUsed, tabLocAvail) {
+        console.log(tabLocUsed, tabLocAvail);
+}
+
 export default {
-        refreshAllRoutes
+        refreshAllRoutes,
+        setLocModal
 }
