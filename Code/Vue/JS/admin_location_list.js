@@ -178,6 +178,7 @@ const a_container= document.createElement('div');
         qrDiv.classList.add('qr_container');
         qrDiv.id = "qr_container";
         const qr_icon=document.createElement('img');
+        qr_icon.id = "getQrCode";
         qr_icon.src = "../../img/qr_code.png";
         qrDiv.appendChild(qr_icon);
         a_container.appendChild(qrDiv);

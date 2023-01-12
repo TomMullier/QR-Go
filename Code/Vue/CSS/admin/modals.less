@@ -231,21 +231,27 @@ body {
                 white-space: nowrap;
                 padding: 10px;
                 margin-top: 10px;
+                display: -webkit-box;
+                flex-wrap: nowrap;
+                flex-direction: row;
+                justify-content: left;
+                align-items: center;
                 
 
 
-                .card_scroll_hori {
-                        display: inline-block;
-                        width: 100%;
-                        height: 100%;
-                        background-color: @white;
+                .card_scroll_verti {
+                        display: flex;
+                        flex-direction: row;
+                        // justify-content: space-between;
+                        margin-right:10px;
+                        align-items: center;
+                        width: 50vw;
+                        height: 10vh;
                         border-radius: 10px;
-                        margin-right: 10px;
-                        padding: 5px;
-                        overflow: scroll;
+                        margin-bottom: 10px;
                         white-space: initial;
                         align-items: center;
-                        padding: 5px;
+                        padding: 10px;
                         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
                         .left{
                                 width: 80%;
@@ -258,7 +264,9 @@ body {
                                 flex-direction: column;
                                 align-items: center;
                                 justify-content: center;
+                                height:100%;
                         }
+
                         h1 {
                                 font-family: @title-font;
                                 font-size: 2.2vh;
@@ -278,12 +286,16 @@ body {
                                 padding: 0;
                                 margin: 0;
                                 display: -webkit-box;
-                                -webkit-line-clamp: 1;
+                                -webkit-line-clamp: 2;
                                 -webkit-box-orient: vertical;
                                 overflow: hidden;
 
                         }
-                        
+                        i{
+                                font-size: 2.5vh;
+                                color: @blue;
+                                cursor: pointer;
+                        }
                 }
         }
 
