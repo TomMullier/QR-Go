@@ -172,14 +172,17 @@ function createRouteListElement(titre) {
         p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error exercitationem, hic ipsa culpa iusto aliquid corporis earum aperiam odio labore laboriosam consequuntur quis unde ipsum, quaerat non voluptas veritatis officia." // Récupérer de BDD
         all_desc.push(p);
 
-        const a = document.createElement("a");
-        a.classList.add("expand_button");
-        a.textContent = "Show more";
-        all_expand_buttons.push(a);
+        const showMoreContainer = document.createElement("div");
+        showMoreContainer.classList.add("show_more_container");
+        const expandButton = document.createElement("a");
+        expandButton.classList.add("expand_button");
+        expandButton.textContent = "Show more";
+        all_expand_buttons.push(expandButton);
+        showMoreContainer.appendChild(expandButton);
 
         descContainer.appendChild(h6_desc);
         descContainer.appendChild(p);
-        descContainer.appendChild(a);
+        descContainer.appendChild(showMoreContainer);
 
         const bottomContainer = document.createElement("div");
         bottomContainer.classList.add("route-element-bottom");
