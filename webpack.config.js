@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -16,4 +17,9 @@ module.exports = {
       maxChunks: 1, // disable creating additional chunks
     })
   ],
+  optimization: {
+    minimizer: [new TerserPlugin({
+      extractComments: false,
+    })],
+  },
 };
