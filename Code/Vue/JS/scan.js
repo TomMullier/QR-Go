@@ -1,4 +1,4 @@
-import SocketManager from './utils/SocketManager.js';
+// import SocketManager from './SocketManager/SocketScan.js';
 
 document.getElementById("button_back").addEventListener("click", function (e) {
         modals.show("display_location");
