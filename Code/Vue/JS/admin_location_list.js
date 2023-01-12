@@ -39,6 +39,7 @@ document.getElementById("new_location_button").addEventListener("click", functio
         route_duration.value = ""
         document.getElementById("validate").setAttribute("existing", "false")
         document.getElementById("delete").innerHTML = "";
+        document.getElementById("getQrCode").innerHTML = "";
 })
 
 document.getElementById("validate").addEventListener("click", (e) => {
@@ -68,6 +69,7 @@ function allEventCards() {
                                 route_duration.value = element.getElementsByClassName("auteur")[0].innerText
                                 document.getElementById("validate").setAttribute("existing", "true");
                                 document.getElementById("delete").innerHTML = "Delete";
+                                document.getElementById("getQrCode").innerHTML = "Get QR code";
                                 modals.show("create_location_modal");
                         }
 
@@ -77,6 +79,12 @@ function allEventCards() {
 
 document.getElementById("delete").addEventListener("click", ()=>{
         SocketManager.deleteLocation(route_name.value.toUpperCase());
+});
+
+document.getElementById("getQrCode").addEventListener("click", ()=>{
+        let name = route_name.value;
+
+        // Appel fonction génération qr code/pdf
 });
 
 

@@ -37,6 +37,10 @@ const hostname = "10.224.4.159"; // ISEN
 const port = 4200;
 
 /* -------------------------------------------------------------------------- */
+/*                               BDD CONNECTION                               */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
 /*                        NE PAS EFFACER CE COMMENTAIRE                       */
 /* -------------------------------------------------------------------------- */
 // .\mongosh --host 10.224.4.159 --port 27017
@@ -46,10 +50,15 @@ const dBconnection = new MongoClient("mongodb://10.224.4.159/27017"); // ISEN-MA
 BDD.connexion(dBconnection);
 const database = dBconnection.db("admin");
 
+/* -------------------------------------------------------------------------- */
+/*                                HTTP REQUEST                                */
+/* -------------------------------------------------------------------------- */
+// Homepage
 app.get("/", (req, res) => {
     res.sendFile("index.html");
 });
 
+/* ---------------------------------- LOGIN --------------------------------- */
 // get the login page
 app.get("/login", (req, res) => {
     if (!req.session.mail) {
@@ -94,6 +103,7 @@ app.post(
     }
 );
 
+/* -------------------------------- REGISTER -------------------------------- */
 // get the register page
 app.get("/register", (req, res) => {
     if (!req.session.mail) {
@@ -143,6 +153,7 @@ app.post(
     }
 );
 
+/* --------------------------------- AUTRES --------------------------------- */
 app.get("/connect_admin", (req, res) => {
     if (!req.session.mail) {
         res.redirect("/login");
@@ -163,13 +174,6 @@ app.get("/user_route_list", (req, res) => {
     }
 });
 
-app.get("/scan", (req, res) => {
-    if (req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/scan.html");
-    } else {
-        res.redirect("/login");
-    }
-});
 
 app.get("/admin_location_list", (req, res) => {
     if (req.session.mail) {
@@ -187,11 +191,25 @@ app.get("/admin_route_list", (req, res) => {
     }
 });
 
+app.get("/scan", (req, res) => {
+    if (req.session.mail) {
+        res.sendFile(__dirname + "/Vue/HTML/scan.html");
+    } else {
+        res.redirect("/login");
+    }
+});
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   SOCKET                                   */
+/* -------------------------------------------------------------------------- */
 io.on("connection", (socket) => {
     console.log("--- SOCKET ---");
     const userMail = socket.handshake.session.mail
+    // const author = socket.handshake.session.surname + " " + socket.handshake.session.name;
     console.log(userMail + " connected");
 
+    /* -------------------------------- LOCATION -------------------------------- */
     socket.on("addLocation", (name, description, instruction) => {
         BDD.addLocation(database, name, description, instruction, (existing, location) => {
             if (existing) {
@@ -208,8 +226,8 @@ io.on("connection", (socket) => {
         })
     })
 
-    socket.on("deleteLocation", (name)=>{
-        BDD.deleteLocation(database,name,()=>{
+    socket.on("deleteLocation", (name) => {
+        BDD.deleteLocation(database, name, () => {
             io.emit("addLocationSuccess")
         })
     })
@@ -220,8 +238,36 @@ io.on("connection", (socket) => {
         })
     })
 
+    /* --------------------------------- ROUTES --------------------------------- */
+    socket.on("addRoute", (name, description, duration, locations) => {
+        BDD.addRoute(database, name, description, duration, locations, author, (existing) => {
+            if (existing) {
+                socket.emit("addRouteFailed")
+            } else {
+                io.emit("addRouteSuccess", route)
+            }
+        })
+    })
 
+    socket.on("modifyRoute", (name, description, duration, locations) => {
+        BDD.modifyRoute(database, name, description, duration, locations, author, () => {
+            io.emit("addRouteSuccess")
+        })
+    })
 
+    socket.on("deleteRoute", (name) => {
+        BDD.deleteRoute(database, name, () => {
+            io.emit("addRouteSuccess")
+        })
+    })
+
+    socket.on("getAllRoutes", () => {
+        BDD.getAllRoutes(database, (res) => {
+            io.emit("showAllLocation", res);
+        })
+    })
+
+/* ------------------------------- DISCONNECT ------------------------------- */
     socket.on("disconnect", () => {
         console.log("User disconnected");
     });

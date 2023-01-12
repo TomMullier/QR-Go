@@ -1,3 +1,8 @@
+console.log("ICI1");
+// import SocketManager from './utils/SocketManager.js';
+console.log("ICI2");
+
+
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")
 all_desc = Array.from(all_desc)
@@ -26,14 +31,16 @@ all_expand_buttons.forEach(function (element) {
 let route_name = document.getElementById("route_name")
 let route_desc = document.getElementById("route_desc")
 let route_duration = document.getElementById("route_duration")
-let route_title=document.getElementById("title_txt")
+let route_title = document.getElementById("title_txt")
 
 document.getElementById("new_route_button").addEventListener("click", function (e) {
         modals.show("create_route_modal");
-        route_title.innerText="Create Route"
+        route_title.innerText = "Create Route"
         route_name.value = ""
         route_desc.value = ""
         route_duration.value = ""
+        document.getElementById("validate").setAttribute("existing", "false")
+        document.getElementById("delete").innerHTML = "";
 })
 
 let allCards = document.getElementsByClassName("route-element")
@@ -43,27 +50,17 @@ console.log(allCards)
 allCards.forEach(function (element) {
         element.addEventListener("click", function (e) {
                 if (!e.target.classList.contains("expand_button")) {
-                        route_title.innerText="Edit Route"
+                        route_title.innerText = "Edit Route"
                         route_name.value = element.getElementsByClassName("titles")[0].innerText
                         route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
                         route_duration.value = element.getElementsByClassName("duration")[0].innerText
+                        document.getElementById("validate").setAttribute("existing", "true");
+                        document.getElementById("delete").innerHTML = "Delete";
                         modals.show("create_route_modal");
                 }
 
         });
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -176,4 +173,36 @@ function filterList() {
                         parent2.style.display = 'none';
                 }
         };
+}
+
+
+document.getElementById("validate").addEventListener("click", (e) => {
+        let name = route_name.value;
+        let description = route_desc.value;
+        let duration = route_duration.value;
+        let locations = document.querySelectorAll(".card_scroll_verti h1");
+
+
+        if (document.getElementById("validate").getAttribute("existing") == "false") {
+                SocketManager.addRoute(name.toUpperCase(), description, duration, locations);
+        } else {
+                SocketManager.modifyRoute(name.toUpperCase(), description, duration, locations);
+        }
+})
+
+
+function showAllRoutes(tabRoutes) {
+        document.getElementById("scroll_list").innerHTML = "";
+        tabRoutes.forEach(route => {
+                createRouteListElement(route.name, route.description, route.duration, route.locations, route.author);
+        })
+        // allEventCards();
+}
+
+function createRouteListElement(name, description, duration, locations, author) {
+        // create html card
+}
+
+export default {
+        showAllRoutes
 }

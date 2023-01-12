@@ -84,6 +84,10 @@ function login(client, mail, password, callback) {
 	});
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  LOCATION                                  */
+/* -------------------------------------------------------------------------- */
+
 function addLocation(client, name, description, instruction, callback) {
 	const query = { name: name };
 	const options = { projection: { _id: 0, name: 1, description: 1, instruction: 1 } };
@@ -150,21 +154,85 @@ function getAllLocation(client, callback) {
 	})
 }
 
-async function addRoute(client, title, description, duration, steps, stepsTab, autor) {
-	try {
-		await client.collection("routes").insertOne({
-			title: title,
+
+/* -------------------------------------------------------------------------- */
+/*                                   ROUTES                                   */
+/* -------------------------------------------------------------------------- */
+
+function addRoute(client, name, description, duration, locations, author) {
+	const query = { name: name };
+	const options = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1} };
+	let routes = client.collection("routes");
+
+	routes.findOne(query, options, (err, routeFound) => {
+		//if (err) throw err;
+		if (routeFound && routeFound.name == name) {
+			return callback(true);
+		} else {
+			routes.insertOne({
+				name: name,
+				description: description,
+				duration: duration,
+				locations: locations,
+				author: author,
+			}, (err, res) => {
+				if (err) {
+					console.log("Ajout d'étape manqué : " + name);
+					return callback(true);
+				} else {
+					console.log("Ajout d'étape réussi : " + name);
+					return callback(false, routeFound);
+				}
+
+			});
+		}
+	})
+}
+
+
+function modifyRoute(client, name, description, duration, locations, author, callback) {
+	let routes = client.collection("routes");
+
+	filter = {
+		name:name
+	}
+	update = {
+		$set:{
 			description: description,
 			duration: duration,
-			steps: steps,
-			stepsTab: stepsTab,
-			autor: autor
-		});
-		console.log("Ajout de parcours réussi :" + title);
-	} catch (err) {
-		console.log("Erreur d'ajout parcours");
+			locations: locations,
+			author: author
+		}
 	}
+
+	locations.updateOne(filter, update, (err, res) => {
+		//console.log(res);
+		if (err) throw err;
+		callback()	
+	})
 }
+
+
+
+function deleteRoute(client, name, callback) {
+	let routes = client.collection("routes");
+
+	routes.deleteOne({name:name}, (err, res) => {
+		//console.log(res);
+		if (err) throw err;
+		callback()	
+	})
+}
+
+function getAllRoutes(client, callback) {
+	let routes = client.collection("routes");
+
+	routes.find({}).toArray((err, res) => {
+		callback(res);
+	})
+}
+
+
 
 async function findStepById(client, id) {
 	try {
@@ -195,5 +263,7 @@ module.exports = {
 	deleteLocation,
 	getAllLocation,
 	addRoute,
+	modifyRoute,
+	getAllRoutes,
 	findStepById,
 };
