@@ -1,4 +1,5 @@
 import SocketManager from './SocketManager/SocketLocation.js';
+import {createPDF} from './qr-generator-source';
 
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")
@@ -86,9 +87,9 @@ document.getElementById("delete").addEventListener("click", ()=>{
 });
 
 document.getElementById("getQrCode").addEventListener("click", ()=>{
-        let name = route_name.value;
-
+        const name = route_name.value;
         // Appel fonction génération qr code/pdf
+        createPDF('LOCATION ' + name, [name]);
 });
 
 

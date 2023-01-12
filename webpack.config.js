@@ -5,7 +5,7 @@ module.exports = {
   mode: 'production',
   entry: {
     'qr-scanner-final': './Code/Vue/JS/qr-scanner-source.js',
-    'qr-generator-final': './Code/Vue/JS/qr-generator-source.js',
+    'admin_location_list-final': './Code/Vue/JS/admin_location_list.js',
   },
   output: {
     filename: '[name].js',
