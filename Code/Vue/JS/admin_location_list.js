@@ -31,6 +31,8 @@ document.getElementById("new_location_button").addEventListener("click", functio
         route_name.value = ""
         route_desc.value = ""
         route_duration.value = ""
+        if (document.activeElement != document.body) document.activeElement.blur();
+
 })
 
 let allCards = document.getElementsByClassName("route-element")
@@ -45,6 +47,7 @@ allCards.forEach(function (element) {
                         route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
                         route_duration.value = element.getElementsByClassName("auteur")[0].innerText
                         modals.show("create_location_modal");
+                        if (document.activeElement != document.body) document.activeElement.blur();
                 }
 
         });

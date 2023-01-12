@@ -42,6 +42,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 nav {
   background-color: #f0efff;
@@ -87,7 +88,7 @@ nav .navbar .play-container i {
   font-size: 2.5vh;
 }
 nav .navbar .play-container .play-button {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Mulish', sans-serif;
   text-transform: capitalize;
   font-size: 2vh;
   font-weight: 700;
@@ -145,7 +146,7 @@ nav .navbar .play-container i:hover {
   padding-top: 10px;
 }
 .search .top {
-  height: calc(5vh - 10px);
+  height: calc(5% - 10px);
   padding-bottom: 30px;
   display: flex;
   flex-direction: row;
@@ -172,7 +173,7 @@ nav .navbar .play-container i:hover {
   font-family: 'Catamaran', sans-serif;
 }
 .search .Sort-settings {
-  height: calc(8vh - 10px);
+  height: calc(8% - 10px);
   flex-direction: column;
   margin-top: 0px;
   display: none;
@@ -217,7 +218,7 @@ nav .navbar .play-container i:hover {
 }
 .scroll-list {
   background-color: #F5F5F5;
-  height: calc(84vh - 40px);
+  height: calc(74%);
   width: 100vw;
   padding-top: calc(10vw - 10px);
   position: absolute;
@@ -225,6 +226,7 @@ nav .navbar .play-container i:hover {
   border-top-right-radius: 30px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.253);
   overflow-y: scroll;
+  touch-action: none    ;
 }
 .scroll-list .route-element {
   background-color: #F5F5F5;
@@ -316,7 +318,11 @@ nav .navbar .play-container i:hover {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.scroll-list .route-element .route-element-desc a {
+.scroll-list .route-element .route-element-desc .show_more_container {
+  width: auto;
+  text-align: right;
+}
+.scroll-list .route-element .route-element-desc .show_more_container a {
   font-family: 'Mulish', sans-serif;
   font-size: 1.5vh;
   font-weight: 700;
@@ -345,7 +351,4 @@ nav .navbar .play-container i:hover {
   font-style: italic;
   margin-left: 10px;
   margin-right: 10px;
-}
-.hide {
-  display: none;
 }

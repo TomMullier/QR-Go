@@ -169,6 +169,21 @@ main #qr-display canvas {
   max-width: 100%;
   max-height: 300px;
 }
+main .camera_help {
+  position: absolute;
+  bottom: 20%;
+  width: 80vw;
+  margin-left: 10vw;
+  height: auto;
+  margin: 5vh 10vw;
+  text-align: center;
+  color: #E17E7C;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7vh;
+  font-weight: 600;
+  font-style: italic;
+  text-decoration: underline;
+}
 main .instructions {
   position: absolute;
   bottom: 0;
