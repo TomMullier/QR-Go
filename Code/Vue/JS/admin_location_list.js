@@ -1,4 +1,4 @@
-import SocketManager from './utils/SocketManager.js';
+import SocketManager from './SocketManager/SocketLocation.js';
 
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")
@@ -126,7 +126,7 @@ function getAllLocation(){
 
 getAllLocation();
 
-function showAllLocation(tabLocations) {
+function refreshAllLocation(tabLocations) {
         document.getElementById("scroll_list").innerHTML = "";
         tabLocations.forEach(location => {
                 createLocationListElement(location.name, location.description, location.instruction);
@@ -189,5 +189,5 @@ function createLocationListElement(name, description, instruction) {
 }
 
 export default {
-        showAllLocation
+        refreshAllLocation,
 }

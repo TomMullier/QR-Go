@@ -88,10 +88,12 @@ app.post(
         } else {
             console.log("Login user", "mail : " + mail, "password : " + password);
             CRYPT.login(password, (pass) => {
-                BDD.login(database, mail, pass, (hashMatch, admin) => {
+                BDD.login(database, mail, pass, (hashMatch, admin, name, surname) => {
                     if (hashMatch == true) {
-                        req.session.mail = req.body.mail;
+                        req.session.mail = mail;
                         req.session.admin = admin;
+                        req.session.name = name;
+                        req.session.surname = surname;
                         req.session.save();
                         res.send("OK");
                     } else {
@@ -139,8 +141,10 @@ app.post(
             CRYPT.register(password, (hash) => {
                 BDD.register(database, name, surname, mail, hash, (inserted, admin) => {
                     if (inserted == true) {
-                        req.session.mail = req.body.mail;
+                        req.session.mail = mail;
                         req.session.admin = admin;
+                        req.session.name = name;
+                        req.session.surname = surname;
                         req.session.save();
                         res.send("OK");
                     } else {
@@ -206,7 +210,7 @@ app.get("/scan", (req, res) => {
 io.on("connection", (socket) => {
     console.log("--- SOCKET ---");
     const userMail = socket.handshake.session.mail
-    // const author = socket.handshake.session.surname + " " + socket.handshake.session.name;
+    const author = socket.handshake.session.surname + " " + socket.handshake.session.name;
     console.log(userMail + " connected");
 
     /* -------------------------------- LOCATION -------------------------------- */
@@ -234,7 +238,7 @@ io.on("connection", (socket) => {
 
     socket.on("getAllLocation", () => {
         BDD.getAllLocation(database, (res) => {
-            io.emit("showAllLocation", res);
+            io.emit("refreshAllLocation", res);
         })
     })
 
@@ -244,7 +248,7 @@ io.on("connection", (socket) => {
             if (existing) {
                 socket.emit("addRouteFailed")
             } else {
-                io.emit("addRouteSuccess", route)
+                io.emit("addRouteSuccess")
             }
         })
     })
@@ -263,7 +267,7 @@ io.on("connection", (socket) => {
 
     socket.on("getAllRoutes", () => {
         BDD.getAllRoutes(database, (res) => {
-            io.emit("showAllLocation", res);
+            io.emit("refreshAllRoutes", res);
         })
     })
 

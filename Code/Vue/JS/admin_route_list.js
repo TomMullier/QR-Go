@@ -1,7 +1,7 @@
-console.log("ICI1");
-// import SocketManager from './utils/SocketManager.js';
-console.log("ICI2");
+import SocketManager from './SocketManager/SocketRoute.js';
 
+
+SocketManager.getAllRoutes();
 
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")

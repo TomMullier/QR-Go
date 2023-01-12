@@ -74,7 +74,7 @@ function login(client, mail, password, callback) {
 				}
 				if (match) {
 					console.log("User logged in");
-					callback(true, userFound.admin);
+					callback(true, userFound.admin, userFound.name, userFound.surname);
 				} else {
 					console.log("Wrong password");
 					callback(false, userFound.admin);
@@ -159,7 +159,7 @@ function getAllLocation(client, callback) {
 /*                                   ROUTES                                   */
 /* -------------------------------------------------------------------------- */
 
-function addRoute(client, name, description, duration, locations, author) {
+function addRoute(client, name, description, duration, locations, author, callback) {
 	const query = { name: name };
 	const options = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1} };
 	let routes = client.collection("routes");
@@ -205,7 +205,7 @@ function modifyRoute(client, name, description, duration, locations, author, cal
 		}
 	}
 
-	locations.updateOne(filter, update, (err, res) => {
+	routes.updateOne(filter, update, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
 		callback()	
