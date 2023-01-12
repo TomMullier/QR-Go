@@ -271,7 +271,20 @@ io.on("connection", (socket) => {
         })
     })
 
-/* ------------------------------- DISCONNECT ------------------------------- */
+    socket.on("getRouteInfo", async (name) => {
+        await BDD.getRouteInfo(database, name, (tabLocUsed, tabLocAvail) => {
+            socket.emit("showLocModal", tabLocUsed, tabLocAvail);
+        })
+    })
+
+    /* ------------------------------- USER ROUTES ------------------------------ */
+    socket.on("getAllUserRoutes", () => {
+        BDD.getAllUsersRoutes(database, (tabRoutes) =>  {
+            socket.emit("refreshAllUserRoutes", tabRoutes);
+        })
+    })
+
+    /* ------------------------------- DISCONNECT ------------------------------- */
     socket.on("disconnect", () => {
         console.log("User disconnected");
     });

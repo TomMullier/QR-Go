@@ -232,6 +232,66 @@ function getAllRoutes(client, callback) {
 	})
 }
 
+async function getRouteInfo(client, name, callback){
+	const queryR = { name: name };
+	const optionsR = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1} };
+	const optionsL = { projection: { _id: 0, name: 1, description: 1, instruction: 1 } };
+	
+	let routes = client.collection("routes");
+	let locations = client.collection("locations")
+	
+	let locUsed = [];
+	let locAvailable = [];
+
+
+
+
+	try {
+		let routeFound = await routes.findOne(queryR, optionsR);
+		let locNames = routeFound.locations;
+		console.log(locNames);
+		
+	} catch (err) {
+		console.log(err);
+	}
+	
+	// await routes.findOne(queryR, optionsR, async (err, routeFound) => { // try/catch
+		
+	// 	if (!routeFound && routeFound.name != name)return;
+	// 	//locUsed = []
+	// 	locNames = routeFound.locations
+	// 	//console.log(locUsed);
+
+	// 	let locUsed = await locNames.map(async locName => {
+	// 		const queryL = { name: locName };
+	// 		let locFound;
+	// 		try{
+	// 			locFound = await locations.findOne(queryL, optionsL)
+	// 		}catch(err){
+	// 			console.log(err)
+				
+	// 		}finally{
+	// 			let obj = {
+	// 				name: locFound.name,
+	// 				description: locFound.description
+	// 			}
+	// 			locName= obj;
+	// 			// console.log("USED NTO ",locUsed);
+	// 		}
+			
+	// 	});
+	// 	console.log("BLBLBL", locUsed);
+	// })
+}
+
+function getAllUsersRoutes(client, callback){
+	let routes = client.collection("routes");
+
+	routes.find({}).toArray((err, res) => {
+		callback(res);
+	})
+}
+
 // Export functions
 module.exports = {
 	connexion,
@@ -250,4 +310,9 @@ module.exports = {
 	modifyRoute,
 	deleteRoute,
 	getAllRoutes,
+	getRouteInfo,
+
+	// USER ROUTE
+	getAllUsersRoutes
+	
 };
