@@ -8,6 +8,10 @@ let all_expand_buttons = document.getElementsByClassName("expand_button")
 all_desc = Array.from(all_desc)
 all_expand_buttons = Array.from(all_expand_buttons)
 
+document.addEventListener("click", function(e){
+        console.log(e.target)
+})
+
 all_expand_buttons.forEach(function (element) {
         element.addEventListener("click", function (e) {
 
