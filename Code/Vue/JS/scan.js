@@ -19,17 +19,20 @@ SocketManager.getCurrentInstruction();
 function showCurrentDescription(name, description) {
         document.getElementById('txt_title').innerHTML = name;
         document.querySelector("#txt_descr h3").innerText = description;
-        modals.show("display_location", () => {
-                alert("kjhyqsegf")
-        });
+        modals.show("display_location");
 }
 
 function showWrongQrCode() {
-        console.log("yes");
         document.getElementById('txt_title').innerHTML = "Wrong QR Code !";
         document.querySelector("#txt_descr h3").innerText = "Find the good one following the instructions";
+        modals.show("display_location");
+}
+
+function showEndGame(){
+        document.getElementById('txt_title').innerHTML = "You win !";
+        document.querySelector("#txt_descr h3").innerText = "You have finished the route. We hope you like this !";
         modals.show("display_location", () => {
-                alert("lkjwhsdf");
+                alert("Il faut rediriger vers la page user_route_list");
         });
 }
 

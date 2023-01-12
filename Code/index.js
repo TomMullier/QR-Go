@@ -313,7 +313,7 @@ io.on("connection", (socket) => {
     socket.on("getCurrentCard", (isDescri, qrName) => {
         let routeName = socket.handshake.session.route_name
         let locationId = socket.handshake.session.locationId
-        BDD.getCurrentCard(database, routeName, locationId, (name, description, instruction, isRouteFinished) => {
+        BDD.getCurrentCard(database, routeName, locationId, (name, description, instruction, nextName, nextInstru, isRouteFinished = false) => {
             if(isRouteFinished){
                 socket.emit("endGame")
                 socket.handshake.session.locationId = 0;
@@ -322,6 +322,8 @@ io.on("connection", (socket) => {
                 console.log(name, " // ", qrName);
                 if (name != qrName) {
                     socket.emit("wrongQrCode")
+                    socket.emit("showCurrentInstruction", name, instruction)
+
                 }else{
                     socket.emit("showCurrentDescription", name, description)
                     socket.handshake.session.locationId++;

@@ -26,7 +26,10 @@ socket.on("wrongQrCode", () => {
       Scan.showWrongQrCode();
 });
 
-
+socket.on("endGame", () => {
+    console.log("Finish");
+    Scan.showEndGame();
+})
 
 /* -------------------------------------------------------------------------- */
 /*                                   EXPORT                                   */

@@ -20,12 +20,12 @@ socket.on("showCurrentInstruction", (name, instruction) => {
       Scan.showCurrentInstruction(name, instruction);
 })
 
-socket.on("wrongQrCode", () => {
-    console.log("Wrong QR");
-    Scan.showWrongQr();
-})
+//socket.on("wrongQrCode", () => {
+//    console.log("Wrong QR");
+//    Scan.showWrongQr();
+//})
 
-socket.on("endGame")
+
 
 
 /* -------------------------------------------------------------------------- */
