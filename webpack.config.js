@@ -1,11 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   entry: {
     'qr-scanner-final': './Code/Vue/JS/qr-scanner-source.js',
-    'qr-generator-final': './Code/Vue/JS/qr-generator-source.js',
+    'admin_location_list-final': './Code/Vue/JS/admin_location_list.js',
   },
   output: {
     filename: '[name].js',
@@ -16,4 +17,9 @@ module.exports = {
       maxChunks: 1, // disable creating additional chunks
     })
   ],
+  optimization: {
+    minimizer: [new TerserPlugin({
+      extractComments: false,
+    })],
+  },
 };
