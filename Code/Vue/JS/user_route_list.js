@@ -41,7 +41,7 @@ function allEventCards() {
                         if (!e.target.classList.contains("expand_button")) {
                                 route_title.innerText = element.getElementsByClassName("titles")[0].innerText
                                 route_desc.innerText = element.getElementsByClassName("route_element_desc_text")[0].innerText
-                                route_duration.value = element.getElementsByClassName("auteur")[0].innerText
+                                route_duration.value = element.getElementsByClassName("duration")[0].innerText
                                 //focus curor on nothin
 
                                 modals.show("display_route_modal");
@@ -65,6 +65,7 @@ let sort_menu = document.getElementById("sort_menu")
 button_sort.addEventListener("click", function (e) {
         if (sort_menu.style.display == "flex") {
                 sort_menu.style.display = "none";
+                document.getElementById("scroll_list").style.height = "calc(80% - 50px)";
                 return;
         } else {
                 sort_menu.style.display = "flex";
@@ -160,10 +161,11 @@ function createRouteListElement(titre) {
         descContainer.classList.add("route-element-desc");
 
         const h6_desc = document.createElement("h6");
+        h6_desc.classList.add("duration");
         const icon_desc = document.createElement("i");
         icon_desc.classList.add("fa-solid", "fa-clock");
         h6_desc.appendChild(icon_desc);
-        h6_desc.innerText="00:45"
+        h6_desc.textContent = "00:45"; // Récupérer de BDD
 
         const p = document.createElement("p");
         p.classList.add("route_element_desc_text");

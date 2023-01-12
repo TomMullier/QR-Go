@@ -74,7 +74,7 @@ nav {
 
                         }
                         .play-button {
-                            font-family: @title-font;
+                            font-family: @subtitle-font;
                             text-transform: capitalize;
                             font-size: 2vh;
                             font-weight: 700;
@@ -141,7 +141,7 @@ nav {
         padding-top:10px;
 
         .top {
-                height: calc(5vh - 10px);
+                height: calc(5% - 10px);
                 padding-bottom: 30px;
                 display: flex;
                 flex-direction: row;
@@ -174,7 +174,7 @@ nav {
 
         .Sort-settings {
                 // padding-bottom: 2vh;
-                height:calc(8vh - 10px);
+                height:calc(8% - 10px);
                 flex-direction: column;
                 margin-top:0px;
                 display:none;
@@ -226,7 +226,7 @@ nav {
 
 .scroll-list {
         background-color: @white;
-        height: calc(84vh - 40px);
+        height: calc(74%);
         width: 100vw;
         padding-top: calc(10vw - 10px);
         position: absolute;
@@ -348,16 +348,19 @@ nav {
                                 -webkit-box-orient: vertical;
                                 overflow: hidden;
                         }
-
-                        a {
-                                font-family: @subtitle-font;
-                                font-size: 1.5vh;
-                                font-weight: 700;
-                                color: @blue;
-                                margin: 0px 10px;
-                                padding-left: 10px;
+                        .show_more_container{
+                                width:auto;
                                 text-align: right;
-                                text-decoration: underline;
+                                a {
+                                        font-family: @subtitle-font;
+                                        font-size: 1.5vh;
+                                        font-weight: 700;
+                                        color: @blue;
+                                        margin: 0px 10px;
+                                        padding-left: 10px;
+                                        text-align: right;
+                                        text-decoration: underline;
+                                }
                         }
                 }
 

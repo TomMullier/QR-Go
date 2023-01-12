@@ -37,6 +37,8 @@ document.getElementById("new_location_button").addEventListener("click", functio
         route_name.value = ""
         route_desc.value = ""
         route_duration.value = ""
+        if (document.activeElement != document.body) document.activeElement.blur();
+
         document.getElementById("validate").setAttribute("existing", "false")
         document.getElementById("delete").innerHTML = "";
         document.getElementById("getQrCode").innerHTML = "";
@@ -71,6 +73,7 @@ function allEventCards() {
                                 document.getElementById("delete").innerHTML = "Delete";
                                 document.getElementById("getQrCode").innerHTML = "Get QR code";
                                 modals.show("create_location_modal");
+                                if (document.activeElement != document.body) document.activeElement.blur();
                         }
 
                 });

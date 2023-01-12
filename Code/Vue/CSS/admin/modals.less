@@ -23,6 +23,7 @@ body {
         line-height: 1.5;
         margin: 0;
         padding: 0;
+        height: 100%;
 }
 
 .modal {
@@ -56,6 +57,8 @@ body {
         overflow-y: auto;
         bottom: 0;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
 }
 
 .modal .modal-wrapper::-webkit-scrollbar {
@@ -115,7 +118,7 @@ body {
 #create_route_modal {
         .modal-wrapper {
                 width: 100vw;
-                height: 90vh;
+                height: auto;
                 position: absolute;
                 border-top-left-radius: 20px;
                 border-top-right-radius: 20px;
@@ -130,7 +133,7 @@ body {
                 h1,
                 span {
                         font-family: @title-font;
-                        font-size: 2.5vh;
+                        font-size: 2.3vh;
                         font-weight: 700;
                         color: @blue;
                         margin: 0 0px;
@@ -172,7 +175,7 @@ body {
                                 margin-bottom: 10px;
                                 outline: none;
                                 resize: none;
-                                height: 10vh;
+                                height: 10%;
                                 padding: 10px;
                                 border-radius: 10px;
                         }
@@ -213,26 +216,27 @@ body {
 
         h3 {
                 font-family: @title-font;
-                font-size: 2vh;
+                font-size: 1.8vh;
                 font-weight: 700;
                 color: @blue;
                 margin: 0 0px;
                 padding: 0;
-                margin-top: 30px;
+                margin-top: 15px;
         }
 
         .horiz_scroll {
-                // background-color: red;
                 width: 100%;
                 overflow-x: auto;
                 overflow-y: hidden;
                 white-space: nowrap;
                 padding: 10px;
                 margin-top: 10px;
+                
+
 
                 .card_scroll_hori {
                         display: inline-block;
-                        width: 40%;
+                        width: 100%;
                         height: 100%;
                         background-color: @white;
                         border-radius: 10px;
@@ -243,7 +247,18 @@ body {
                         align-items: center;
                         padding: 5px;
                         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
+                        .left{
+                                width: 80%;
+                                display: flex;
+                                flex-direction: column;
+                        }
+                        .right{
+                                width: 20%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                        }
                         h1 {
                                 font-family: @title-font;
                                 font-size: 2.2vh;
@@ -268,6 +283,7 @@ body {
                                 overflow: hidden;
 
                         }
+                        
                 }
         }
 
@@ -276,10 +292,16 @@ body {
                 overflow-y: scroll;
                 padding: 10px;
                 margin-top: 10px;
+                height:25vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
                 .card_scroll_verti {
-                        display: block;
-                        flex-direction: column;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
                         width: 100%;
                         height: 10vh;
                         // background-color: green;
@@ -290,11 +312,19 @@ body {
                         align-items: center;
                         padding: 10px;
                         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-                        cursor: move;
-                        user-select: none;
-                        will-change: transform;
-                        transition: all 0.2s ease;
-                        position: relative;
+                        .left{
+                                width: 80%;
+                                display: flex;
+                                flex-direction: column;
+                        }
+                        .right{
+                                width: 20%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                height:100%;
+                        }
 
                         h1 {
                                 font-family: @title-font;
@@ -319,6 +349,11 @@ body {
                                 -webkit-box-orient: vertical;
                                 overflow: hidden;
 
+                        }
+                        i{
+                                font-size: 2.5vh;
+                                color: @blue;
+                                cursor: pointer;
                         }
                 }
         }
