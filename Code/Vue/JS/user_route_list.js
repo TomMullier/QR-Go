@@ -1,3 +1,7 @@
+import SocketManager from './SocketManager/SocketUserRoute.js';
+
+SocketManager.getAllUserRoutes();
+
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")
 all_desc = Array.from(all_desc)
@@ -41,7 +45,7 @@ function allEventCards() {
                         if (!e.target.classList.contains("expand_button")) {
                                 route_title.innerText = element.getElementsByClassName("titles")[0].innerText
                                 route_desc.innerText = element.getElementsByClassName("route_element_desc_text")[0].innerText
-                                route_duration.value = element.getElementsByClassName("duration")[0].innerText
+                                route_duration.value = element.getElementsByClassName("auteur")[0].innerText
                                 //focus curor on nothin
 
                                 modals.show("display_route_modal");
@@ -65,7 +69,6 @@ let sort_menu = document.getElementById("sort_menu")
 button_sort.addEventListener("click", function (e) {
         if (sort_menu.style.display == "flex") {
                 sort_menu.style.display = "none";
-                document.getElementById("scroll_list").style.height = "calc(80% - 50px)";
                 return;
         } else {
                 sort_menu.style.display = "flex";
@@ -131,7 +134,17 @@ function filterList() {
         };
 }
 
-function createRouteListElement(titre) {
+
+
+function refreshAllUserRoutes(routes){
+        document.getElementById("scroll_list").innerHTML = "";
+        routes.forEach(route => {
+                createRouteListElement(route.name, route.description, route.duration, route.locations, route.author);
+        })
+}
+
+
+function createRouteListElement(name, description, duration, locations, author) {
         const container = document.createElement("div");
         container.classList.add("route-element");
 
@@ -140,7 +153,7 @@ function createRouteListElement(titre) {
 
         const h1 = document.createElement("h1");
         h1.classList.add("titles");
-        h1.textContent = titre; // Récupérer de BDD
+        h1.textContent = name; // Récupérer de BDD
 
         const top = document.createElement("div");
         top.classList.add("top");
@@ -161,15 +174,14 @@ function createRouteListElement(titre) {
         descContainer.classList.add("route-element-desc");
 
         const h6_desc = document.createElement("h6");
-        h6_desc.classList.add("duration");
         const icon_desc = document.createElement("i");
         icon_desc.classList.add("fa-solid", "fa-clock");
         h6_desc.appendChild(icon_desc);
-        h6_desc.textContent = "00:45"; // Récupérer de BDD
+        h6_desc.innerText= duration;
 
         const p = document.createElement("p");
         p.classList.add("route_element_desc_text");
-        p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error exercitationem, hic ipsa culpa iusto aliquid corporis earum aperiam odio labore laboriosam consequuntur quis unde ipsum, quaerat non voluptas veritatis officia." // Récupérer de BDD
+        p.textContent = description // Récupérer de BDD
         all_desc.push(p);
 
         const showMoreContainer = document.createElement("div");
@@ -188,11 +200,11 @@ function createRouteListElement(titre) {
         bottomContainer.classList.add("route-element-bottom");
 
         const h6_1 = document.createElement("h6");
-        h6_1.textContent = "1234567890 étapes"; // Récupérer de BDD
+        h6_1.textContent = locations.length + " steps"; // Récupérer de BDD
 
         const h6_2 = document.createElement("h6");
         h6_2.classList.add("auteur");
-        h6_2.textContent = "Par MichelDu62"; // Récupérer de BDD
+        h6_2.textContent = "By " + author; // Récupérer de BDD
 
         bottomContainer.appendChild(h6_1);
         bottomContainer.appendChild(h6_2);
@@ -206,6 +218,6 @@ function createRouteListElement(titre) {
         allEventCards();
 }
 
-createRouteListElement("Test1");
-createRouteListElement("Test2");
-createRouteListElement("Test3");
+export default {
+        refreshAllUserRoutes
+}
