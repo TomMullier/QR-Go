@@ -14,6 +14,7 @@ export function createPDF(fileName, locationsArray) {
       const locationWithoutHyphen = location.split("-");
       const locationWithoutLongWords = [];
       locationWithoutHyphen.forEach(word => {
+        word = word.trim();
         if (word.length <= 12) locationWithoutLongWords.push(word);
         else word.split(" ").forEach(shortWord => locationWithoutLongWords.push(shortWord));
       });
