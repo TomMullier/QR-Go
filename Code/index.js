@@ -195,9 +195,29 @@ app.get("/admin_route_list", (req, res) => {
     }
 });
 
+app.post("/scan",
+    body("name"),
+    (req, res) => {
+        console.log(req.body.name)
+        if (!req.session.route_name && req.session.mail && req.body.name) {
+            req.session.route_name = req.body.name;
+            req.session.save()
+            res.send("OK");
+        } else {
+            res.status(400).send('Impossible to access scan')
+        }
+    }
+);
+
+
+
 app.get("/scan", (req, res) => {
-    if (req.session.mail) {
+    if (req.session.route_name && req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/scan.html");
+    } else if (!req.session.route_name && req.session.mail) {
+        res.redirect("/user_route_list");
+    } else if (req.session.mail) {
+        res.redirect("/user_route_list")
     } else {
         res.redirect("/login");
     }
@@ -281,7 +301,7 @@ io.on("connection", (socket) => {
 
     /* ------------------------------- USER ROUTES ------------------------------ */
     socket.on("getAllUserRoutes", () => {
-        BDD.getAllUsersRoutes(database, (tabRoutes) =>  {
+        BDD.getAllUsersRoutes(database, (tabRoutes) => {
             socket.emit("refreshAllUserRoutes", tabRoutes);
         })
     })

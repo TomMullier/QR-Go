@@ -5,7 +5,6 @@ const colors = {
 
 // Signup form
 const signupForm = document.getElementById('signup_form');
-console.log(signupForm);
 const signupFormNodes = {
     mail: signupForm.querySelector('input[name="mail"]'),
     name: signupForm.querySelector('input[name="name"]'),
