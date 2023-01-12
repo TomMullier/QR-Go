@@ -22,8 +22,8 @@ function getAllRoutes() {
         socket.emit("getAllRoutes");
 }
 
-function getRouteInfo(route_name) {
-        socket.emit("getRouteInfo", route_name);
+function getRouteInfo(route_name, exist) {
+        socket.emit("getRouteInfo", route_name, exist);
 }
 
 

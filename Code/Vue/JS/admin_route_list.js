@@ -47,7 +47,7 @@ document.getElementById("new_route_button").addEventListener("click", function (
 
         document.getElementById("validate").setAttribute("existing", "false")
         document.getElementById("delete").innerHTML = "";
-        SocketManager.getRouteInfo(route_name.value);
+        SocketManager.getRouteInfo(route_name.value, false);
 })
 
 document.getElementById("delete").addEventListener("click", () => {
@@ -70,7 +70,7 @@ function allEventCards() {
                                 document.getElementById("delete").innerHTML = "Delete";
                                 modals.show("create_route_modal");
                                 if (document.activeElement != document.body) document.activeElement.blur();
-                                SocketManager.getRouteInfo(route_name.value)
+                                SocketManager.getRouteInfo(route_name.value, true)
                         }
 
                 });
@@ -133,12 +133,11 @@ document.getElementById("validate").addEventListener("click", (e) => {
         let name = route_name.value;
         let description = route_desc.value;
         let duration = route_duration.value;
-        let locationsHTML = document.querySelectorAll(".card_scroll_verti h1");
+        let locationsHTML = document.querySelectorAll("#list_verti .card_scroll_verti h1");
         let locations = []
         locationsHTML.forEach(locationHTML => {
                 locations.push(locationHTML.innerText);
         })
-
 
         if (name == "" || name == null) return
         if (document.getElementById("validate").getAttribute("existing") == "false") {
@@ -217,8 +216,65 @@ function createRouteListElement(name, description, duration, locations, author) 
         updateShowMoreBtn()
 }
 
+function createNotUsedLocation(name, description){
+        const cardScrollVerti = document.createElement("div");
+        cardScrollVerti.classList.add("card_scroll_verti");
+
+        const left = document.createElement("div");
+        left.classList.add("left");
+        const h1 = document.createElement("h1");
+        h1.textContent = name;
+        left.appendChild(h1);
+        const p = document.createElement("p");
+        p.textContent = description;
+        left.appendChild(p);
+        cardScrollVerti.appendChild(left);
+
+        const right = document.createElement("div");
+        right.classList.add("right", "handle");
+        const i = document.createElement("i");
+        i.classList.add("fa-solid", "fa-up-down");
+        right.appendChild(i);
+        cardScrollVerti.appendChild(right);
+
+        document.getElementById("list_horiz").appendChild(cardScrollVerti);
+}
+
+function createUsedLocation(name, description){
+        const cardScrollVerti = document.createElement("div");
+        cardScrollVerti.classList.add("draggable", "card_scroll_verti");
+        cardScrollVerti.setAttribute("draggable", "true");
+
+        const left = document.createElement("div");
+        left.classList.add("left");
+        const h1 = document.createElement("h1");
+        h1.textContent = name;
+        left.appendChild(h1);
+        const p = document.createElement("p");
+        p.textContent = description;
+        left.appendChild(p);
+        cardScrollVerti.appendChild(left);
+
+        const right = document.createElement("div");
+        right.classList.add("right", "handle");
+        const i = document.createElement("i");
+        i.classList.add("fa-solid", "fa-up-down");
+        right.appendChild(i);
+        cardScrollVerti.appendChild(right);
+
+        document.getElementById("list_verti").appendChild(cardScrollVerti);
+}
+
 function setLocModal(tabLocUsed, tabLocAvail) {
+        document.getElementById("list_horiz").innerHTML = "";
+        document.getElementById("list_verti").innerHTML = "";
         console.log(tabLocUsed, tabLocAvail);
+        tabLocUsed.forEach(loc => {
+                createUsedLocation(loc.name, loc.description);
+        })
+        tabLocAvail.forEach(loc => {
+                createNotUsedLocation(loc.name, loc.description);
+        })
 }
 
 export default {

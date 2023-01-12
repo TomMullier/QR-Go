@@ -120,10 +120,10 @@ function modifyLocation(client, name, description, instruction, callback) {
 	let locations = client.collection("locations");
 
 	filter = {
-		name:name
+		name: name
 	}
 	update = {
-		$set:{
+		$set: {
 			description: description,
 			instruction: instruction
 		}
@@ -132,17 +132,17 @@ function modifyLocation(client, name, description, instruction, callback) {
 	locations.updateOne(filter, update, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
-		callback()	
+		callback()
 	})
 }
 
 function deleteLocation(client, name, callback) {
 	let locations = client.collection("locations");
 
-	locations.deleteOne({name:name}, (err, res) => {
+	locations.deleteOne({ name: name }, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
-		callback()	
+		callback()
 	})
 }
 
@@ -161,7 +161,7 @@ function getAllLocation(client, callback) {
 
 function addRoute(client, name, description, duration, locations, author, callback) {
 	const query = { name: name };
-	const options = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1} };
+	const options = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1 } };
 	let routes = client.collection("routes");
 
 	routes.findOne(query, options, (err, routeFound) => {
@@ -194,10 +194,10 @@ function modifyRoute(client, name, description, duration, locations, author, cal
 	let routes = client.collection("routes");
 
 	filter = {
-		name:name
+		name: name
 	}
 	update = {
-		$set:{
+		$set: {
 			description: description,
 			duration: duration,
 			locations: locations,
@@ -208,7 +208,7 @@ function modifyRoute(client, name, description, duration, locations, author, cal
 	routes.updateOne(filter, update, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
-		callback()	
+		callback()
 	})
 }
 
@@ -217,10 +217,10 @@ function modifyRoute(client, name, description, duration, locations, author, cal
 function deleteRoute(client, name, callback) {
 	let routes = client.collection("routes");
 
-	routes.deleteOne({name:name}, (err, res) => {
+	routes.deleteOne({ name: name }, (err, res) => {
 		//console.log(res);
 		if (err) throw err;
-		callback()	
+		callback()
 	})
 }
 
@@ -232,59 +232,65 @@ function getAllRoutes(client, callback) {
 	})
 }
 
-async function getRouteInfo(client, name, callback){
+async function getRouteInfo(client, name, exist, callback) {
 	const queryR = { name: name };
-	const optionsR = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1} };
+	const optionsR = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1 } };
 	const optionsL = { projection: { _id: 0, name: 1, description: 1, instruction: 1 } };
-	
+
 	let routes = client.collection("routes");
 	let locations = client.collection("locations")
-	
+
 	let locUsed = [];
 	let locAvailable = [];
 
+	if (exist) {
+		try {
+			let routeFound = await routes.findOne(queryR, optionsR);
+			let locNames = routeFound.locations;
+			console.log(locNames);
 
-
-
+			// try {
+			for (let index = 0; index < locNames.length; index++) {
+				let locName = locNames[index]
+				const queryL = { name: locName };
+				try {
+					let locFound = await locations.findOne(queryL, optionsL)
+					let obj = {
+						name: locFound.name,
+						description: locFound.description
+					}
+					locUsed.push(obj)
+				} catch (err) {
+					console.log(err)
+				}
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
 	try {
-		let routeFound = await routes.findOne(queryR, optionsR);
-		let locNames = routeFound.locations;
-		console.log(locNames);
-		
+		let allLoc = await locations.find({}).toArray()
+
+		let locUsedName = []
+		locUsed.forEach(loc => {
+			locUsedName.push(loc.name)
+		});
+
+		allLoc.forEach(loc => {
+			if (!locUsedName.includes(loc.name)) {
+				locAvailable.push(loc)
+			}
+		})
 	} catch (err) {
 		console.log(err);
 	}
-	
-	// await routes.findOne(queryR, optionsR, async (err, routeFound) => { // try/catch
-		
-	// 	if (!routeFound && routeFound.name != name)return;
-	// 	//locUsed = []
-	// 	locNames = routeFound.locations
-	// 	//console.log(locUsed);
 
-	// 	let locUsed = await locNames.map(async locName => {
-	// 		const queryL = { name: locName };
-	// 		let locFound;
-	// 		try{
-	// 			locFound = await locations.findOne(queryL, optionsL)
-	// 		}catch(err){
-	// 			console.log(err)
-				
-	// 		}finally{
-	// 			let obj = {
-	// 				name: locFound.name,
-	// 				description: locFound.description
-	// 			}
-	// 			locName= obj;
-	// 			// console.log("USED NTO ",locUsed);
-	// 		}
-			
-	// 	});
-	// 	console.log("BLBLBL", locUsed);
-	// })
+	console.log("LOC USED :", locUsed.length);
+	console.log("LOC FREE :", locAvailable.length);
+	callback(locUsed, locAvailable)
 }
 
-function getAllUsersRoutes(client, callback){
+function getAllUsersRoutes(client, callback) {
 	let routes = client.collection("routes");
 
 	routes.find({}).toArray((err, res) => {
@@ -314,5 +320,5 @@ module.exports = {
 
 	// USER ROUTE
 	getAllUsersRoutes
-	
+
 };

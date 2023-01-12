@@ -32,7 +32,7 @@ io.use(
     })
 );
 
-const hostname = "10.224.3.148"; // ISEN
+const hostname = "10.224.4.159"; // ISEN
 //! const hostname = "localhost"; //! HOME
 const port = 4200;
 
@@ -244,9 +244,10 @@ io.on("connection", (socket) => {
 
     /* --------------------------------- ROUTES --------------------------------- */
     socket.on("addRoute", (name, description, duration, locations) => {
+        console.log("adding route");
         BDD.addRoute(database, name, description, duration, locations, author, (existing) => {
             if (existing) {
-                socket.emit("addRouteFailed")
+                //socket.emit("addRouteFailed")
             } else {
                 io.emit("addRouteSuccess")
             }
@@ -254,6 +255,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("modifyRoute", (name, description, duration, locations) => {
+        console.log("modifying route");
         BDD.modifyRoute(database, name, description, duration, locations, author, () => {
             io.emit("addRouteSuccess")
         })
@@ -271,8 +273,8 @@ io.on("connection", (socket) => {
         })
     })
 
-    socket.on("getRouteInfo", async (name) => {
-        await BDD.getRouteInfo(database, name, (tabLocUsed, tabLocAvail) => {
+    socket.on("getRouteInfo", (name, exist) => {
+        BDD.getRouteInfo(database, name, exist, (tabLocUsed, tabLocAvail) => {
             socket.emit("showLocModal", tabLocUsed, tabLocAvail);
         })
     })
