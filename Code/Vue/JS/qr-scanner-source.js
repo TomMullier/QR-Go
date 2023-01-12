@@ -1,11 +1,17 @@
 import QrScanner from 'qr-scanner';
-import Scan from './SocketManager/SocketScanner.js'
+import Scan from './SocketManager/SocketScanner.js';
 
 const qrScanner = new QrScanner(
-  document.getElementById('qr-video'),
-  result => {
-    Scan.getCurrentDescription(result.data);
-  }, { returnDetailedScanResult: true }
+    document.getElementById('qr-video'),
+    result => {
+      Scan.getCurrentDescription(result.data);
+      qrScanner.pause();
+      document.getElementById('qr-display').classList.add('paused');
+      document.getElementById('qr-display').addEventListener('click', () => {
+        qrScanner.start();
+        document.getElementById('qr-display').classList.remove('paused');
+      });
+    }, {returnDetailedScanResult: true}
 );
 
 qrScanner.start();
