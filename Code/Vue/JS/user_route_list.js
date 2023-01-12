@@ -67,6 +67,7 @@ let sort_menu = document.getElementById("sort_menu")
 button_sort.addEventListener("click", function (e) {
         if (sort_menu.style.display == "flex") {
                 sort_menu.style.display = "none";
+                document.getElementById("scroll_list").style.height = "calc(80% - 50px)";
                 return;
         } else {
                 sort_menu.style.display = "flex";
@@ -74,63 +75,11 @@ button_sort.addEventListener("click", function (e) {
         }
 });
 
-let sortTitle = []
-let listItems = document.getElementsByClassName("titles")
-listItems = Array.from(listItems);
-let sortList = document.getElementsByClassName('filtre_container');
-sortList = Array.from(sortList);
-sortList.forEach(function (element) {
-        element.addEventListener('click', function (e) {
-                console.log(element)
-                if (element.Id('sort-title') == true) {
-                        for (let i = 0; i < listItems.length; i++) {
-                                sortTitle[i] = listItems[i].innerText;
-                        }
-                        sortList.sort();
-                        console.log(sortList);
-                } else if (element.getElementById('sort-duration') == true) {
-
-                } else if (element.getElementById('sort-author') == true) {
-
-                }
-
-        });
-});
 
 
 
 
 
-document.getElementById('searchBar').addEventListener('input', filterList);
-
-function filterList() {
-        const searchBar = document.getElementById('searchBar');
-        const filter = searchBar.value.toLowerCase();
-
-        let listItems = document.getElementsByClassName("titles")
-        let auteurs = document.getElementsByClassName('auteur');
-        console.log(listItems);
-        listItems = Array.from(listItems);
-        listNames = Array.from(auteurs);
-        for (let i = 0; i < listItems.length; i++) {
-                let text = listItems[i].innerText;
-                let text2 = listNames[i].innerText;
-                if (text.toLowerCase().includes(filter)) {
-                        console.log(listItems[i].innerHTML)
-                        const parent1 = listItems[i].parentElement;
-                        const parent2 = parent1.parentElement;
-                        parent2.style.display = '';
-                } else if (text2.toLowerCase().includes(filter)) {
-                        const parent1 = listNames[i].parentElement;
-                        const parent2 = parent1.parentElement;
-                        parent2.style.display = '';
-                } else {
-                        const parent1 = listItems[i].parentElement;
-                        const parent2 = parent1.parentElement;
-                        parent2.style.display = 'none';
-                }
-        };
-}
 
 
 
@@ -139,6 +88,7 @@ function refreshAllUserRoutes(routes) {
         routes.forEach(route => {
                 createRouteListElement(route.name, route.description, route.duration, route.locations, route.author);
         })
+        document.getElementById('searchBar').addEventListener('input', filterList);
 }
 
 
@@ -172,10 +122,7 @@ function createRouteListElement(name, description, duration, locations, author) 
         descContainer.classList.add("route-element-desc");
 
         const h6_desc = document.createElement("h6");
-        h6_desc.classList.add("auteur");
-        const icon_desc = document.createElement("i");
-        icon_desc.classList.add("fa-solid", "fa-clock");
-        h6_desc.appendChild(icon_desc);
+        h6_desc.classList.add("duration");
         h6_desc.innerText = duration;
 
         const p = document.createElement("p");
@@ -249,6 +196,176 @@ play_button.addEventListener('click', (e) => {
         })
 
 })
+
+
+
+function filterList() {
+        const searchBar = document.getElementById('searchBar');
+        const filter = searchBar.value.toLowerCase();
+
+        let listItems = document.getElementsByClassName("titles")
+        let auteurs = document.getElementsByClassName("auteur");
+        listItems = Array.from(listItems);
+       let  listNames = Array.from(auteurs);
+        for (let i = 0; i < listItems.length; i++) {
+                let text = listItems[i].innerText;
+                let text2 = listNames[i].innerText;
+                if (text.toLowerCase().includes(filter)) {
+                        console.log(listItems[i].innerHTML)
+                        const parent1 = listItems[i].parentElement;
+                        const parent2 = parent1.parentElement;
+                        parent2.style.display = '';
+                } else if (text2.toLowerCase().includes(filter)) {
+                        const parent1 = listNames[i].parentElement;
+                        const parent2 = parent1.parentElement;
+                        parent2.style.display = '';
+                } else {
+                        const parent1 = listItems[i].parentElement;
+                        const parent2 = parent1.parentElement;
+                        parent2.style.display = 'none';
+                }
+        };
+}
+
+
+document.getElementById('sort-title').addEventListener('click', sortTitles);
+document.getElementById('sort-duration').addEventListener('click', sortDuration);
+document.getElementById('sort-author').addEventListener('click', sortAuthor);
+
+
+function sortTitles()
+{
+       
+        let listItems = document.getElementsByClassName("titles") //contient tous les H1 contenant les titres
+        
+        let sortList = [];
+        listItems = Array.from(listItems);
+
+        for (let i = 0; i < listItems.length; i++) 
+        {     
+                sortList[i] = listItems[i].innerText.toLowerCase();
+                
+        }
+
+        sortList.sort()
+
+        let all_cards_author = document.getElementsByClassName("route-element");
+        all_cards_author = Array.from(all_cards_author);
+
+        let parentElement= document.getElementById("scroll_list");
+        let all_cards_save= document.getElementsByClassName("route-element");
+        all_cards_save = Array.from(all_cards_save);
+        parentElement.innerHTML = "";
+
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        if(el.children[0].children[0].innerText.toLowerCase() == element)
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })   
+}    
+        
+
+function sortDuration()
+{
+        let listItems = document.getElementsByClassName("duration") //contient tous les H1 contenant les titres
+        
+        let sortList = [];
+        listItems = Array.from(listItems);
+
+        for (let i = 0; i < listItems.length; i++) 
+        {     
+                let txtTime = listItems[i].innerText;
+                let time = txtTime.split(":");
+                let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
+                sortList[i] = timeInMin;
+                
+        }
+
+        let nanList=[]
+        for (let i = 0; i < sortList.length; i++) 
+        {     
+                if(isNaN(sortList[i]))
+                {
+                        nanList.push(sortList[i]);
+                        sortList.splice(i,1);
+                }             
+        }
+
+        sortList.sort(function(a, b){return a-b})
+        sortList = sortList.concat(nanList);
+        console.log(sortList);
+
+        let all_cards_author = document.getElementsByClassName("route-element");
+        all_cards_author = Array.from(all_cards_author);
+
+        let parentElement= document.getElementById("scroll_list");
+        let all_cards_save= document.getElementsByClassName("route-element");
+        all_cards_save = Array.from(all_cards_save);
+        parentElement.innerHTML = "";
+
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        let txtTime = el.children[1].children[0].innerText;
+                        let time = txtTime.split(":");
+                        let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
+                        if(timeInMin == element)
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })   
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        let txtTime = el.children[1].children[0].innerText;
+                        let time = txtTime.split(":");
+                        let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
+                        if(isNaN(timeInMin))
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })   
+
+}
+
+function sortAuthor()
+{
+        let listItems = document.getElementsByClassName("auteur") //contient tous les H1 contenant les titres
+        
+        let sortList = [];
+        listItems = Array.from(listItems);
+
+        for (let i = 0; i < listItems.length; i++) 
+        {     
+                sortList[i] = listItems[i].innerText.toLowerCase();
+                
+        }
+
+        sortList.sort()
+
+        let all_cards_author = document.getElementsByClassName("route-element");
+        all_cards_author = Array.from(all_cards_author);
+
+        let parentElement= document.getElementById("scroll_list");
+        let all_cards_save= document.getElementsByClassName("route-element");
+        all_cards_save = Array.from(all_cards_save);
+        parentElement.innerHTML = "";
+
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        if(el.children[2].children[1].innerText.toLowerCase() == element)
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })
+}
+
+
+
 
 export default {
         refreshAllUserRoutes
