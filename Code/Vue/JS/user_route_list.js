@@ -275,7 +275,7 @@ function sortDuration()
                         let txtTime = el.children[1].children[0].innerText;
                         let time = txtTime.split(":");
                         let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
-                        if(isNaN(element))
+                        if(isNaN(timeInMin))
                         {
                                 parentElement.appendChild(el);
                         }
