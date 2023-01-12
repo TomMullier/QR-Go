@@ -43,7 +43,7 @@ function allEventCards() {
                         if (!e.target.classList.contains("expand_button")) {
                                 route_title.innerText = element.getElementsByClassName("titles")[0].innerText
                                 route_desc.innerText = element.getElementsByClassName("route_element_desc_text")[0].innerText
-                                route_duration.value = element.getElementsByClassName("auteur")[0].innerText
+                                route_duration.value = element.getElementsByClassName("duration")[0].innerText
                                 //focus curor on nothin
 
                                 modals.show("display_route_modal");
