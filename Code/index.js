@@ -32,7 +32,7 @@ io.use(
     })
 );
 
-const hostname = "10.224.3.148"; // ISEN
+const hostname = "192.168.1.11"; // ISEN
 //! const hostname = "localhost"; //! HOME
 const port = 4200;
 
@@ -45,7 +45,7 @@ const port = 4200;
 /* -------------------------------------------------------------------------- */
 // .\mongosh --host 10.224.4.159 --port 27017
 // restart mongodb serveur (services)
-const dBconnection = new MongoClient("mongodb://10.224.4.159/27017"); // ISEN-MAX
+const dBconnection = new MongoClient("mongodb://192.168.1.18/27017"); // ISEN-MAX
 //!const dBconnection = new MongoClient("mongodb://0.0.0.0/27017"); //! HOME
 BDD.connexion(dBconnection);
 const database = dBconnection.db("admin");

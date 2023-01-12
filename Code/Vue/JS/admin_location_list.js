@@ -98,7 +98,7 @@ function filterList() {
         let listItems = document.getElementsByClassName("titles")
         let auteurs = document.getElementsByClassName('auteur');
         listItems = Array.from(listItems);
-        let listNames = Array.from(auteurs);
+        listNames = Array.from(auteurs);
         for (let i = 0; i < listItems.length; i++) {
                 let text = listItems[i].innerText;
                 let text2 = listNames[i].innerText;
