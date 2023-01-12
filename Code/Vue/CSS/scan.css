@@ -198,3 +198,22 @@ main .instructions {
   font-weight: 600;
   font-style: italic;
 }
+#instructions-camera-browser {
+  position: absolute;
+  bottom: 15vh;
+  width: 80vw;
+  margin-left: 10vw;
+}
+code {
+  padding: 3px;
+  border-radius: 7px;
+  color: #f1f0ff;
+  background: #a299ff;
+}
+code.bg-success {
+  background: #0a852e;
+}
+[text-to-clipboard] {
+  cursor: pointer;
+}
+/*# sourceMappingURL=scan.css.map */

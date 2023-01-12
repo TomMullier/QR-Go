@@ -31,34 +31,34 @@
                         </span>
                 </div>
         </nav>
-        <main>  
+        <main>
                 <h2 class="select-route-title">Select your route :</h2>
                 <div class="search">
-                    <div class="top">
-                        <div id="sort_button" class="sort-button">
-                            <i class="fa-solid fa-arrow-down-wide-short"></i>
+                        <div class="top">
+                                <div id="sort_button" class="sort-button">
+                                        <i class="fa-solid fa-arrow-down-wide-short"></i>
+                                </div>
+                                <div class="search-bar">
+                                        <input id="searchBar" type="text" placeholder="Search...">
+                                </div>
                         </div>
-                        <div class="search-bar">
-                            <input id="searchBar" type="text" placeholder="Search...">
+                        <div id="sort_menu" class="Sort-settings">
+                                <h4> Sort Settings</h4>
+                                <div>
+                                        <div class="filtre_container">
+                                                <input type="radio" id="sort-title" name="sort">
+                                                <p>Title</p>
+                                        </div>
+                                        <div class="filtre_container">
+                                                <input type="radio" id="sort-duration" name="sort">
+                                                <p>Duration</p>
+                                        </div>
+                                        <div class="filtre_container">
+                                                <input type="radio" id="sort-author" name="sort">
+                                                <p>Author</p>
+                                        </div>
+                                </div>
                         </div>
-                    </div>
-                    <div id="sort_menu" class="Sort-settings">
-                        <h4> Sort Settings</h4>
-                        <div>
-                            <div class="filtre_container">
-                                <input type="radio" id="sort-title" name="sort" >
-                                <p>Title</p>
-                            </div>
-                            <div class="filtre_container">
-                                <input type="radio" id="sort-duration" name="sort">
-                                <p>Duration</p>
-                            </div>
-                            <div class="filtre_container">
-                                <input type="radio" id="sort-author" name="sort">
-                                <p>Author</p>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <div id="scroll_list" class="scroll-list">
@@ -86,10 +86,10 @@
 
                                 </div>
                         </div> -->
-                        
+
                 </div>
         </main>
-       
+
 
         <div id="modals" style="display:flex;">
                 <modal id="display_route_modal">
@@ -106,11 +106,13 @@
                                         <p>Estimated duration :</p>
                                         <input id="route_duration" type="time" class="input_create time" disabled>
                                 </div>
-                        </div>            
+                        </div>
                         <div class="buttons_container">
-                                <div class="validate close-modal">
-                                        Play Route
-                                </div>
+                                <a href="/scan">
+                                        <div class="validate">
+                                                Play Route
+                                        </div>
+                                </a>
                                 <div class="cancel close-modal">
                                         Cancel
                                 </div>

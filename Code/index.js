@@ -32,9 +32,13 @@ io.use(
     })
 );
 
-const hostname = "10.224.3.148"; // ISEN
+const hostname = "10.224.4.159"; // ISEN
 //! const hostname = "localhost"; //! HOME
 const port = 4200;
+
+/* -------------------------------------------------------------------------- */
+/*                               BDD CONNECTION                               */
+/* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                        NE PAS EFFACER CE COMMENTAIRE                       */
@@ -46,10 +50,15 @@ const dBconnection = new MongoClient("mongodb://10.224.4.159/27017"); // ISEN-MA
 BDD.connexion(dBconnection);
 const database = dBconnection.db("admin");
 
+/* -------------------------------------------------------------------------- */
+/*                                HTTP REQUEST                                */
+/* -------------------------------------------------------------------------- */
+// Homepage
 app.get("/", (req, res) => {
     res.sendFile("index.html");
 });
 
+/* ---------------------------------- LOGIN --------------------------------- */
 // get the login page
 app.get("/login", (req, res) => {
     if (!req.session.mail) {
@@ -79,21 +88,24 @@ app.post(
         } else {
             console.log("Login user", "mail : " + mail, "password : " + password);
             CRYPT.login(password, (pass) => {
-                BDD.login(database, mail, pass, (hashMatch, admin) => {
+                BDD.login(database, mail, pass, (hashMatch, admin, name, surname) => {
                     if (hashMatch == true) {
-                        req.session.mail = req.body.mail;
+                        req.session.mail = mail;
                         req.session.admin = admin;
+                        req.session.name = name;
+                        req.session.surname = surname;
                         req.session.save();
                         res.send("OK");
-                    }else{
-						res.status(400).send('password incorrect')
-					}
+                    } else {
+                        res.status(400).send('password incorrect')
+                    }
                 });
             });
         }
     }
 );
 
+/* -------------------------------- REGISTER -------------------------------- */
 // get the register page
 app.get("/register", (req, res) => {
     if (!req.session.mail) {
@@ -129,13 +141,15 @@ app.post(
             CRYPT.register(password, (hash) => {
                 BDD.register(database, name, surname, mail, hash, (inserted, admin) => {
                     if (inserted == true) {
-                        req.session.mail = req.body.mail;
+                        req.session.mail = mail;
                         req.session.admin = admin;
+                        req.session.name = name;
+                        req.session.surname = surname;
                         req.session.save();
                         res.send("OK");
                     } else {
                         console.log("User already in DB");
-						res.status(400).send('Already in DB')
+                        res.status(400).send('Already in DB')
                     }
                 });
             });
@@ -143,6 +157,7 @@ app.post(
     }
 );
 
+/* --------------------------------- AUTRES --------------------------------- */
 app.get("/connect_admin", (req, res) => {
     if (!req.session.mail) {
         res.redirect("/login");
@@ -163,13 +178,6 @@ app.get("/user_route_list", (req, res) => {
     }
 });
 
-app.get("/scan", (req, res) => {
-    if (req.session.mail) {
-        res.sendFile(__dirname + "/Vue/HTML/scan.html");
-    } else {
-        res.redirect("/");
-    }
-});
 
 app.get("/admin_location_list", (req, res) => {
     if (req.session.mail) {
@@ -187,9 +195,83 @@ app.get("/admin_route_list", (req, res) => {
     }
 });
 
-io.on("connection", (socket) => {
-    console.log("User connected");
+app.get("/scan", (req, res) => {
+    if (req.session.mail) {
+        res.sendFile(__dirname + "/Vue/HTML/scan.html");
+    } else {
+        res.redirect("/login");
+    }
+});
 
+
+/* -------------------------------------------------------------------------- */
+/*                                   SOCKET                                   */
+/* -------------------------------------------------------------------------- */
+io.on("connection", (socket) => {
+    console.log("--- SOCKET ---");
+    const userMail = socket.handshake.session.mail
+    const author = socket.handshake.session.surname + " " + socket.handshake.session.name;
+    console.log(userMail + " connected");
+
+    /* -------------------------------- LOCATION -------------------------------- */
+    socket.on("addLocation", (name, description, instruction) => {
+        BDD.addLocation(database, name, description, instruction, (existing, location) => {
+            if (existing) {
+                socket.emit("addLocationFailed")
+            } else {
+                io.emit("addLocationSuccess", location)
+            }
+        })
+    })
+
+    socket.on("modifyLocation", (name, description, instruction) => {
+        BDD.modifyLocation(database, name, description, instruction, () => {
+            io.emit("addLocationSuccess")
+        })
+    })
+
+    socket.on("deleteLocation", (name) => {
+        BDD.deleteLocation(database, name, () => {
+            io.emit("addLocationSuccess")
+        })
+    })
+
+    socket.on("getAllLocation", () => {
+        BDD.getAllLocation(database, (res) => {
+            io.emit("refreshAllLocation", res);
+        })
+    })
+
+    /* --------------------------------- ROUTES --------------------------------- */
+    socket.on("addRoute", (name, description, duration, locations) => {
+        BDD.addRoute(database, name, description, duration, locations, author, (existing) => {
+            if (existing) {
+                socket.emit("addRouteFailed")
+            } else {
+                io.emit("addRouteSuccess")
+            }
+        })
+    })
+
+    socket.on("modifyRoute", (name, description, duration, locations) => {
+        BDD.modifyRoute(database, name, description, duration, locations, author, () => {
+            io.emit("addRouteSuccess")
+        })
+    })
+
+    socket.on("deleteRoute", (name) => {
+        BDD.deleteRoute(database, name, () => {
+            io.emit("addRouteSuccess")
+        })
+    })
+
+    socket.on("getAllRoutes", () => {
+        BDD.getAllRoutes(database, (res) => {
+            io.emit("refreshAllRoutes", res);
+        })
+    })
+
+/* ------------------------------- DISCONNECT ------------------------------- */
     socket.on("disconnect", () => {
         console.log("User disconnected");
     });

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../../css/admin/modals.css">
         <link rel="stylesheet" href="../../css/admin/admin_route_list.css">
         <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
         <title>Route</title>
 </head>
 
@@ -33,8 +34,8 @@
                                         Stats
                                 </div>
                                 <div class="play-container">
-                                        <a href="/login">
-                                                <button class="play-button">Scan</button>
+                                        <a href="/user_route_list">
+                                                <button class="play-button">Play</button>
                                         </a>
                                 </div>
                         </div>
@@ -214,13 +215,14 @@
                                 </div>
                         </div>
                         <div class="buttons_container">
-                                <div class="validate close-modal">
+                                <div class="validate close-modal" id="validate">
                                         Save Route
                                 </div>
                                 <div class="cancel close-modal">
                                         Cancel
                                 </div>
-
+                                <div class="cancel" id="delete">
+                                </div>
                         </div>
 
                 </modal>

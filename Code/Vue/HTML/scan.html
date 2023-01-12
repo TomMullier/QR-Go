@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../css/scan.css">
     <link rel="stylesheet" href="../CSS/admin/modals.css">
     <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
     <title>Scan</title>
 </head>
 
@@ -41,12 +43,24 @@
         </div>
 
         <video id="qr-video" style="display: none"></video>
-        <div id="qr-display"></div>
+        <div id="qr-display">
 
         <div id="camera_help" class="camera_help">
             Having trouble with the camera ? Click here for help !
         </div>
 
+        </div>
+            <div id="instructions-camera-browser">
+                To unlock the camera :
+                <ul>
+                    <li>Copy in a new tab <code text-to-clipboard="chrome://flags/#unsafely-treat-insecure-origin-as-secure"><i class="fa-regular fa-clipboard"></i>
+                        chrome://flags/#unsafely-treat-insecure-origin-as-secure</code></li>
+                    <li>Copy <code id="window-location-copy"><i class="fa-regular fa-clipboard"></i> <span id="window-location"></span></code> and paste it</li>
+                    <li>Select "Enable"</li>
+                    <li>Relaunch the browser</li>
+                </ul>
+
+            </div>
         <div class="instructions">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil iure
             quasi voluptate optio pariatur molestias debitis architecto, at quos vel facere, laborum numquam! Corporis,
@@ -97,5 +111,6 @@
 </body>
 
 <script src="../JS/qr-scanner-final.js"></script>
+<script type="module" src="../JS/scan.js"></script>
 
 </html>
