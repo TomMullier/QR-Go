@@ -115,7 +115,11 @@ document.getElementById("validate").addEventListener("click", (e) => {
         let name = route_name.value;
         let description = route_desc.value;
         let duration = route_duration.value;
-        let locations = document.querySelectorAll(".card_scroll_verti h1");
+        let locationsHTML = document.querySelectorAll(".card_scroll_verti h1");
+        let locations = []
+        locationsHTML.forEach(locationHTML => {
+                locations.push(locationHTML.innerText);
+        })
 
 
         if (document.getElementById("validate").getAttribute("existing") == "false") {
