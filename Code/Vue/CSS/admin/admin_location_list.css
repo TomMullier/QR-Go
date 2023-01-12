@@ -117,7 +117,7 @@ nav .navbar .play-container i:hover {
   font-size: 2vh;
   font-weight: 700;
   color: #231F20;
-  margin: 2vh 0 ;
+  margin: 2vh 0;
   padding: 0;
   text-align: center;
   height: 2vh;
@@ -331,14 +331,21 @@ nav .navbar .play-container i:hover {
 .scroll-list .route-element .route-element-desc .show_more_container {
   width: auto;
   text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  margin: 5px 0 0 0;
+}
+.scroll-list .route-element .route-element-desc .show_more_container .qr_container img {
+  width: 5.5vw;
 }
 .scroll-list .route-element .route-element-desc .show_more_container a {
   font-family: 'Mulish', sans-serif;
   font-size: 1.5vh;
   font-weight: 700;
   color: #a299ff;
-  margin: 0px 10px;
-  padding-left: 10px;
   text-align: right;
   text-decoration: underline;
 }

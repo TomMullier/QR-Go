@@ -85,11 +85,7 @@ document.getElementById("delete").addEventListener("click", ()=>{
         SocketManager.deleteLocation(route_name.value.toUpperCase());
 });
 
-document.getElementById("getQrCode").addEventListener("click", ()=>{
-        let name = route_name.value;
 
-        // Appel fonction génération qr code/pdf
-});
 
 
 document.getElementById('searchBar').addEventListener('input', filterList);
@@ -135,6 +131,11 @@ function refreshAllLocation(tabLocations) {
         tabLocations.forEach(location => {
                 createLocationListElement(location.name, location.description, location.instruction);
         })
+        document.getElementById("getQrCode").addEventListener("click", ()=>{
+                let name = route_name.value;
+        
+                // Appel fonction génération qr code/pdf
+        });
         allEventCards();
 }
 
@@ -171,11 +172,24 @@ function createLocationListElement(name, description, instruction) {
         all_desc.push(descP);
         descDiv.appendChild(descP);
 
+const a_container= document.createElement('div');
+        a_container.classList.add('show_more_container');
+
+        const qrDiv= document.createElement('div');
+        qrDiv.classList.add('qr_container');
+        qrDiv.id = "qr_container";
+        const qr_icon=document.createElement('img');
+        qr_icon.id = "getQrCode";
+        qr_icon.src = "../../img/qr_code.png";
+        qrDiv.appendChild(qr_icon);
+        a_container.appendChild(qrDiv);
+
         const a = document.createElement('a');
         a.classList.add('expand_button');
         a.textContent = 'Show more';
         all_expand_buttons.push(a);
-        descDiv.appendChild(a);
+        a_container.appendChild(a);
+        descDiv.appendChild(a_container);
 
         routeElement.appendChild(descDiv);
 
@@ -191,6 +205,8 @@ function createLocationListElement(name, description, instruction) {
         document.getElementById("scroll_list").appendChild(routeElement);
         updateShowMoreBtn();
 }
+
+
 
 export default {
         refreshAllLocation,

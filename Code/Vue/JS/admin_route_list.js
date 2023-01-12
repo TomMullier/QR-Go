@@ -78,8 +78,21 @@ function allEventCards() {
 }
 
 
-const dragArea = document.querySelector("#list");
-new Sortable(dragArea, {
+const dragAreaVerti = document.querySelector("#list_verti");
+new Sortable(dragAreaVerti, {
+        group:{
+                name: 'shared',
+        },
+        handle: '.handle',
+        animation: 350
+});
+
+const dragAreaHori = document.querySelector("#list_horiz");
+new Sortable(dragAreaHori, {
+        group:{
+                name: 'shared',
+        },
+        sort:false,
         handle: '.handle',
         animation: 350
 });

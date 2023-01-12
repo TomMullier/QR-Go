@@ -184,10 +184,6 @@ function createRouteListElement(name, description, duration, locations, author) 
         p.textContent = description // Récupérer de BDD
         all_desc.push(p);
 
-        //const a = document.createElement("a");
-        //a.classList.add("expand_button");
-        //a.textContent = "Show more";
-        //all_expand_buttons.push(a);
         const showMoreContainer = document.createElement("div");
         showMoreContainer.classList.add("show_more_container");
         const expandButton = document.createElement("a");
