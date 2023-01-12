@@ -69,6 +69,7 @@ let sort_menu = document.getElementById("sort_menu")
 button_sort.addEventListener("click", function (e) {
         if (sort_menu.style.display == "flex") {
                 sort_menu.style.display = "none";
+                document.getElementById("scroll_list").style.height = "calc(80% - 50px)";
                 return;
         } else {
                 sort_menu.style.display = "flex";
