@@ -1,15 +1,22 @@
 import QrScanner from 'qr-scanner';
-import Scan from './SocketManager/SocketScanner.js'
+import Scan from './scan.js';
+
 
 const qrScanner = new QrScanner(
+
   document.getElementById('qr-video'),
   result => {
     Scan.getCurrentDescription(result.data);
+    qrScanner.stop();
   }, { returnDetailedScanResult: true }
 );
 
 qrScanner.start();
 
+function startCam() {
+  qrScanner.start();
+
+}
 
 document.getElementById('qr-display').appendChild(qrScanner.$canvas);
 
@@ -33,3 +40,7 @@ document.querySelectorAll("[text-to-clipboard]").forEach((element) => {
     });
   });
 });
+
+export default {
+  startCam
+}

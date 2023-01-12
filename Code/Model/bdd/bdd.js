@@ -311,15 +311,15 @@ async function getCurrentCard(client, name, step, callback){
 	let routes = client.collection("routes")
 	let locations = client.collection("locations")
 	let currentLocation;
+
 	try{
 		let currentRoute = await routes.findOne(queryR, optionsR)
-		// console.log("CUR ROUTE", currentRoute);
-		let currentLocationName = currentRoute.locations[step]
-
-		if(step == currentLocationName.length){
+		if(step == currentRoute.locations.length){
 			callback("","","",true)
 			return
 		}
+		let currentLocationName = currentRoute.locations[step] //reading location
+
 		// console.log("CUR LOC NAME", currentLocationName);
 		const queryL = {name: currentLocationName}
 		try{
@@ -330,7 +330,7 @@ async function getCurrentCard(client, name, step, callback){
 		}
 	}catch (err){
 		console.log(err);
-	}
+	} 
 	callback(currentLocation.name,currentLocation.description,currentLocation.instruction, false)
 }
 

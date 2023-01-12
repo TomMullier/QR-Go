@@ -7,7 +7,13 @@ let socket = io()
 /* -------------------------------------------------------------------------- */
 
 function getCurrentInstruction() {
+      console.log("ici");
       socket.emit("getCurrentCard", false);
+}
+
+function getCurrentDescription(name) {
+      console.log("lkjhdsrtx", name);
+      socket.emit("getCurrentCard", true, name);
 }
 
 
@@ -20,12 +26,21 @@ socket.on("showCurrentInstruction", (name, instruction) => {
       Scan.showCurrentInstruction(name, instruction);
 })
 
-//socket.on("wrongQrCode", () => {
-//    console.log("Wrong QR");
-//    Scan.showWrongQr();
-//})
+socket.on("showCurrentDescription", (name, description) => {
+      console.log("showCurrentDescription");
+      console.log(name, description);
+      Scan.showCurrentDescription(name, description);
+})
 
+socket.on("wrongQrCode", () => {
+      console.log("Wrong QR");
+      Scan.showWrongQrCode();
+});
 
+socket.on("endGame", () => {
+      console.log("Finish");
+      Scan.showEndGame();
+})
 
 
 /* -------------------------------------------------------------------------- */
@@ -34,4 +49,5 @@ socket.on("showCurrentInstruction", (name, instruction) => {
 
 export default {
       getCurrentInstruction,
+      getCurrentDescription
 }
