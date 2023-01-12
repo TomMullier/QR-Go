@@ -65,7 +65,7 @@ console.log(allCards)
 function allEventCards() {
         allCards.forEach(function (element) {
                 element.addEventListener("click", function (e) {
-                        if (!e.target.classList.contains("expand_button")) {
+                        if (!e.target.classList.contains("expand_button") && e.target.id!="getQrCode") {
                                 route_title.innerText = "Edit Location"
                                 route_name.value = element.getElementsByClassName("titles")[0].innerText
                                 route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
