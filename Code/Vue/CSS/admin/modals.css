@@ -639,6 +639,48 @@ body {
   color: #231F20;
   padding: 20px;
 }
+#display_camera_help .modal-wrapper {
+  width: 100vw;
+  height: auto;
+  padding-bottom: 20px;
+  position: absolute;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  bottom: 0;
+}
+#display_camera_help .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+#display_camera_help .top h1,
+#display_camera_help .top span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vh;
+  font-weight: 700;
+  color: #a299ff;
+  margin: 0 0px;
+  padding: 0;
+  text-transform: uppercase;
+}
+#display_camera_help .fields-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: solid;
+  border-color: #a299ff;
+  border-radius: 30px;
+}
+#display_camera_help .fields-container #instructions-camera-browser {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.7vh;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+  color: #231F20;
+  padding: 20px;
+}
 .over {
   transform: scale(1.1, 1.1);
 }
