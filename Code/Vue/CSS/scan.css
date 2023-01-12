@@ -193,6 +193,7 @@ main .instructions .camera_help {
   font-style: italic;
   text-decoration: underline;
   padding-bottom: 5%;
+  cursor: pointer;
 }
 code {
   padding: 3px;

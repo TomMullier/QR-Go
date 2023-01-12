@@ -138,6 +138,9 @@ body {
   margin: 0 0px;
   padding: 0;
 }
+#create_route_modal .top span {
+  cursor: pointer;
+}
 #create_route_modal .fields-container {
   display: flex;
   flex-direction: column;
@@ -203,6 +206,10 @@ body {
   font-weight: 600;
   width: auto;
   outline: none;
+  cursor: pointer;
+}
+#create_route_modal .fields-container .right input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
 #create_route_modal h3 {
   font-family: 'Montserrat', sans-serif;
@@ -215,7 +222,7 @@ body {
 }
 #create_route_modal .horiz_scroll {
   width: 100%;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   padding: 10px;
@@ -402,6 +409,9 @@ body {
   margin: 0 0px;
   padding: 0;
 }
+#display_route_modal .top span {
+  cursor: pointer;
+}
 #display_route_modal .fields-container {
   display: flex;
   flex-direction: column;
@@ -474,6 +484,9 @@ body {
   justify-content: space-around;
   margin-top: 20px;
 }
+#display_route_modal .buttons_container a {
+  text-decoration: none;
+}
 #display_route_modal .buttons_container .validate {
   background-color: #a299ff;
   border: none;
@@ -525,6 +538,9 @@ body {
   color: #a299ff;
   margin: 0 0px;
   padding: 0;
+}
+#create_location_modal .top span {
+  cursor: pointer;
 }
 #create_location_modal .fields-container {
   display: flex;
@@ -633,6 +649,9 @@ body {
   padding: 0;
   text-transform: uppercase;
 }
+#display_location .top span {
+  cursor: pointer;
+}
 #display_location .fields-container {
   display: flex;
   flex-direction: column;
@@ -674,6 +693,9 @@ body {
   margin: 0 0px;
   padding: 0;
   text-transform: uppercase;
+}
+#display_camera_help .top span {
+  cursor: pointer;
 }
 #display_camera_help .fields-container {
   display: flex;
