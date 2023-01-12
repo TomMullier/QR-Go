@@ -270,7 +270,7 @@ io.on("connection", (socket) => {
         console.log("adding route");
         BDD.addRoute(database, name, description, duration, locations, author, (existing) => {
             if (existing) {
-                //socket.emit("addRouteFailed")
+                socket.emit("addRouteFailed")
             } else {
                 io.emit("addRouteSuccess")
             }
@@ -299,6 +299,12 @@ io.on("connection", (socket) => {
     socket.on("getRouteInfo", (name, exist) => {
         BDD.getRouteInfo(database, name, exist, (tabLocUsed, tabLocAvail) => {
             socket.emit("showLocModal", tabLocUsed, tabLocAvail);
+        })
+    })
+
+    socket.on("getAllLocationInRoute", (name)=>{
+        BDD.getAllLocationInRoute(database, name, (allLoc)=>{
+            socket.emit("printAllLocInRoute", allLoc)
         })
     })
 

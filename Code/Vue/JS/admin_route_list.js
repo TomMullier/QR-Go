@@ -71,6 +71,7 @@ function allEventCards() {
                                 modals.show("create_route_modal");
                                 if (document.activeElement != document.body) document.activeElement.blur();
                                 SocketManager.getRouteInfo(route_name.value, true)
+                                SocketManager.getAllLocationInRoute(route_name.value)
                         }
 
                 });
@@ -277,7 +278,12 @@ function setLocModal(tabLocUsed, tabLocAvail) {
         })
 }
 
+function printAllLocInRoute(allLocName){
+        console.log(allLocName);
+}
+
 export default {
         refreshAllRoutes,
-        setLocModal
+        setLocModal,
+        printAllLocInRoute
 }

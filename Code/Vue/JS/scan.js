@@ -29,12 +29,12 @@ function showCurrentDescription(name, description) {
 function showWrongQrCode() {
         document.getElementById('txt_title').innerHTML = "Wrong QR Code !";
         document.querySelector("#txt_descr h3").innerText = "Find the good one following the instructions";
-        modals.show("display_location", ()=>{
+        modals.show("display_location", () => {
                 qrScannerSource.startCam();
         });
 }
 
-function showEndGame(){
+function showEndGame() {
         document.getElementById('txt_title').innerHTML = "The end";
         document.querySelector("#txt_descr h3").innerText = "You have finished the route. We hope you like this !";
         modals.show("display_location", () => {
@@ -43,7 +43,7 @@ function showEndGame(){
         });
 }
 
-function getCurrentDescription(data){
+function getCurrentDescription(data) {
         console.log("ICIIIIII");
         SocketManager.getCurrentDescription(data)
 }

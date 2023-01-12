@@ -292,6 +292,24 @@ async function getRouteInfo(client, name, exist, callback) {
 	callback(locUsed, locAvailable)
 }
 
+async function getAllLocationInRoute(client, name, callback){
+	const queryR = { name: name };
+	const optionsR = { projection: { _id: 0, name: 1, description: 1, duration: 1, locations: 1, author: 1 } };
+	let routes = client.collection("routes")
+
+	let allLocName =[];
+	try{
+		let routeFound = await routes.findOne(queryR, optionsR)
+		routeFound.locations.forEach(loc=>{
+			allLocName.push(loc)
+		})
+	}catch (err){
+		console.log(err);
+	}
+	console.log("ALL LOC NAME ", allLocName);
+	callback(allLocName);
+}
+
 /* ----------------------- USER ROUTE ---------------------------*/
 // Retourne tout les parcours existant
 function getAllUsersRoutes(client, callback) {
@@ -354,6 +372,7 @@ module.exports = {
 	deleteRoute,
 	getAllRoutes,
 	getRouteInfo,
+	getAllLocationInRoute,
 
 	// USER ROUTE
 	getAllUsersRoutes,

@@ -1,5 +1,4 @@
 import SocketManager from './SocketManager/SocketLocation.js';
-import {createPDF} from './qr-generator-source';
 
 let all_desc = document.getElementsByClassName("route_element_desc_text")
 let all_expand_buttons = document.getElementsByClassName("expand_button")
@@ -9,7 +8,7 @@ all_expand_buttons = Array.from(all_expand_buttons)
 function updateShowMoreBtn() {
         all_expand_buttons.forEach(function (element) {
                 element.addEventListener("click", function (e) {
-                        //console.log(e.target)
+                        console.log(e.target)
                         all_desc.forEach(function (el) {
                                 el.style.overflow = "hidden"
                                 el.style.lineClamp = 3;
@@ -42,6 +41,7 @@ document.getElementById("new_location_button").addEventListener("click", functio
 
         document.getElementById("validate").setAttribute("existing", "false")
         document.getElementById("delete").innerHTML = "";
+        document.getElementById("getQrCode").innerHTML = "";
 })
 
 document.getElementById("validate").addEventListener("click", (e) => {
@@ -50,9 +50,9 @@ document.getElementById("validate").addEventListener("click", (e) => {
         let instruction = route_duration.value;
 
         if (name == "" || name == null) return
-        if(document.getElementById("validate").getAttribute("existing") == "false"){
+        if (document.getElementById("validate").getAttribute("existing") == "false") {
                 SocketManager.addLocation(name.toUpperCase(), description, instruction);
-        }else{
+        } else {
                 SocketManager.modifyLocation(name.toUpperCase(), description, instruction)
         }
 })
@@ -60,18 +60,19 @@ document.getElementById("validate").addEventListener("click", (e) => {
 
 let allCards = document.getElementsByClassName("route-element")
 allCards = Array.from(allCards)
-//console.log(allCards)
+console.log(allCards)
 
 function allEventCards() {
         allCards.forEach(function (element) {
                 element.addEventListener("click", function (e) {
-                        if (!e.target.classList.contains("expand_button") && !e.target.classList.contains('getQrCode')) {
+                        if (!e.target.classList.contains("expand_button") && e.target.id != "getQrCode") {
                                 route_title.innerText = "Edit Location"
                                 route_name.value = element.getElementsByClassName("titles")[0].innerText
                                 route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
                                 route_duration.value = element.getElementsByClassName("auteur")[0].innerText
                                 document.getElementById("validate").setAttribute("existing", "true");
                                 document.getElementById("delete").innerHTML = "Delete";
+                                document.getElementById("getQrCode").innerHTML = "Get QR code";
                                 modals.show("create_location_modal");
                                 if (document.activeElement != document.body) document.activeElement.blur();
                         }
@@ -80,7 +81,7 @@ function allEventCards() {
         })
 }
 
-document.getElementById("delete").addEventListener("click", ()=>{
+document.getElementById("delete").addEventListener("click", () => {
         SocketManager.deleteLocation(route_name.value.toUpperCase());
 });
 
@@ -119,7 +120,7 @@ function filterList() {
 }
 
 // get all Location by emit
-function getAllLocation(){
+function getAllLocation() {
         SocketManager.getAllLocation();
 }
 
@@ -130,6 +131,11 @@ function refreshAllLocation(tabLocations) {
         tabLocations.forEach(location => {
                 createLocationListElement(location.name, location.description, location.instruction);
         })
+        document.getElementById("getQrCode").addEventListener("click", () => {
+                let name = route_name.value;
+
+                // Appel fonction génération qr code/pdf
+        });
         allEventCards();
 }
 
@@ -166,15 +172,14 @@ function createLocationListElement(name, description, instruction) {
         all_desc.push(descP);
         descDiv.appendChild(descP);
 
-const a_container= document.createElement('div');
+        const a_container = document.createElement('div');
         a_container.classList.add('show_more_container');
 
-        const qrDiv= document.createElement('div');
+        const qrDiv = document.createElement('div');
         qrDiv.classList.add('qr_container');
         qrDiv.id = "qr_container";
-        const qr_icon=document.createElement('img');
-        qr_icon.classList.add("getQrCode");
-        qr_icon.addEventListener("click", ()=> createPDF('LOCATION ' + name, [name]));
+        const qr_icon = document.createElement('img');
+        qr_icon.id = "getQrCode";
         qr_icon.src = "../../img/qr_code.png";
         qrDiv.appendChild(qr_icon);
         a_container.appendChild(qrDiv);
