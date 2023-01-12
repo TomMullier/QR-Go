@@ -42,7 +42,6 @@ document.getElementById("new_location_button").addEventListener("click", functio
 
         document.getElementById("validate").setAttribute("existing", "false")
         document.getElementById("delete").innerHTML = "";
-        document.getElementById("getQrCode").innerHTML = "";
 })
 
 document.getElementById("validate").addEventListener("click", (e) => {
@@ -66,14 +65,13 @@ console.log(allCards)
 function allEventCards() {
         allCards.forEach(function (element) {
                 element.addEventListener("click", function (e) {
-                        if (!e.target.classList.contains("expand_button") && e.target.id!="getQrCode") {
+                        if (!e.target.classList.contains("expand_button") && !e.target.classList.contains('getQrCode')) {
                                 route_title.innerText = "Edit Location"
                                 route_name.value = element.getElementsByClassName("titles")[0].innerText
                                 route_desc.value = element.getElementsByClassName("route_element_desc_text")[0].innerText
                                 route_duration.value = element.getElementsByClassName("auteur")[0].innerText
                                 document.getElementById("validate").setAttribute("existing", "true");
                                 document.getElementById("delete").innerHTML = "Delete";
-                                document.getElementById("getQrCode").innerHTML = "Get QR code";
                                 modals.show("create_location_modal");
                                 if (document.activeElement != document.body) document.activeElement.blur();
                         }
@@ -132,11 +130,6 @@ function refreshAllLocation(tabLocations) {
         tabLocations.forEach(location => {
                 createLocationListElement(location.name, location.description, location.instruction);
         })
-        document.getElementById("getQrCode").addEventListener("click", ()=>{
-                let name = route_name.value;
-        
-                // Appel fonction génération qr code/pdf
-        });
         allEventCards();
 }
 
@@ -180,7 +173,8 @@ const a_container= document.createElement('div');
         qrDiv.classList.add('qr_container');
         qrDiv.id = "qr_container";
         const qr_icon=document.createElement('img');
-        qr_icon.id = "getQrCode";
+        qr_icon.classList.add("getQrCode");
+        qr_icon.addEventListener("click", ()=> createPDF('LOCATION ' + name, [name]));
         qr_icon.src = "../../img/qr_code.png";
         qrDiv.appendChild(qr_icon);
         a_container.appendChild(qrDiv);
