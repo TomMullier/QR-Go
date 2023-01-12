@@ -232,38 +232,22 @@ function getAllRoutes(client, callback) {
 	})
 }
 
-
-
-async function findStepById(client, id) {
-	try {
-		const query = { _id: id };
-		const options = {
-			projection: { _id: 0, title: 1, description: 1, stage: 1 },
-		};
-		let step = await client.collection("steps").findOne(query, options);
-		if (step) {
-			console.log("Etape trouvée titre : " + step.title);
-			return step;
-		} else {
-			console.log("Etape non trouvée");
-			return false;
-		}
-	} catch (err) {
-		console.log("Erreur de recherche étape par id");
-	}
-}
-
 // Export functions
 module.exports = {
 	connexion,
+	//USER
 	register,
 	login,
+
+	// LOCATION
 	addLocation,
 	modifyLocation,
 	deleteLocation,
 	getAllLocation,
+
+	//ROUTE
 	addRoute,
 	modifyRoute,
+	deleteRoute,
 	getAllRoutes,
-	findStepById,
 };
