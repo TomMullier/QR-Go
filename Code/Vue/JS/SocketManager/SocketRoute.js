@@ -38,7 +38,7 @@ socket.on("addRouteSuccess", () => {
 
 socket.on("refreshAllRoutes", (routes) => {
         console.log(routes);
-        // Route.showAllRoutes(routes)
+        Route.refreshAllRoutes(routes)
 })
 
 /* -------------------------------------------------------------------------- */

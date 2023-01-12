@@ -49,6 +49,7 @@ document.getElementById("validate").addEventListener("click", (e) => {
         let description = route_desc.value;
         let instruction = route_duration.value;
 
+        if (name == "" || name == null) return
         if(document.getElementById("validate").getAttribute("existing") == "false"){
                 SocketManager.addLocation(name.toUpperCase(), description, instruction);
         }else{
