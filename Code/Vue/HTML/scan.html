@@ -62,10 +62,10 @@
         <modal id="display_location">
             <div class="slider"></div>
             <div class="top">
-                <h1 id="title_txt" class="title">Location Name</h1>
+                <h1 id="txt_title" class="title">Location Name</h1>
                 <span id="close_settings" class="close-modal close_settings">&times;</span>
             </div>
-            <div class="fields-container">
+            <div id="txt_descr" class="fields-container">
                 <h3>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta corrupti vitae rerum nihil
                     iure
@@ -75,6 +75,9 @@
                 </h3>
             </div>
         </modal>
+
+
+
         <modal id="display_camera_help">
             <div class="slider"></div>
             <div class="top">
@@ -112,18 +115,12 @@
         </modal>
 
     </div>
-
-    <script>
-        const next_step = 'coffee machine ta mere la pute';
-        document.getElementById('div_scaner_title_txt').innerHTML = next_step;
-    </script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="../JS/modal.js"></script>
     <script type="module" src="../JS/scan.js"></script>
+    <script src="../JS/qr-scanner-final.js"></script>
 </body>
 
-<script src="../JS/qr-scanner-final.js"></script>
-<script type="module" src="../JS/scan.js"></script>
 
 </html>

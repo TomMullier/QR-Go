@@ -26,6 +26,10 @@ function getRouteInfo(route_name, exist) {
         socket.emit("getRouteInfo", route_name, exist);
 }
 
+function getAllLocationInRoute(route_name){
+        socket.emit("getAllLocationInRoute", route_name)
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  Socket.ON                                 */
@@ -49,6 +53,10 @@ socket.on("showLocModal", (tabLocUsed, tabLocAvail) => {
         Route.setLocModal(tabLocUsed, tabLocAvail);
 })
 
+socket.on("printAllLocInRoute", allLocationName =>{
+        Route.printAllLocInRoute(allLocationName)
+})
+
 /* -------------------------------------------------------------------------- */
 /*                                   EXPORT                                   */
 /* -------------------------------------------------------------------------- */
@@ -57,5 +65,6 @@ export default {
         modifyRoute,
         deleteRoute,
         getAllRoutes,
-        getRouteInfo
+        getRouteInfo,
+        getAllLocationInRoute,
 }

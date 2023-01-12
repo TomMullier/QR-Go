@@ -1,12 +1,22 @@
 import QrScanner from 'qr-scanner';
+import Scan from './scan.js';
+
 
 const qrScanner = new QrScanner(
     document.getElementById('qr-video'),
-    result => alert(result.data), {returnDetailedScanResult: true}
+    result => {
+      Scan.getCurrentDescription(result.data);
+      qrScanner.stop();
+      document.getElementById('qr-display').classList.add('paused');
+    }, {returnDetailedScanResult: true}
 );
 
 qrScanner.start();
 
+function startCam() {
+  qrScanner.start();
+  document.getElementById('qr-display').classList.remove('paused');
+}
 
 document.getElementById('qr-display').appendChild(qrScanner.$canvas);
 
@@ -30,3 +40,7 @@ document.querySelectorAll("[text-to-clipboard]").forEach((element) => {
     });
   });
 });
+
+export default {
+  startCam
+};

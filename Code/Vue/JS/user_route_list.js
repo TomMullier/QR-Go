@@ -31,14 +31,12 @@ function allEventCards() {
 
         //get name, desc and duraction from modal
         let route_title = document.getElementById("title_txt")
-        console.log(route_title)
         let route_desc = document.getElementById("route_desc")
         let route_duration = document.getElementById("route_duration")
         // let route_title=document.getElementById("title_txt")
 
         let allCards = document.getElementsByClassName("route-element")
         allCards = Array.from(allCards)
-        console.log("All cards"+allCards)
 
         allCards.forEach(function (element) {
                 element.addEventListener("click", function (e) {
@@ -114,7 +112,7 @@ function filterList() {
 
 
 
-function refreshAllUserRoutes(routes){
+function refreshAllUserRoutes(routes) {
         document.getElementById("scroll_list").innerHTML = "";
         routes.forEach(route => {
                 createRouteListElement(route.name, route.description, route.duration, route.locations, route.author);
@@ -320,6 +318,38 @@ function sortAuthor()
 
 
 
+
+
+
+let play_button = document.getElementById("play_button");
+play_button.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        let name = play_button.parentElement.getElementsByTagName("h1")[0].innerText;
+        /* ------------------ // console.log(JSON.stringify(name)); ----------------- */
+
+        const data = {
+                name:name,
+        }
+        fetch('/scan', {
+                method: 'POST',
+                headers: {
+                        'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+        }).then(res => {
+                console.log(res);
+                if (res.ok) {
+                        console.log('Granted access to scan');
+                        window.location.href = 'scan';
+                } else {
+                        console.log('Failed access to scan');
+                }
+        }).catch(err => {
+                console.log(err);
+        })
+
+})
 
 export default {
         refreshAllUserRoutes

@@ -68,7 +68,7 @@ app.get("/login", (req, res) => {
     }
 });
 
-// post the register page
+// post the login page
 app.post(
     "/login",
     body("mail").isLength({ min: 3 }).trim().escape(),
@@ -195,9 +195,30 @@ app.get("/admin_route_list", (req, res) => {
     }
 });
 
+app.post("/scan",
+    body("name"),
+    (req, res) => {
+        console.log(req.body.name)
+        if (!req.session.route_name && req.session.mail && req.body.name) {
+            req.session.route_name = req.body.name;
+            req.session.locationId = 0;
+            req.session.save()
+            res.send("OK");
+        } else {
+            res.status(400).send('Impossible to access scan')
+        }
+    }
+);
+
+
+
 app.get("/scan", (req, res) => {
-    if (req.session.mail) {
+    if (req.session.route_name && req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/scan.html");
+    } else if (!req.session.route_name && req.session.mail) {
+        res.redirect("/user_route_list");
+    } else if (req.session.mail) {
+        res.redirect("/user_route_list")
     } else {
         res.redirect("/login");
     }
@@ -207,11 +228,13 @@ app.get("/scan", (req, res) => {
 /* -------------------------------------------------------------------------- */
 /*                                   SOCKET                                   */
 /* -------------------------------------------------------------------------- */
+let userConnected = 0;
 io.on("connection", (socket) => {
     console.log("--- SOCKET ---");
     const userMail = socket.handshake.session.mail
     const author = socket.handshake.session.surname + " " + socket.handshake.session.name;
-    console.log(userMail + " connected");
+    userConnected++;
+    console.log(userMail + " connected. Total : " + userConnected);
 
     /* -------------------------------- LOCATION -------------------------------- */
     socket.on("addLocation", (name, description, instruction) => {
@@ -242,12 +265,12 @@ io.on("connection", (socket) => {
         })
     })
 
-    /* --------------------------------- ROUTES --------------------------------- */
+    /* ------------------------------- ADMIN ROUTES ------------------------------ */
     socket.on("addRoute", (name, description, duration, locations) => {
         console.log("adding route");
         BDD.addRoute(database, name, description, duration, locations, author, (existing) => {
             if (existing) {
-                //socket.emit("addRouteFailed")
+                socket.emit("addRouteFailed")
             } else {
                 io.emit("addRouteSuccess")
             }
@@ -279,20 +302,49 @@ io.on("connection", (socket) => {
         })
     })
 
-    /* ------------------------------- USER ROUTES ------------------------------ */
+    socket.on("getAllLocationInRoute", (name)=>{
+        BDD.getAllLocationInRoute(database, name, (allLoc)=>{
+            socket.emit("printAllLocInRoute", allLoc)
+        })
+    })
+
+    /* ------------------------------- USER ROUTES ------------------------------- */
     socket.on("getAllUserRoutes", () => {
-        BDD.getAllUsersRoutes(database, (tabRoutes) =>  {
+        BDD.getAllUsersRoutes(database, (tabRoutes) => {
             socket.emit("refreshAllUserRoutes", tabRoutes);
+        })
+    })
+
+    /* ---------------------------------- SCAN ---------------------------------- */
+    socket.on("getCurrentCard", (isDescri, qrName) => {
+        let routeName = socket.handshake.session.route_name
+        let locationId = socket.handshake.session.locationId
+        BDD.getCurrentCard(database, routeName, locationId, (name, description, instruction,  isRouteFinished = false) => {
+            if(isRouteFinished){
+                socket.emit("endGame")
+                socket.handshake.session.locationId = 0;
+
+            }else if(isDescri){
+                console.log(name, " // ", qrName);
+                if (name != qrName) {
+                    socket.emit("wrongQrCode")
+                }else{
+                    socket.emit("showCurrentDescription", name, description)
+                    socket.handshake.session.locationId++;
+                }
+            }else{
+                socket.emit("showCurrentInstruction", name, instruction)
+            }
         })
     })
 
     /* ------------------------------- DISCONNECT ------------------------------- */
     socket.on("disconnect", () => {
-        console.log("User disconnected");
+        userConnected--;
+        console.log("User disconnected. Total : " + userConnected);
     });
 });
 
 http.listen(port, hostname, () => {
-    // console.log("Serveur lancé sur le port 4200");
     console.log(`Server running at http://${hostname}:${port}`);
 });
