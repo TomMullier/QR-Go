@@ -76,29 +76,6 @@ button_sort.addEventListener("click", function (e) {
         }
 });
 
-let sortTitle = []
-let listItems = document.getElementsByClassName("titles")
-listItems = Array.from(listItems);
-let sortList = document.getElementsByClassName('filtre_container');
-sortList = Array.from(sortList);
-sortList.forEach(function (element) {
-        element.addEventListener('click', function (e) {
-                console.log(element)
-                if (element.Id('sort-title') == true) {
-                        for (let i = 0; i < listItems.length; i++) {
-                                sortTitle[i] = listItems[i].innerText;
-                        }
-                        sortList.sort();
-                        console.log(sortList);
-                } else if (element.getElementById('sort-duration') == true) {
-
-                } else if (element.getElementById('sort-author') == true) {
-
-                }
-
-        });
-});
-
 
 
 
@@ -174,9 +151,7 @@ function createRouteListElement(name, description, duration, locations, author) 
         descContainer.classList.add("route-element-desc");
 
         const h6_desc = document.createElement("h6");
-        const icon_desc = document.createElement("i");
-        icon_desc.classList.add("fa-solid", "fa-clock");
-        h6_desc.appendChild(icon_desc);
+        h6_desc.classList.add("duration");
         h6_desc.innerText= duration;
 
         const p = document.createElement("p");
@@ -217,6 +192,133 @@ function createRouteListElement(name, description, duration, locations, author) 
         updateShowMoreBtn();
         allEventCards();
 }
+
+document.getElementById('sort-title').addEventListener('click', sortTitles);
+document.getElementById('sort-duration').addEventListener('click', sortDuration);
+document.getElementById('sort-author').addEventListener('click', sortAuthor);
+
+
+function sortTitles()
+{
+       
+        let listItems = document.getElementsByClassName("titles") //contient tous les H1 contenant les titres
+        
+        let sortList = [];
+        listItems = Array.from(listItems);
+
+        for (let i = 0; i < listItems.length; i++) 
+        {     
+                sortList[i] = listItems[i].innerText.toLowerCase();
+                
+        }
+
+        sortList.sort()
+
+        let all_cards_author = document.getElementsByClassName("route-element");
+        all_cards_author = Array.from(all_cards_author);
+
+        let parentElement= document.getElementById("scroll_list");
+        let all_cards_save= document.getElementsByClassName("route-element");
+        all_cards_save = Array.from(all_cards_save);
+        parentElement.innerHTML = "";
+
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        if(el.children[0].children[0].innerText.toLowerCase() == element)
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })   
+}    
+        
+
+function sortDuration()
+{
+        let listItems = document.getElementsByClassName("duration") //contient tous les H1 contenant les titres
+        
+        let sortList = [];
+        listItems = Array.from(listItems);
+
+        for (let i = 0; i < listItems.length; i++) 
+        {     
+                let txtTime = listItems[i].innerText;
+                let time = txtTime.split(":");
+                let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
+                sortList[i] = timeInMin;
+                
+        }
+
+        sortList.sort(function(a, b){return a-b})
+
+        let all_cards_author = document.getElementsByClassName("route-element");
+        all_cards_author = Array.from(all_cards_author);
+
+        let parentElement= document.getElementById("scroll_list");
+        let all_cards_save= document.getElementsByClassName("route-element");
+        all_cards_save = Array.from(all_cards_save);
+        parentElement.innerHTML = "";
+
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        let txtTime = el.children[1].children[0].innerText;
+                        let time = txtTime.split(":");
+                        let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
+                        if(timeInMin == element)
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })   
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        let txtTime = el.children[1].children[0].innerText;
+                        let time = txtTime.split(":");
+                        let timeInMin= parseInt(time[0])*60 + parseInt(time[1]);
+                        if(isNaN(element))
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })   
+
+}
+
+function sortAuthor()
+{
+        let listItems = document.getElementsByClassName("auteur") //contient tous les H1 contenant les titres
+        
+        let sortList = [];
+        listItems = Array.from(listItems);
+
+        for (let i = 0; i < listItems.length; i++) 
+        {     
+                sortList[i] = listItems[i].innerText.toLowerCase();
+                
+        }
+
+        sortList.sort()
+
+        let all_cards_author = document.getElementsByClassName("route-element");
+        all_cards_author = Array.from(all_cards_author);
+
+        let parentElement= document.getElementById("scroll_list");
+        let all_cards_save= document.getElementsByClassName("route-element");
+        all_cards_save = Array.from(all_cards_save);
+        parentElement.innerHTML = "";
+
+        sortList.forEach(element => {
+                all_cards_save.forEach(el => {
+                        if(el.children[2].children[1].innerText.toLowerCase() == element)
+                        {
+                                parentElement.appendChild(el);
+                        }
+                });
+        })
+}
+
+
+
 
 export default {
         refreshAllUserRoutes
