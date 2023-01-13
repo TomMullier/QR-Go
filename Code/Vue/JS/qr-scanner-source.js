@@ -3,7 +3,6 @@ import Scan from "./scan.js";
 
 let qrScanner;
 if (!window.isSecureContext) {
-  document.getElementById("qr-display").appendChild(document.createElement("canvas"));
   document.getElementById("qr-display").classList.add("camera-not-available");
   document.getElementById("qr-display").addEventListener("click", function (e) {
     modals.show("display_camera_help");
