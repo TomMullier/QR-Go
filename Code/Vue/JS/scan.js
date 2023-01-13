@@ -5,10 +5,6 @@ document.getElementById("button_back").addEventListener("click", function (e) {
         modals.show("confirm_back");
 })
 
-document.getElementById("camera_help").addEventListener("click", function (e) {
-        modals.show("display_camera_help");
-})
-
 
 function showCurrentInstruction(name, instruction) {
         document.getElementById("instructions_text").innerText = instruction;
