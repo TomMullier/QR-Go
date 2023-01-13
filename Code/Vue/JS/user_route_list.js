@@ -61,7 +61,7 @@ button_sort.addEventListener("click", function (e) {
         return;
     } else {
         sort_menu.style.display = "flex";
-        document.getElementById("scroll_list").style.height = "calc(68% - 40px)";
+        document.getElementById("scroll_list").style.height = "calc(70% - 40px)";
     }
 });
 
