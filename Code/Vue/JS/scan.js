@@ -37,9 +37,9 @@ function showWrongQrCode() {
 function showEndGame() {
         document.getElementById('txt_title').innerHTML = "The end";
         document.querySelector("#txt_descr h3").innerText = "You have finished the route. We hope you like this !";
+        qrScannerSource.stopCam();
         modals.show("display_location", () => {
                 window.location.href = "user_route_list";
-                //alert("Il faut rediriger vers la page user_route_list");
         });
 }
 

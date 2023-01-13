@@ -54,7 +54,7 @@ nav .navbar {
   flex-direction: row;
   justify-content: space-between;
   background-color: none;
-  width: 100vw;
+  width: 100%;
   align-items: center;
   height: 10vh;
 }
@@ -90,7 +90,7 @@ nav .navbar .login-container i:hover {
   flex-direction: column;
   margin-top: 50px;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   background-color: #f1f0ff;
   height: calc(90vh - 50px);
 }
@@ -196,7 +196,7 @@ nav .navbar .login-container i:hover {
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
-  width: 100vw;
+  width: 100%;
   background-color: #F5F5F5;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
@@ -207,7 +207,7 @@ nav .navbar .login-container i:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30vw;
+  width: 25vw;
   padding-bottom: 10px;
 }
 .features .features-container .feature .feature-icon {

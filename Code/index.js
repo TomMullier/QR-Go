@@ -32,7 +32,7 @@ io.use(
     })
 );
 
-const hostname = "192.168.1.11"; // ISEN
+const hostname = "10.224.1.111"; // ISEN
 //! const hostname = "localhost"; //! HOME
 const port = 4200;
 
@@ -45,7 +45,7 @@ const port = 4200;
 /* -------------------------------------------------------------------------- */
 // .\mongosh --host 10.224.4.159 --port 27017
 // restart mongodb serveur (services)
-const dBconnection = new MongoClient("mongodb://192.168.1.18/27017"); // ISEN-MAX
+const dBconnection = new MongoClient("mongodb://10.224.4.159/27017"); // ISEN-MAX
 //!const dBconnection = new MongoClient("mongodb://0.0.0.0/27017"); //! HOME
 BDD.connexion(dBconnection);
 const database = dBconnection.db("admin");
@@ -97,7 +97,7 @@ app.post(
                         req.session.save();
                         res.send("OK");
                     } else {
-                        res.status(400).send('password incorrect')
+                        res.status(400).send("password incorrect");
                     }
                 });
             });
@@ -149,7 +149,7 @@ app.post(
                         res.send("OK");
                     } else {
                         console.log("User already in DB");
-                        res.status(400).send('Already in DB')
+                        res.status(400).send("Already in DB");
                     }
                 });
             });
@@ -172,12 +172,19 @@ app.get("/connect_admin", (req, res) => {
 
 app.get("/user_route_list", (req, res) => {
     if (req.session.mail) {
+        req.session.route_name = undefined;
+        req.session.locationId = 0;
         res.sendFile(__dirname + "/Vue/HTML/user_route_list.html");
     } else {
         res.redirect("/");
     }
 });
 
+app.post("/isAdmin", (req, res) => {
+    console.log(req.session.admin);
+    if (req.session.admin) return res.json({admin: true});
+    else return res.json({admin: false});
+});
 
 app.get("/admin_location_list", (req, res) => {
     if (req.session.mail) {
@@ -195,35 +202,37 @@ app.get("/admin_route_list", (req, res) => {
     }
 });
 
-app.post("/scan",
-    body("name"),
-    (req, res) => {
-        console.log(req.body.name)
-        if (!req.session.route_name && req.session.mail && req.body.name) {
-            req.session.route_name = req.body.name;
-            req.session.locationId = 0;
-            req.session.save()
-            res.send("OK");
-        } else {
-            res.status(400).send('Impossible to access scan')
-        }
+app.post("/scan", body("name"), (req, res) => {
+    console.log("--- SCAN POST ---");
+    console.log(req.body.name);
+    console.log(req.session.route_name);
+    console.log(req.session.mail);
+    if (!req.session.route_name && req.session.mail && req.body.name) {
+        req.session.route_name = req.body.name;
+        //req.session.locationId = 0;
+        req.session.save();
+        res.send("OK");
+    } else {
+        res.status(400).send("Impossible to access scan");
     }
-);
-
-
+});
 
 app.get("/scan", (req, res) => {
+    console.log("--- SCAN GET ---");
+    console.log(req.session.name);
+    console.log(req.session.route_name);
+    console.log(req.session.mail);
+
     if (req.session.route_name && req.session.mail) {
         res.sendFile(__dirname + "/Vue/HTML/scan.html");
     } else if (!req.session.route_name && req.session.mail) {
         res.redirect("/user_route_list");
     } else if (req.session.mail) {
-        res.redirect("/user_route_list")
+        res.redirect("/user_route_list");
     } else {
         res.redirect("/login");
     }
 });
-
 
 /* -------------------------------------------------------------------------- */
 /*                                   SOCKET                                   */
@@ -231,7 +240,7 @@ app.get("/scan", (req, res) => {
 let userConnected = 0;
 io.on("connection", (socket) => {
     console.log("--- SOCKET ---");
-    const userMail = socket.handshake.session.mail
+    const userMail = socket.handshake.session.mail;
     const author = socket.handshake.session.surname + " " + socket.handshake.session.name;
     userConnected++;
     console.log(userMail + " connected. Total : " + userConnected);
@@ -240,103 +249,118 @@ io.on("connection", (socket) => {
     socket.on("addLocation", (name, description, instruction) => {
         BDD.addLocation(database, name, description, instruction, (existing, location) => {
             if (existing) {
-                socket.emit("addLocationFailed")
+                socket.emit("addLocationFailed");
             } else {
-                io.emit("addLocationSuccess", location)
+                io.emit("addLocationSuccess", location);
             }
-        })
-    })
+        });
+    });
 
     socket.on("modifyLocation", (name, description, instruction) => {
         BDD.modifyLocation(database, name, description, instruction, () => {
-            io.emit("addLocationSuccess")
-        })
-    })
+            io.emit("addLocationSuccess");
+        });
+    });
 
     socket.on("deleteLocation", (name) => {
         BDD.deleteLocation(database, name, () => {
-            io.emit("addLocationSuccess")
-        })
-    })
+            io.emit("addLocationSuccess");
+        });
+    });
 
     socket.on("getAllLocation", () => {
         BDD.getAllLocation(database, (res) => {
             io.emit("refreshAllLocation", res);
-        })
-    })
+        });
+    });
 
     /* ------------------------------- ADMIN ROUTES ------------------------------ */
     socket.on("addRoute", (name, description, duration, locations) => {
         console.log("adding route");
         BDD.addRoute(database, name, description, duration, locations, author, (existing) => {
             if (existing) {
-                socket.emit("addRouteFailed")
+                socket.emit("addRouteFailed");
             } else {
-                io.emit("addRouteSuccess")
+                io.emit("addRouteSuccess");
             }
-        })
-    })
+        });
+    });
 
     socket.on("modifyRoute", (name, description, duration, locations) => {
         console.log("modifying route");
         BDD.modifyRoute(database, name, description, duration, locations, author, () => {
-            io.emit("addRouteSuccess")
-        })
-    })
+            io.emit("addRouteSuccess");
+        });
+    });
 
     socket.on("deleteRoute", (name) => {
         BDD.deleteRoute(database, name, () => {
-            io.emit("addRouteSuccess")
-        })
-    })
+            io.emit("addRouteSuccess");
+        });
+    });
 
     socket.on("getAllRoutes", () => {
         BDD.getAllRoutes(database, (res) => {
             io.emit("refreshAllRoutes", res);
-        })
-    })
+        });
+    });
 
     socket.on("getRouteInfo", (name, exist) => {
         BDD.getRouteInfo(database, name, exist, (tabLocUsed, tabLocAvail) => {
             socket.emit("showLocModal", tabLocUsed, tabLocAvail);
-        })
-    })
+        });
+    });
 
-    socket.on("getAllLocationInRoute", (name)=>{
-        BDD.getAllLocationInRoute(database, name, (allLoc)=>{
-            socket.emit("printAllLocInRoute", allLoc)
-        })
-    })
+    socket.on("getAllLocationInRoute", (name) => {
+        BDD.getAllLocationInRoute(database, name, (allLoc) => {
+            socket.emit("printAllLocInRoute", allLoc);
+        });
+    });
 
     /* ------------------------------- USER ROUTES ------------------------------- */
     socket.on("getAllUserRoutes", () => {
         BDD.getAllUsersRoutes(database, (tabRoutes) => {
             socket.emit("refreshAllUserRoutes", tabRoutes);
-        })
-    })
+        });
+    });
 
     /* ---------------------------------- SCAN ---------------------------------- */
     socket.on("getCurrentCard", (isDescri, qrName) => {
-        let routeName = socket.handshake.session.route_name
-        let locationId = socket.handshake.session.locationId
-        BDD.getCurrentCard(database, routeName, locationId, (name, description, instruction,  isRouteFinished = false) => {
-            if(isRouteFinished){
-                socket.emit("endGame")
-                socket.handshake.session.locationId = 0;
+        let routeName = socket.handshake.session.route_name;
+        let locationId = socket.handshake.session.locationId;
 
-            }else if(isDescri){
-                console.log(name, " // ", qrName);
-                if (name != qrName) {
-                    socket.emit("wrongQrCode")
-                }else{
-                    socket.emit("showCurrentDescription", name, description)
-                    socket.handshake.session.locationId++;
+        //console.log("routeName : ", routeName, " // locationId : ", locationId, " // name : ", socket.handshake.session.name, " // mail : ", socket.handshake.session.mail);
+        if (
+            routeName == undefined ||
+            locationId == undefined ||
+            socket.handshake.session.name == undefined ||
+            socket.handshake.session.mail == undefined
+        ) {
+            socket.emit("endGame");
+            return;
+        }
+        BDD.getCurrentCard(
+            database,
+            routeName,
+            locationId,
+            (name, description, instruction, isRouteFinished = false) => {
+                if (isRouteFinished) {
+                    socket.emit("endGame");
+                    socket.handshake.session.locationId = 0;
+                } else if (isDescri) {
+                    console.log(name, " // ", qrName);
+                    if (name != qrName) {
+                        socket.emit("wrongQrCode");
+                    } else {
+                        socket.emit("showCurrentDescription", name, description);
+                        socket.handshake.session.locationId++;
+                    }
+                } else {
+                    socket.emit("showCurrentInstruction", name, instruction);
                 }
-            }else{
-                socket.emit("showCurrentInstruction", name, instruction)
             }
-        })
-    })
+        );
+    });
 
     /* ------------------------------- DISCONNECT ------------------------------- */
     socket.on("disconnect", () => {

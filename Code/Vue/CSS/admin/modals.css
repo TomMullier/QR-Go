@@ -767,6 +767,7 @@ body {
   font-family: 'Mulish', sans-serif;
   font-size: 1.8vh;
   font-weight: 700;
+  cursor: pointer;
 }
 #confirm_back .fields-container a div,
 #confirm_back .fields-container div div {
@@ -777,6 +778,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
   background-color: #a299ff;
 }
 #confirm_back .fields-container #button_back_confirm {

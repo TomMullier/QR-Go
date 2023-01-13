@@ -61,7 +61,7 @@ signupForm.addEventListener('submit', e => {
         }
     })
     .catch(err => {
-        console.log("Login error")
+        console.log("Register error")
         console.error(err);
     });
 });
