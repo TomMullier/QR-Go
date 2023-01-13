@@ -1,24 +1,33 @@
 import QrScanner from 'qr-scanner';
 import Scan from './scan.js';
 
-
-const qrScanner = new QrScanner(
-    document.getElementById('qr-video'),
-    result => {
-      Scan.getCurrentDescription(result.data);
-      qrScanner.stop();
-      document.getElementById('qr-display').classList.add('paused');
-    }, {returnDetailedScanResult: true}
-);
-
-qrScanner.start();
-
-function startCam() {
+let qrScanner;
+if (window.isSecureContext) {
+  qrScanner = new QrScanner(
+      document.getElementById('qr-video'),
+      result => {
+        Scan.getCurrentDescription(result.data);
+        qrScanner.stop();
+        document.getElementById('qr-display').classList.add('paused');
+      }, {returnDetailedScanResult: true}
+  );
+  document.getElementById('qr-display').appendChild(qrScanner.$canvas);
   qrScanner.start();
-  document.getElementById('qr-display').classList.remove('paused');
+} else {
+  document.getElementById('qr-display').appendChild(document.createElement('canvas'));
+  document.getElementById('qr-display').classList.add('camera-not-available');
+  document.getElementById('qr-display').addEventListener("click", function (e) {
+    modals.show("display_camera_help");
+  })
 }
 
-document.getElementById('qr-display').appendChild(qrScanner.$canvas);
+
+function startCam() {
+  if (window.isSecureContext) {
+    qrScanner.start();
+    document.getElementById('qr-display').classList.remove('paused');
+  } else return;
+}
 
 
 document.getElementById("window-location").innerText = window.location.origin;
