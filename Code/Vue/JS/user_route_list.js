@@ -87,14 +87,14 @@ function createRouteListElement(name, description, duration, locations, author) 
     const top = document.createElement("div");
     top.classList.add("top");
 
-    const icon = document.createElement("i");
-    icon.classList.add("fa-solid", "fa-circle-check");
+//     const icon = document.createElement("i");
+//     icon.classList.add("fa-solid", "fa-circle-check");
 
-    const h6 = document.createElement("h6");
-    h6.textContent = "Finished !"; // Récupérer de BDD
+//     const h6 = document.createElement("h6");
+//     h6.textContent = "Finished !"; // Récupérer de BDD
 
-    top.appendChild(icon);
-    top.appendChild(h6);
+//     top.appendChild(icon);
+//     top.appendChild(h6);
 
     topContainer.appendChild(h1);
     topContainer.appendChild(top);
