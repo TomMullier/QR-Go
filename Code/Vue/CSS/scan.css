@@ -126,7 +126,7 @@ nav .navbar .play-container i:hover {
 main .div_scaner_title {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
-  margin: calc(40% - 120px) calc(50vw - 150px);
+  margin: calc(25vh - 120px) calc(50vw - 150px);
   position: absolute;
   text-align: center;
   width: 300px;
@@ -160,7 +160,7 @@ main #qr-display {
   border-collapse: collapse;
   display: flex;
   justify-content: center;
-  margin: 40% calc(50vw - 150px);
+  margin: 25vh calc(50vw - 150px);
   position: absolute;
   border-radius: 30px;
 }
