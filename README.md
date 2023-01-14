@@ -15,10 +15,11 @@ The tool is functional on PC and smartphone, but it is more suited for use on a 
 ## Installation
 
 1. Clone this project's repository to your computer using the command `git clone https://github.com/TomMullier/QR-Go.git`
-2. Install necessary dependencies using the command `npm i` in the cloned directory.
-3. Compile the JS FIles using the command `npm run build-script`
-3. Start the server using the command `npm start`
-4. Access the application by opening your web browser and entering the address `http://localhost:3000/`
+2. Install mongoDB on your computer
+3. Install necessary dependencies using the command `npm i` in the cloned directory.
+4. Compile the JS FIles using the command `npm run build-script`
+5. Start the server using the command `npm start`
+6. Access the application by opening your web browser and entering the address `http://localhost:4200/`
 
 ## Usage
 
