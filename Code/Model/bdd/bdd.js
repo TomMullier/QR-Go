@@ -42,10 +42,10 @@ function register(client, name, surname, mail, hash, callback) {
 			users.insertOne(obj, (err, res) => {
 				if (err) {
 					console.log("Error inserting user in DB");
-					callback(false, admin);
+					callback(false, obj.admin);
 				} else {
 					console.log("User registered and inserted in DB");
-					callback(true, admin);
+					callback(true, obj.admin);
 				}
 			});
 		}
@@ -337,18 +337,19 @@ async function getCurrentCard(client, name, step, callback){
 			return
 		}
 		let currentLocationName = currentRoute.locations[step] //reading location
+		console.log("STEP ", step);
 
-		// console.log("CUR LOC NAME", currentLocationName);
+		console.log("CUR LOC NAME", currentLocationName);
 		const queryL = {name: currentLocationName}
 		try{
 			currentLocation = await locations.findOne(queryL, optionsL)
-			// console.log("CUR LOC", currentLocation);
 		}catch (err){
 			console.log(err);
 		}
 	}catch (err){
 		console.log(err);
 	} 
+	console.log("CUR LOC", currentLocation);
 	callback(currentLocation.name,currentLocation.description,currentLocation.instruction, false)
 }
 

@@ -92,13 +92,13 @@ nav {
                 }
 
                 .play-container {
-                        
+
                         i {
-                             
+
                                 padding: 10px 20px;
                                 color: @black;
                                 font-size: 2.5vh;
-                                
+
 
                         }
                         .play-button {
@@ -132,7 +132,8 @@ main{
         .div_scaner_title{
                 //background-color: pink;
                 font-family: @title-font;
-                margin: calc(40% - 120px) calc(50vw - 150px);
+                font-size: 20px;
+                margin: calc(25vh - 120px) calc(50vw - 150px);
                 position: absolute;
                 text-align: center;
                 width: 300px;
@@ -141,7 +142,7 @@ main{
                 border-radius:30px;
                 height:300px;
                 z-index: -1;
-                p {     
+                p {
                         margin: 0;
                 }
 
@@ -173,9 +174,10 @@ main{
           border-collapse: collapse;
           display: flex;
           justify-content: center;
-          margin: 40% calc(50vw - 150px);
+          margin: 25vh calc(50vw - 150px);
           position: absolute;
           border-radius: 30px;
+          height: 300px;
 
             canvas{
               border-radius: 30px;
@@ -199,16 +201,34 @@ main{
             max-height: 300px;
             background-color: #00000054;
           }
+
+          &.camera-not-available::after {
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-size: 120px;
+            font-weight: 700;
+            color: @white_blue;
+            content: '\f030';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+            height: 300px;
+            width: 300px;
+            max-height: 300px;
+            background-color: @blue;
+            cursor: pointer;
+          }
         }
 
-        
+
 
         .instructions{
                 position: absolute;
                 bottom: 0;
                 width:80vw;
                 margin-left: 10vw;
-                
+
                 // display:none;
                 height:auto;
                 margin:2vh 10vw;
@@ -219,24 +239,17 @@ main{
                 font-weight: 600;
                 font-style: italic;
 
-                .camera_help{                        
-                        // display:none;
-                        height:auto;
-                        text-align: center;
-                        color: @red;
-                        font-family: @title-font;
-                        font-size: 1.7vh;
-                        font-weight: 600;
-                        font-style: italic;
-                        text-decoration: underline;
-                        padding-bottom: 5%;
-                        cursor: pointer;
-                }
         }
 }
 
-#div_scaner_title_txt{
-        font-size: 50px;
+.box {
+	background-color: rgba( 255, 248, 0, 0.2 ) ;
+	border-radius: 2px 2px 2px 2px ;
+	box-sizing: border-box ;
+	outline: 1px dashed #ff0000 ;
+	outline-offset: 1px ;
+	pointer-events: none ;
+	position: fixed ;
 }
 
 code {

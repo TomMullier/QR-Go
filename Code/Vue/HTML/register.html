@@ -14,7 +14,9 @@
         <!-- <link rel="stylesheet" href="../css/colors_fonts.css"> -->
         <link rel="stylesheet" href="../css/register.css" />
         <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
-        <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <meta name="theme-color" content="#a299ff">
+    <title>Register</title>
 </head>
 
 <body>
@@ -41,12 +43,13 @@
                         <h1>Registration</h1>
                         <div class="form_container">
                             <div class="name_input_container">
-                                <div class="input-contain input-contain_name_left " id="name">
+                                <div class="input-contain  input-contain_name_left" id="name">
                                     <input
                                         class="input_name formulaire"
                                         type="text"
                                         placeholder=" Name"
                                         name="name"
+                                        autocomplete="given-name"
                                         required />
                                 </div>
                                 <div class="input-contain input-contain_name_right" id="surname">
@@ -55,16 +58,18 @@
                                     type="text"
                                     placeholder=" Surname"
                                     name="surname"
+                                    autocomplete="family-name"
                                     required />
                                 </div>
                                 
                             </div>
-                            <div class="input-contain" id="e-mail_top">
+                            <div class="input-contain input-contain_name_left" id="e-mail_top">
                                 <input
                                     class="input_mail formulaire"
                                     type="text"
                                     placeholder=" E-mail adress"
                                     name="mail"
+                                    autocomplete="email"
                                     required />
                             </div>
                             <div class="input-contain">

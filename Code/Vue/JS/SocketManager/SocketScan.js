@@ -24,6 +24,8 @@ function getCurrentDescription(name) {
 socket.on("showCurrentInstruction", (name, instruction) => {
       console.log(name, instruction);
       Scan.showCurrentInstruction(name, instruction);
+      console.log("tomtomtomtom")
+      Scan.updateFontSize();    
 })
 
 socket.on("showCurrentDescription", (name, description) => {

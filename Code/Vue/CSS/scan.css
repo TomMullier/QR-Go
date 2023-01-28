@@ -125,7 +125,8 @@ nav .navbar .play-container i:hover {
 }
 main .div_scaner_title {
   font-family: 'Montserrat', sans-serif;
-  margin: calc(40% - 120px) calc(50vw - 150px);
+  font-size: 20px;
+  margin: calc(25vh - 120px) calc(50vw - 150px);
   position: absolute;
   text-align: center;
   width: 300px;
@@ -161,9 +162,10 @@ main #qr-display {
   border-collapse: collapse;
   display: flex;
   justify-content: center;
-  margin: 40% calc(50vw - 150px);
+  margin: 25vh calc(50vw - 150px);
   position: absolute;
   border-radius: 30px;
+  height: 300px;
 }
 main #qr-display canvas {
   border-radius: 30px;
@@ -186,6 +188,23 @@ main #qr-display.paused::after {
   max-height: 300px;
   background-color: #00000054;
 }
+main #qr-display.camera-not-available::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-size: 120px;
+  font-weight: 700;
+  color: #f1f0ff;
+  content: '\f030';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  height: 300px;
+  width: 300px;
+  max-height: 300px;
+  background-color: #a299ff;
+  cursor: pointer;
+}
 main .instructions {
   position: absolute;
   bottom: 0;
@@ -200,17 +219,14 @@ main .instructions {
   font-weight: 600;
   font-style: italic;
 }
-main .instructions .camera_help {
-  height: auto;
-  text-align: center;
-  color: #E17E7C;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.7vh;
-  font-weight: 600;
-  font-style: italic;
-  text-decoration: underline;
-  padding-bottom: 5%;
-  cursor: pointer;
+.box {
+  background-color: rgba(255, 248, 0, 0.2);
+  border-radius: 2px 2px 2px 2px ;
+  box-sizing: border-box;
+  outline: 1px dashed #ff0000;
+  outline-offset: 1px ;
+  pointer-events: none ;
+  position: fixed ;
 }
 #div_scaner_title_txt {
   font-size: 50px;

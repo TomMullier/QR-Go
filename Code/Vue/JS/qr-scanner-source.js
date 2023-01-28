@@ -1,33 +1,45 @@
-import QrScanner from 'qr-scanner';
-import Scan from './scan.js';
+import QrScanner from "qr-scanner";
+import Scan from "./scan.js";
 
+let qrScanner;
+if (!window.isSecureContext) {
+  document.getElementById("qr-display").classList.add("camera-not-available");
+  document.getElementById("qr-display").addEventListener("click", function (e) {
+    modals.show("display_camera_help");
+  });
+}
 
-const qrScanner = new QrScanner(
-    document.getElementById('qr-video'),
-    result => {
+qrScanner = new QrScanner(
+    document.getElementById("qr-video"),
+    (result) => {
       Scan.getCurrentDescription(result.data);
       qrScanner.stop();
-      document.getElementById('qr-display').classList.add('paused');
-    }, {returnDetailedScanResult: true}
+      document.getElementById("qr-display").classList.add("paused");
+    },
+    {returnDetailedScanResult: true}
 );
-
+document.getElementById("qr-display").appendChild(qrScanner.$canvas);
 qrScanner.start();
+
 
 function startCam() {
   qrScanner.start();
-  document.getElementById('qr-display').classList.remove('paused');
+  document.getElementById("qr-display").classList.remove("paused");
 }
 
-document.getElementById('qr-display').appendChild(qrScanner.$canvas);
+function stopCam() {
+  qrScanner.stop();
+  document.getElementById("qr-display").classList.add("paused");
+}
 
+document.getElementById("qr-display").appendChild(qrScanner.$canvas);
 
 document.getElementById("window-location").innerText = window.location.origin;
-document.getElementById("window-location-copy").setAttribute('text-to-clipboard', window.location.origin);
-
+document.getElementById("window-location-copy").setAttribute("text-to-clipboard", window.location.origin);
 
 document.querySelectorAll("[text-to-clipboard]").forEach((element) => {
   element.addEventListener("click", () => {
-    navigator.clipboard.writeText(element.getAttribute("text-to-clipboard")).then(() => {
+    copyToClipboard(element.getAttribute("text-to-clipboard")).then(() => {
       const iconClasses = element.querySelector("i").classList;
       iconClasses.replace("fa-regular", "fa-solid");
       iconClasses.replace("fa-clipboard", "fa-clipboard-check");
@@ -41,6 +53,30 @@ document.querySelectorAll("[text-to-clipboard]").forEach((element) => {
   });
 });
 
+function copyToClipboard(textToCopy) {
+  // navigator clipboard api needs a secure context (https)
+  if (navigator.clipboard && window.isSecureContext) {
+    // navigator clipboard api method
+    return navigator.clipboard.writeText(textToCopy);
+  } else {
+    // text area method
+    let textArea = document.createElement("textarea");
+    textArea.value = textToCopy;
+    // make the textarea out of viewport
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    return new Promise((res, rej) => {
+      document.execCommand("copy") ? res() : rej();
+      textArea.remove();
+    });
+  }
+}
+
 export default {
-  startCam
+  startCam,
+  stopCam,
 };

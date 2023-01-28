@@ -43,6 +43,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.blue-text {
+  color: #a299ff;
+}
 nav {
   background-color: #f1f0ff;
 }
@@ -51,7 +54,7 @@ nav .navbar {
   flex-direction: row;
   justify-content: space-between;
   background-color: none;
-  width: 100vw;
+  width: 100%;
   align-items: center;
   height: 10vh;
 }
@@ -87,7 +90,7 @@ nav .navbar .login-container i:hover {
   flex-direction: column;
   margin-top: 50px;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   background-color: #f1f0ff;
   height: calc(90vh - 50px);
 }
@@ -189,11 +192,11 @@ nav .navbar .login-container i:hover {
 .features .features-container {
   padding-top: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
-  width: 100vw;
+  width: 100%;
   background-color: #F5F5F5;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
@@ -204,12 +207,12 @@ nav .navbar .login-container i:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
+  width: 25vw;
   padding-bottom: 10px;
 }
 .features .features-container .feature .feature-icon {
   margin-top: 10px;
-  height: 30vw;
+  height: 15vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -270,6 +273,14 @@ nav .navbar .login-container i:hover {
   font-weight: 700;
   color: #231F20;
 }
-.blue-text {
-  color: #a299ff;
+@media only screen and (max-width: 1000px) {
+  .features .features-container {
+    flex-direction: column;
+  }
+  .features .features-container .feature {
+    width: 80vw;
+  }
+  .features .features-container .feature .feature-icon {
+    height: 30vw;
+  }
 }

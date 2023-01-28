@@ -15,7 +15,9 @@
         <link rel="stylesheet" href="../../css/admin/admin_route_list.css">
         <script src="https://kit.fontawesome.com/b89837f3ad.js" crossorigin="anonymous"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <title>Route</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <meta name="theme-color" content="#a299ff">
+    <title>Route</title>
 </head>
 
 <body>
@@ -29,9 +31,6 @@
                                         <a href="/admin_location_list" class="text-reset">
                                                 Locations
                                         </a>
-                                </div>
-                                <div class="item">
-                                        Stats
                                 </div>
                                 <div class="play-container">
                                         <a href="/user_route_list">
@@ -101,13 +100,13 @@
                         </div>
                         <h3>Current route : (drag & drop to modify)</h3>
                         <div id="list_verti" class="verti_scroll">
-                                
+
                         </div>
                         <div class="buttons_container">
                                 <div class="validate close-modal" id="validate">
                                         Save Route
                                 </div>
-                                <div class="cancel" id="delete">
+                                <div class="cancel close-modal" id="delete">
                                 </div>
                         </div>
 
